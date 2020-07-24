@@ -42,7 +42,6 @@
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>)</p>
 @endif
-
 </header>
 <main>
 <!------------------------------------------------------------------------------------------------------------------>
@@ -57,30 +56,78 @@
             type: 'horizontalBar',
             data: {
                 labels: [
-                  @foreach ($data['buckets'] as $date)
+                  @foreach ($data as $date)
                   {{$date['price']}},
                   @endforeach
                    ],
                 datasets: [{
-                    label: 'longCountPercent',
+                    label: 'Buy(longCountPercent)',
                     data: [
-                      @foreach ($data['buckets'] as $date)
+                      @foreach ($data as $date)
                       {{$date['longCountPercent']}},
                       @endforeach
                     ],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
+                    backgroundColor: [
+                      @foreach ($data as $date)
+                      @if ($date['price'] > $median['price'])
+                      'rgba(255, 99, 132, 0.2)',
+                      @else
+                      'rgba(54, 162, 235, 0.2)',
+                      @endif
+                      @endforeach
+                    ],
+                    borderColor: [
+                      @foreach ($data as $date)
+                      @if ($date['price'] > $median['price'])
+                      'rgba(255, 99, 132, 1)',
+                      @else
+                      'rgba(54, 162, 235, 1)',
+                      @endif
+                      @endforeach
+                    ],
+                    borderWidth: [
+                      @foreach ($data as $date)
+                      @if ($date['price'] == $median['price'])
+                      10,
+                      @else
+                      1,
+                      @endif
+                      @endforeach
+                    ],
                 },{
-                    label: 'shortCountPercent',
+                    label: 'Sell(shortCountPercent)',
                     data: [
-                      @foreach ($data['buckets'] as $date)
+                      @foreach ($data as $date)
                       {{$date['shortCountPercent']*(-1)}},
                       @endforeach
                     ],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
+                    backgroundColor: [
+                      @foreach ($data as $date)
+                      @if ($date['price'] <= $median['price'])
+                      'rgba(255, 99, 132, 0.2)',
+                      @else
+                      'rgba(54, 162, 235, 0.2)',
+                      @endif
+                      @endforeach
+                    ],
+                    borderColor: [
+                      @foreach ($data as $date)
+                      @if ($date['price'] <= $median['price'])
+                      'rgba(255, 99, 132, 1)',
+                      @else
+                      'rgba(54, 162, 235, 1)',
+                      @endif
+                      @endforeach
+                    ],
+                    borderWidth: [
+                      @foreach ($data as $date)
+                      @if ($date['price'] == $median['price'])
+                      10,
+                      @else
+                      1,
+                      @endif
+                      @endforeach
+                    ],
                 }]
             },
             options: {
@@ -95,6 +142,7 @@
             }
         });
         </script>
+        <h6 class="text-center">{{$updatetime}}</h6>
     </div><!-- .container -->
 </section>
 <!------------------------------------------------------------------------------------------------------------------>
