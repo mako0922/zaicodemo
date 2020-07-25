@@ -28,6 +28,26 @@ class GraphController extends Controller
     }
   }
 
+  public function cadjpy(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $param = graphExchange('cadjpy');
+      return view('cadjpy.index',$param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
+  public function nzdjpy(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $param = graphExchange('nzdjpy');
+      return view('nzdjpy.index',$param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
   public function onchange(Request $request){
     // ログインチェック
     if (Auth::check()){
