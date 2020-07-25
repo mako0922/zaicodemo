@@ -19,6 +19,11 @@ Route::get('/', function () {
 
 Route::get('audjpy','GraphController@audjpy')
       ->middleware('auth');
+Route::get('usdjpy','GraphController@usdjpy')
+            ->middleware('auth');
+
+Route::post('onchange','GraphController@onchange')
+            ->middleware('auth');
 
 Auth::routes();
 

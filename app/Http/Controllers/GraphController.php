@@ -11,27 +11,36 @@ class GraphController extends Controller
   public function audjpy(Request $request){
     // ログインチェック
     if (Auth::check()){
-      $user = Auth::user();
-      $audjpy = DB::table('audjpy')->orderBy('datetime','desc')->get();
-      //echo $audjpy;
-      //$file = public_path() . '\data\templary.json';
-      //$file = $audjpy;
-      //$json = file_get_contents($file);
-      //$data = json_decode($json, true);
-      $data = json_decode($audjpy[0]->openorder, true);
-      $data_median = median($data['buckets']);
-      $data_reserve = array_reverse($data['buckets']);
-      $updatetime = $audjpy[0]->datetime;
-      $param = ['data' => $data_reserve, 'users' => $user, 'updatetime' => $updatetime, 'median' => $data_median];
+      $param = graphExchange('audjpy');
       return view('audjpy.index',$param);
     }else{
       return view('auth/login');
     }
-
   }
 
+  public function usdjpy(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $param = graphExchange('usdjpy');
+      return view('usdjpy.index',$param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
+  public function onchange(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $param = graphExchange($request->exchange);
+      return redirect('/' . $request->exchange);
+      //return view('audjpy.index',$param);
+    }else{
+      return view('auth/login');
+    }
+  }
 }
 
+//中央値取得メソッド
 function median($list){
   sort($list);
   if (count($list) % 2 == 0){
@@ -39,4 +48,18 @@ function median($list){
   }else{
     return ($list[floor(count($list)/2)]);
   }
+}
+
+//表示データ取得メソッド
+function graphExchange($graphexchange){
+  $user = Auth::user();
+  $exchange = DB::table('exchange')->orderBy('id','asc')->get();
+  $exchange_form = DB::table($graphexchange)->orderBy('datetime','desc')->get();
+  $data = json_decode($exchange_form[0]->openorder, true);
+  $data_median = median($data['buckets']);
+  $data_reserve = array_reverse($data['buckets']);
+  $updatetime = $exchange_form[0]->datetime;
+  $currency_ini = $graphexchange;
+  $param = ['data' => $data_reserve, 'users' => $user, 'updatetime' => $updatetime, 'median' => $data_median, 'exchange' => $exchange, 'currency_ini' => $currency_ini];
+  return $param;
 }
