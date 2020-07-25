@@ -28,6 +28,12 @@ h2, h3{
     border: none;
 }
 
+.fx_graph {
+  margin: auto;
+  text-align: center;
+  display: block;
+ }
+
 /* ヘッダー(navbar) */
 .navbar{
     border-bottom: 1px solid #a29080;

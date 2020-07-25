@@ -170,8 +170,53 @@
 <!------------------------------------------------------------------------------------------------------------------>
 
 <section id="sec2">
-    <div class="container">
-    </div><!-- .container -->
+  <div class="container">
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container fx_graph">
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright">TradingView提供の<a href="https://jp.tradingview.com/markets/currencies/" rel="noopener" target="_blank"><span class="blue-text">FX</span></a></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+      {
+        "colorTheme": "light",
+        "dateRange": "1m",
+        "showChart": true,
+        "locale": "ja",
+        "width": "400",
+        "height": "660",
+        "largeChartUrl": "",
+        "isTransparent": false,
+        "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+        "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+        "gridLineColor": "rgba(240, 243, 250, 1)",
+        "scaleFontColor": "rgba(120, 123, 134, 1)",
+        "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+        "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+        "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+        "tabs": [
+          {
+            "title": "FX",
+            "symbols": [
+              {
+                "s": "FX:USDJPY"
+              },
+              {
+                "s": "FX:AUDUSD"
+              },
+              {
+                "s": "FX:NZDJPY"
+              },
+              {
+                "s": "FX:CADJPY"
+              }
+            ],
+            "originalTitle": "Forex"
+          }
+        ]
+      }
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
+  </div><!-- .container -->
 </section>
 <!------------------------------------------------------------------------------------------------------------------>
 </main>
