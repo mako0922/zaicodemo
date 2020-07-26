@@ -24,6 +24,8 @@ Route::get('usdjpy','GraphController@usdjpy')
 Route::get('cadjpy','GraphController@cadjpy')
             ->middleware('auth');
 Route::get('nzdjpy','GraphController@nzdjpy')
+            ->middleware('auth');
+Route::get('chfjpy','GraphController@chfjpy')
                         ->middleware('auth');
 
 Route::post('onchange','GraphController@onchange')

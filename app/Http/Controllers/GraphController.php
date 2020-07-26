@@ -48,6 +48,16 @@ class GraphController extends Controller
     }
   }
 
+  public function chfjpy(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $param = graphExchange('chfjpy');
+      return view('chfjpy.index',$param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
   public function onchange(Request $request){
     // ログインチェック
     if (Auth::check()){
