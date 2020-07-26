@@ -150,7 +150,7 @@
                       @if (substr($currency_ini, -3) == "jpy")
                       callback: function(value) {return ((value % 0.25) == 0)? value : ''},
                       @else
-                      callback: function(value) {return ((value * 100 % 0.5) == 0)? value : ''},
+                      callback: function(value) {return ((value * 1000 % 2.5) == 0)? value : ''},
                       @endif
                       //min: -2,          // 最小値
                       //max: 2,           // 最大値
