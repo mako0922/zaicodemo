@@ -165,7 +165,7 @@
       <h3 class="col text-center">Sell</h3>
       <h3 class="col text-center">Buy</h3>
     </div>
-    <h6 class="text-center">{{$updatetime}}</h6>
+    <h3 class="text-center">{{$updatetime}}</h3>
   </div><!-- .container -->
 </section>
 <!------------------------------------------------------------------------------------------------------------------>
@@ -182,7 +182,7 @@
         "dateRange": "1m",
         "showChart": true,
         "locale": "ja",
-        "width": "400",
+        "width": "100%",
         "height": "660",
         "largeChartUrl": "",
         "isTransparent": false,
@@ -197,18 +197,17 @@
           {
             "title": "FX",
             "symbols": [
+              @foreach ($exchange as $currency)
+              @if ($loop->last)
               {
-                "s": "FX:USDJPY"
-              },
-              {
-                "s": "FX:AUDUSD"
-              },
-              {
-                "s": "FX:NZDJPY"
-              },
-              {
-                "s": "FX:CADJPY"
+                "s": "FX:{{strtoupper($currency->exchange_name)}}"
               }
+              @else
+              {
+                "s": "FX:{{strtoupper($currency->exchange_name)}}"
+              },
+              @endif
+              @endforeach
             ],
             "originalTitle": "Forex"
           }
