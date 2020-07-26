@@ -176,6 +176,12 @@
 
 <section id="sec2">
   <div class="container">
+    <a href="https://fx.minkabu.jp/indicators" target="minkabu"><h2 class="text-center">>>みんカブ_経済指標リンク</h2></a>
+  </div><!-- .container -->
+</section>
+
+<section id="sec3">
+  <div class="container">
     <!-- TradingView Widget BEGIN -->
     <div class="tradingview-widget-container fx_graph">
       <div class="tradingview-widget-container__widget"></div>
