@@ -86,6 +86,8 @@
                   @foreach ($data as $date)
                   @if ($date['price'] < $median['price'])
                   'rgba(255, 99, 132, 0.2)',
+                  @elseif ($date['price'] == $median['price'])
+                  'rgba(54, 162, 235, 1)',
                   @else
                   'rgba(54, 162, 235, 0.2)',
                   @endif
@@ -100,15 +102,7 @@
                   @endif
                   @endforeach
                 ],
-                borderWidth: [
-                  @foreach ($data as $date)
-                  @if ($date['price'] == $median['price'])
-                  10,
-                  @else
-                  1,
-                  @endif
-                  @endforeach
-                ],
+                borderWidth: 1,
             },{
                 label: 'Sell(shortCountPercent)',
                 data: [
@@ -118,8 +112,10 @@
                 ],
                 backgroundColor: [
                   @foreach ($data as $date)
-                  @if ($date['price'] >= $median['price'])
+                  @if ($date['price'] > $median['price'])
                   'rgba(255, 99, 132, 0.2)',
+                  @elseif ($date['price'] == $median['price'])
+                  'rgba(255, 99, 132, 1)',
                   @else
                   'rgba(54, 162, 235, 0.2)',
                   @endif
@@ -134,24 +130,29 @@
                   @endif
                   @endforeach
                 ],
-                borderWidth: [
-                  @foreach ($data as $date)
-                  @if ($date['price'] == $median['price'])
-                  10,
-                  @else
-                  1,
-                  @endif
-                  @endforeach
-                ],
+                borderWidth: 1,
             }]
         },
         options: {
             scales: {
               xAxes:[{
-                stacked: true
+                stacked: true,
+                ticks: {            // 目盛り
+                  min: -2,          // 最小値
+                  max: 2,           // 最大値
+                  stepSize: 0.5,    // 軸間隔
+                  fontSize: 20      // フォントサイズ
+                }
               }],
                 yAxes: [{
-                    stacked: true
+                    stacked: true,
+                    ticks: {            // 目盛り
+                      callback: function(value) {return ((value % 0.25) == 0)? value : ''},
+                      //min: -2,          // 最小値
+                      //max: 2,           // 最大値
+                      //stepSize: 2     // 軸間隔
+                      fontSize: 20      // フォントサイズ
+                    }
                 }]
             },
             legend: {
