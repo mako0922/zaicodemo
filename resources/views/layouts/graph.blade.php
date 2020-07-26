@@ -45,7 +45,7 @@
   <div class="container">
     <form id="submit_form" action="/onchange" method="post">
     @csrf
-    <select id="submit_select" style="font-size: 25px; width:150px;" name="exchange" onChange="submit(this.form)">
+    <select id="submit_select" style="font-size: 25px; width:150px; margin-left:80px; padding-left:30px" name="exchange" onChange="submit(this.form)">
       @foreach ($exchange as $currency)
       <option value="{{$currency->exchange_name}}" @if ($currency_ini == $currency->exchange_name) selected @endif >{{$currency->exchange_name}}</option>
       @endforeach
@@ -59,10 +59,10 @@
     });
     </script>
 
-    <h2 class="text-center">@yield('title_exchange')</h2>
+    <h2 class="text-center ml-5">@yield('title_exchange')</h2>
     <div class="row">
-      <h3 class="col text-center">Sell</h3>
-      <h3 class="col text-center">Buy</h3>
+      <h3 class="col text-center ml-5 pl-5">Sell</h3>
+      <h3 class="col text-center mr-4">Buy</h3>
     </div>
     <canvas id="myChart" width="100" height="100"></canvas>
     <script>
@@ -162,10 +162,10 @@
     });
     </script>
     <div class="row">
-      <h3 class="col text-center">Sell</h3>
-      <h3 class="col text-center">Buy</h3>
+      <h3 class="col text-center ml-5 pl-5">Sell</h3>
+      <h3 class="col text-center mr-4">Buy</h3>
     </div>
-    <h3 class="text-center">{{$updatetime}}</h3>
+    <h3 class="text-center ml-5">{{$updatetime}}</h3>
   </div><!-- .container -->
 </section>
 <!------------------------------------------------------------------------------------------------------------------>
