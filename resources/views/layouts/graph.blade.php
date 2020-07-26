@@ -147,7 +147,11 @@
                 yAxes: [{
                     stacked: true,
                     ticks: {            // 目盛り
+                      @if (substr($currency_ini, -3) == "jpy")
                       callback: function(value) {return ((value % 0.25) == 0)? value : ''},
+                      @else
+                      callback: function(value) {return ((value * 100 % 0.5) == 0)? value : ''},
+                      @endif
                       //min: -2,          // 最小値
                       //max: 2,           // 最大値
                       //stepSize: 2     // 軸間隔
