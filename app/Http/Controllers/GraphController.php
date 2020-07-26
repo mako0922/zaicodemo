@@ -58,6 +58,16 @@ class GraphController extends Controller
     }
   }
 
+  public function audnzd(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $param = graphExchange('audnzd');
+      return view('audnzd.index',$param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
   public function onchange(Request $request){
     // ログインチェック
     if (Auth::check()){
