@@ -197,15 +197,14 @@
           {
             "title": "FX",
             "symbols": [
-              @foreach ($exchange as $currency)
-              @if ($loop->last)
               {
-                "s": "FX:{{strtoupper($currency->exchange_name)}}"
+                "s": "FX:{{strtoupper($currency_ini)}}"
               }
-              @else
-              {
-                "s": "FX:{{strtoupper($currency->exchange_name)}}"
-              },
+              @foreach ($exchange as $currency)
+              @if ($currency_ini != $currency->exchange_name)
+                ,{
+                  "s": "FX:{{strtoupper($currency->exchange_name)}}"
+                }
               @endif
               @endforeach
             ],
