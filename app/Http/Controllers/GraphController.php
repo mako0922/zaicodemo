@@ -84,7 +84,7 @@ class GraphController extends Controller
 function median($list){
   sort($list);
   if (count($list) % 2 == 0){
-    return (($list[(count($list)/2)-1]+$list[((count($list)/2))])/2);
+    return ($list[floor(count($list)/2)-1]);
   }else{
     return ($list[floor(count($list)/2)]);
   }
