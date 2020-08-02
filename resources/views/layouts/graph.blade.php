@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>@yield('title')</title>
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<link rel="stylesheet" media="all" href="https://fx.minkabu.jp/assets/application-1af5af89e296014a0411659dc3977394208b47f9f5adad41762e4a0cabeb3589.css" data-turbolinks-track="reload" />
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/queries.css">
@@ -174,11 +175,19 @@
 </section>
 <!------------------------------------------------------------------------------------------------------------------>
 
+
+<section>
+    <div class="col-8">
+    {!! $minkabu !!}
+    </div>
+</section>
+<!--
 <section id="sec2">
   <div class="container">
     <a href="https://fx.minkabu.jp/indicators" target="minkabu"><h2 class="text-center">>>みんカブ_経済指標リンク</h2></a>
-  </div><!-- .container -->
+  </div><! .container ->
 </section>
+-->
 
 <section id="sec3">
   <div class="container">

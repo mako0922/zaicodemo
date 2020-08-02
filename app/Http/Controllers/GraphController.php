@@ -100,6 +100,22 @@ function graphExchange($graphexchange){
   $data_reserve = array_reverse($data['buckets']);
   $updatetime = $exchange_form[0]->datetime;
   $currency_ini = $graphexchange;
-  $param = ['data' => $data_reserve, 'users' => $user, 'updatetime' => $updatetime, 'median' => $data_median, 'exchange' => $exchange, 'currency_ini' => $currency_ini];
+
+  $minkabu_ini = hp_source('https://fx.minkabu.jp/indicators/');
+  $minkabu = mb_strstr($minkabu_ini, '<section>');
+  $minkabu = mb_strstr($minkabu, '</section>',true);
+
+  $minkabu = str_replace( '/indicators' , 'https://fx.minkabu.jp/indicators' , $minkabu);
+  $minkabu = str_replace( '/assets' , 'https://fx.minkabu.jp/assets' , $minkabu);
+  $minkabu = str_replace( '<section>' , '' , $minkabu);
+  //$minkabu = '<link rel="stylesheet" media="all" href="https://fx.minkabu.jp/assets/application-1af5af89e296014a0411659dc3977394208b47f9f5adad41762e4a0cabeb3589.css" data-turbolinks-track="reload" />' . $minkabu;
+
+  $param = ['data' => $data_reserve, 'users' => $user, 'updatetime' => $updatetime, 'median' => $data_median, 'exchange' => $exchange, 'currency_ini' => $currency_ini, 'minkabu' => $minkabu];
   return $param;
+}
+
+//取得したいサイトのURL
+function hp_source($URL){
+  $html_source = file_get_contents($URL);
+  return $html_source;
 }
