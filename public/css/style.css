@@ -307,3 +307,7 @@ h1.page-ttl {
 .form1 .form-group{
     margin-bottom: 2rem;
 }
+
+img:hover{
+  background-color: #ffce11;
+}

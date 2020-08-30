@@ -20,14 +20,8 @@
         </div>
         <div class="col-md-8">
           <div class="row">
-            <div class="col-md-4 m-0 p-0">
-              <a class="navbar-brand" href="/audjpy"><img src="img/AUD_logo.png" alt="AUDJPY_LOGO"><h2 class="text-center">AUDJPY</h2></a>
-            </div>
-            <div class="col-md-4 m-0 p-0">
-              <a class="navbar-brand" href="#"><img src="img/AUD_logo.png" alt=""><h2 class="text-center">dummy</h2></a>
-            </div>
-            <div class="col-md-4 m-0 p-0">
-              <a class="navbar-brand" href="#"><img src="img/AUD_logo.png" alt=""><h2 class="text-center">dummy</h2></a>
+            <div class="col-md-4 m-0 p-0 mx-auto">
+              <a class="navbar-brand mx-auto" href="/zaico_home"><img src="img/zaico_icon.png" width="100px" alt="zaico_icon"><h3 class="text-center">メイン画面へ</h3></a>
             </div>
           </div>
         </div>
