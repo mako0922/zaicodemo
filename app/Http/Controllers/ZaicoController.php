@@ -274,7 +274,7 @@ class ZaicoController extends Controller
     if (Auth::check()){
       $user = Auth::user();
       try{
-        $zaico_log = DB::table('zaico_table')->get();
+        $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
