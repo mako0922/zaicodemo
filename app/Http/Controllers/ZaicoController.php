@@ -35,7 +35,7 @@ class ZaicoController extends Controller
     $validate_rule = [
       'rec_and_ship' => 'required',
       'partnumber' => 'min:0',
-      'part_photo' => 'image',
+      //'part_photo' => 'image',
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\logimage.png');
