@@ -35,7 +35,7 @@ class ZaicoController extends Controller
     $validate_rule = [
       'rec_and_ship' => 'required',
       'partnumber' => 'min:0',
-      //'part_photo' => 'image',
+      'part_photo' => 'image',
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\logimage.png');
@@ -170,12 +170,17 @@ class ZaicoController extends Controller
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
-    $image = Image::make(file_get_contents($request -> part_photo));
-    $image->resize(200, null, function ($constraint) {
-      $constraint->aspectRatio();
+
+    if(!empty($request -> part_photo)){
+      $image = Image::make(file_get_contents($request -> part_photo));
+      $image->resize(200, null, function ($constraint) {
+        $constraint->aspectRatio();
     });
-    $image->save($resize_path);
-    $part_photo64 = base64_encode($image);
+      $image->save($resize_path);
+      $part_photo64 = base64_encode($image);
+    }else{
+      $part_photo64 = "";
+    }
 
     $param = [
       'part_name' => $request -> part_name,
