@@ -44,7 +44,22 @@ Route::get('part_info','ZaicoController@part_info')
 Route::post('part_info/register','ZaicoController@part_info_register')
       ->middleware('auth');
 
+Route::get('part_update','ZaicoController@part_update')
+      ->middleware('auth');
+
+Route::post('part_update/register','ZaicoController@part_update_register')
+      ->middleware('auth');
+
+Route::get('part_delete','ZaicoController@part_delete')
+      ->middleware('auth');
+
+Route::post('part_delete/register','ZaicoController@part_delete_register')
+      ->middleware('auth');
+
 Route::get('zaico_list','ZaicoController@zaico_list')
+      ->middleware('auth');
+
+Route::post('part_list_serch','ZaicoController@part_list_serch')
       ->middleware('auth');
 
 Route::post('zaico_input/arrival','ZaicoController@zaico_input_arrival')
@@ -53,7 +68,25 @@ Route::post('zaico_input/arrival','ZaicoController@zaico_input_arrival')
 Route::post('zaico_input/utilize','ZaicoController@zaico_input_utilize')
       ->middleware('auth');
 
+Route::post('zaico_input/update','ZaicoController@zaico_input_update')
+      ->middleware('auth');
+
+Route::post('zaico_input/delete','ZaicoController@zaico_input_delete')
+      ->middleware('auth');
+
 Route::get('zaico_log','ZaicoController@zaico_log')
+      ->middleware('auth');
+
+Route::get('zaico_log_delete','ZaicoController@zaico_log_delete')
+      ->middleware('auth');
+
+Route::post('zaico_log/delete','ZaicoController@zaico_log_input_delete')
+      ->middleware('auth');
+
+Route::post('zaico_log_delete/register','ZaicoController@zaico_log_delete_register')
+      ->middleware('auth');
+
+Route::post('zaico_log_serch','ZaicoController@zaico_log_serch')
       ->middleware('auth');
 
 Route::post('onchange_log','ZaicoController@onchange_log')
@@ -61,6 +94,18 @@ Route::post('onchange_log','ZaicoController@onchange_log')
 
 Route::post('onchange_list','ZaicoController@onchange_list')
             ->middleware('auth');
+
+Route::get('storage_input','ZaicoController@storage_input')
+      ->middleware('auth');
+
+Route::post('storage_input/register','ZaicoController@storage_register')
+      ->middleware('auth');
+
+Route::get('used_info','ZaicoController@used_info')
+      ->middleware('auth');
+
+Route::post('used_info/register','ZaicoController@used_info_register')
+      ->middleware('auth');
 
 Auth::routes();
 

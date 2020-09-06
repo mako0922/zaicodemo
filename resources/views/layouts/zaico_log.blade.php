@@ -59,7 +59,16 @@
 <section id="sec1">
   <div class="container">
     <div class="pb-1 border-bottom">
+      <div>
+          <form id="zaico_serch" action="/zaico_log_serch" method="post">
+            <h3>あいまい検索</h3>
+             @csrf
+             <h3><input class="text-left" type="text" name="keyword" @if(!empty($keyword))value="{{$keyword}}"@endif><input form="zaico_serch" type="submit" value="検索"></h3>
+             <br>
+          </form>
+      </div>
       <form id="submit_form" action="/onchange_log" method="post">
+      <h3>絞り込み検索</h3>
       <div class="row">
           <div class="col mt-1 mb-1">
             <h3 class="text-left">分類検索</h3>
@@ -92,14 +101,16 @@
               </select>
           </div>
           <div class="col mt-1 mb-1">
-            <h3 class="text-left">入出荷検索</h3>
+            <h3 class="text-left">ステータス検索</h3>
               @csrf
               <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select1" onChange="submit(this.form)">
                 <option value=""></option>
                 <option value="入荷" @if(!empty($log_select1) and $log_select1 === '入荷') selected @endif>入荷</option>
                 <option value="出荷" @if(!empty($log_select1) and $log_select1 === '出荷') selected @endif>出荷</option>
+                <option value="新品" @if(!empty($log_select1) and $log_select1 === '新品') selected @endif>新品</option>
+                <option value="中古" @if(!empty($log_select1) and $log_select1 === '中古') selected @endif>中古</option>
               </select>
-            </div>
+          </div>
           <script type="text/javascript" src="{{ asset('/js/jquery.select-submit-change.js') }}"></script>
           <script type="text/javascript">
             $(function() {
@@ -113,8 +124,16 @@
     @foreach ($zaico_log as $info)
     <div class="row mt-1 mb-1 border-bottom">
       <div class="col-6 mt-1 mb-1">
-        <h3 class="text-center">{{$info->datetime}} {{$info->rec_and_ship}}</h3>
+        <h3 class="text-center">{{$info->datetime}} {{$info->status}}</h3>
         <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo">
+        @if($users->authority == 10)
+        <form id="zaico_log_delete{{$info->id}}" action="/zaico_log/delete" method="post">
+          @csrf
+          <input type="hidden" name="part_id" value="{{$info->id}}">
+          <input type="hidden" name="status" value="delete">
+          <button form="zaico_log_delete{{$info->id}}" type="submit" style="width:50%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
+        </form>
+        @endif
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">品名：</h5>
@@ -123,6 +142,8 @@
         <h3 class="text-left">{{$info->manufacturer}}</h3><br>
         <h5 class="text-left">分類：</h5>
         <h3 class="text-left">{{$info->class}}</h3><br>
+        <h5 class="text-left">保管場所：</h5>
+        <h3 class="text-left">{{$info->storage_name}}</h3><br>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">担当：</h5>
@@ -131,6 +152,8 @@
         <h3 class="text-left">{{$info->utilization}}</h3><br>
         <h5 class="text-left">数量：</h5>
         <h3 class="text-left">{{$info->partnumber}}</h3><br>
+        <h5 class="text-left">コメント：</h5>
+        <h3 class="text-left">{{$info->comment}}</h3><br>
       </div>
     </div>
     @endforeach

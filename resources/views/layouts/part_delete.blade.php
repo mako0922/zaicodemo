@@ -52,55 +52,91 @@
   <a class="navbar-brand" href="zaico_home"><img src="img/home_back.png" width="50px" alt="home_back"></a>
   <h5 class="my-auto">メイン画面へ戻る</h5>
 </div>
-
 <main>
-<!------------------------------------------------------------------------------------------------------------------>
 <h1 class="text-center ml-5" style="color: black; font-size:3.0em;">@yield('title_exchange')</h1>
+<!------------------------------------------------------------------------------------------------------------------>
+<form id="part_delete_form" action="/part_delete/register" method="post" enctype="multipart/form-data">
+@csrf
 <section id="sec1">
   <div class="container">
-    <div class="row mt-5 mb-5">
-      <div class="col mt-5 mb-5">
-        <a class="" href="zaico_list"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/zaico_list.png" alt="zaico_list"></a>
-        <h2 class="text-center">在庫管理</h2>
-        <h2 class="text-center">入荷・出荷登録</h2>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">品番：</h2>
       </div>
-      <div class="col mt-5 mb-5">
-        <a class="" href="zaico_log"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/zaico_log.png" alt="zaico_log"></a>
-        <h2 class="text-center">在庫管理ログ</h2>
+      <div class="col-8">
+        <h2><input type="hidden" name="part_name" @if(!empty($info -> part_name))value="{{$info -> part_name}}"@endif>{{$info -> part_name}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">メーカ：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="manufacturer" @if(!empty($info -> manufacturer))value="{{$info -> manufacturer}}"@endif>{{$info -> manufacturer}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">分類：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="class_name" @if(!empty($info -> class))value="{{$info -> class}}"@endif>{{$info -> class}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">保管場所：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="storage" @if(!empty($info -> storage_name))value="{{$info -> storage_name}}"@endif>{{$info -> storage_name}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">初期数量：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="stock" @if(!empty($info -> stock))value="{{$info -> stock}}"@endif>{{$info -> stock}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">ステータス：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="status" @if(!empty($info -> status))value="{{$info -> status}}"@endif>{{$info -> status}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">コメント：</h2>
+      </div>
+      <div class="col-8">
+        <h2 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);">{{$info->comment}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo">
       </div>
     </div>
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <a class="" href="manufacturer_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer_icon.png" alt="manufacturer_icon"></a>
-        <h2 class="text-center">メーカ名登録</h2>
+        <button form="part_delete_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/delete_logo.png" alt="delete_logo"></a>
+        <h2 class="text-center">削除</h2></button>
       </div>
       <div class="col mt-5 mb-5">
-        <a class="" href="class_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/class_icon.png" alt="class_icon"></a>
-        <h2 class="text-center">分類登録</h2>
-      </div>
-    </div>
-    <div class="row mt-5 mb-5">
-      <div class="col mt-5 mb-5">
-        <a class="" href="storage_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/storage_logo.png" alt="storage_logo"></a>
-        <h2 class="text-center">保管場所登録</h2>
-      </div>
-      <div class="col mt-5 mb-5">
-        <a class="" href="part_info"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/part_info_icon.png" alt="part_info_icon"></a>
-        <h2 class="text-center">品番登録</h2>
-      </div>
-    </div>
-    <div class="row mt-5 mb-5">
-      <div class="col mt-5 mb-5">
-        <a class="" href="used_info"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/used_logo.png" alt="used_logo"></a>
-        <h2 class="text-center">中古品登録</h2>
-      </div>
-      <div class="col mt-5 mb-5">
-        <a class="" href="manufacturer"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer.png" alt="manufacturer"></a>
-        <h2 class="text-center">予備アイコン</h2>
+        <a class="" href="zaico_home"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/home_back.png" alt="home_back"></a>
+        <h2 class="text-center">ホームに戻る</h2>
       </div>
     </div>
   </div>
 </section>
+</form>
+
+<!------------------------------------------------------------------------------------------------------------------>
+
+<!------------------------------------------------------------------------------------------------------------------>
 </main>
 
 <footer id="footer">

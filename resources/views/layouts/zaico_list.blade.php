@@ -59,6 +59,14 @@
 <section id="sec1">
   <div class="container">
     <div class="pb-1 border-bottom">
+      <div>
+          <form id="part_list_serch" action="/part_list_serch" method="post">
+            <h3>あいまい検索</h3>
+             @csrf
+             <h3><input class="text-left" type="text" name="keyword" @if(!empty($keyword))value="{{$keyword}}"@endif><input form="part_list_serch" type="submit" value="検索"></h3>
+             <br>
+          </form>
+      </div>
       <form id="submit_form" action="/onchange_list" method="post">
       <div class="row">
           <div class="col mt-1 mb-1">
@@ -104,7 +112,12 @@
     @foreach ($part_info as $info)
     <div class="row mt-1 mb-1 border-bottom">
       <div class="col-6 mt-1 mb-1">
-        <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo">
+        <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo"><br><br>
+        <div class="row">
+        <img class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_1}}" alt="part_photo1">
+        <img class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_2}}" alt="part_photo2">
+        <img class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_3}}" alt="part_photo3">
+        </div>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">品名：</h5>
@@ -113,8 +126,13 @@
         <h3 class="text-left">{{$info->manufacturer}}</h3><br>
         <h5 class="text-left">分類：</h5>
         <h3 class="text-left">{{$info->class}}</h3><br>
+        <h5 class="text-left">保管場所：</h5>
+        <h3 class="text-left">{{$info->storage_name}}</h3><br>
+        <h5 class="text-left">コメント：</h5>
+        <h3 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);">{{$info->comment}}</h3><br>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
+        <h5 class="text-left">ステータス：<br>{{$info->status}}</h5><br>
         <h5 class="text-center p-1 border border-primary">在庫：{{$info->stock}}</h5><br>
         <h5 class="text-center">👇</h5><br>
         <form id="zaico_arrival{{$info->part_name}}" action="/zaico_input/arrival" method="post">
@@ -127,8 +145,22 @@
           @csrf
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
           <input type="hidden" name="rec_and_ship" value="utilize">
-          <button form="zaico_utilize{{$info->part_name}}" type="submit" style="width:100%;background-color:orange;" class="text-center border border-warning rounded p-1"><h3>使用</h3></button>
+          <button form="zaico_utilize{{$info->part_name}}" type="submit" style="width:100%;background-color:orange;" class="text-center border border-warning rounded p-1"><h3>使用</h3></button><br><br>
         </form>
+        @if($users->authority == 10)
+        <form id="zaico_update{{$info->part_name}}" action="/zaico_input/update" method="post">
+          @csrf
+          <input type="hidden" name="part_name" value="{{$info->part_name}}">
+          <input type="hidden" name="status" value="update">
+          <button form="zaico_update{{$info->part_name}}" type="submit" style="width:100%;background-color:green;" class="text-center border border-primary rounded p-1"><h3>変更</h3></button><br><br>
+        </form>
+        <form id="zaico_delete{{$info->part_name}}" action="/zaico_input/delete" method="post">
+          @csrf
+          <input type="hidden" name="part_name" value="{{$info->part_name}}">
+          <input type="hidden" name="status" value="delete">
+          <button form="zaico_delete{{$info->part_name}}" type="submit" style="width:100%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
+        </form>
+        @endif
       </div>
     </div>
     @endforeach

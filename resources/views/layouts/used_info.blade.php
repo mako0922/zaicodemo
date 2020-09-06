@@ -55,13 +55,13 @@
 <main>
 <h1 class="text-center ml-5" style="color: black; font-size:3.0em;">@yield('title_exchange')</h1>
 <!------------------------------------------------------------------------------------------------------------------>
-<form id="part_info_form" action="/part_info/register" method="post" enctype="multipart/form-data">
+<form id="used_info_form" action="/used_info/register" method="post" enctype="multipart/form-data">
 @csrf
 <section id="sec1">
   <div class="container">
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">品番：</h2>
+        <h2 class="text-center">管理品名：</h2>
       </div>
       <div class="col-8">
         <h2><input type="text" name="part_name"></h2>
@@ -72,15 +72,15 @@
         <h2 class="text-center">メーカ：</h2>
       </div>
       <div class="col-8">
-        <h2>
-          @if ($manufacturer_info != "")
-          <select name="manufacturer">
-          	<option value=""></option>
+        <h2><input type="text" name="manufacturer" list="manufacturer_work" placeholder="テキスト入力/選択" autocomplete="off">
+          <datalist id="manufacturer_work">
+            <option class="text-primary" value="">
+            @if ($manufacturer_info != "")
             @foreach ($manufacturer_info as $manufacturer)
-          	<option value="{{$manufacturer->manufacturer}}">{{$manufacturer->manufacturer}}</option>
+            <option class="text-primary" value="{{$manufacturer->manufacturer}}">
             @endforeach
-          </select><br/>
-          @endif
+            @endif
+          </datalist>
         </h2>
       </div>
     </div>
@@ -89,15 +89,15 @@
         <h2 class="text-center">分類：</h2>
       </div>
       <div class="col-8">
-        <h2>
-          @if ($class_info != "")
-          <select name="class_name">
-          	<option value=""></option>
+        <h2><input type="text" name="class_name" list="class_name_work" placeholder="テキスト入力/選択" autocomplete="off">
+          <datalist id="class_name_work">
+            <option class="text-primary" value="">
+            @if ($class_info != "")
             @foreach ($class_info as $class)
-          	<option value="{{$class->class}}">{{$class->class}}</option>
+            <option class="text-primary" value="{{$class->class}}">
             @endforeach
-          </select><br/>
-          @endif
+            @endif
+          </datalist>
         </h2>
       </div>
     </div>
@@ -106,21 +106,21 @@
         <h2 class="text-center">保管場所：</h2>
       </div>
       <div class="col-8">
-        <h2>
-          @if ($storage_info != "")
-          <select name="storage">
-            <option value=""></option>
+        <h2><input type="text" name="storage" list="storage_work" placeholder="テキスト入力/選択" autocomplete="off">
+          <datalist id="storage_work">
+            <option class="text-primary" value="">
+            @if ($storage_info != "")
             @foreach ($storage_info as $storage)
-            <option value="{{$storage->storage_name}}">{{$storage->storage_name}}</option>
+            <option class="text-primary" value="{{$storage->storage_name}}">
             @endforeach
-          </select><br/>
-          @endif
+            @endif
+          </datalist>
         </h2>
       </div>
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">初期数量：</h2>
+        <h2 class="text-center">数量：</h2>
       </div>
       <div class="col-8">
         <h2><input type="number" name="stock" min="0"></h2>
@@ -137,7 +137,7 @@
     <div class="row mb-5">
       <div class="col-4">
         <label for="chooser">
-          メイン写真を選択してください
+          写真を選択してください
         <input  id="chooser" type="file" accept="image/*" name = 'part_photo'>      <!-- ファイル選択ダイアログ（カメラも使える） -->
         </label>
       </div>
@@ -267,9 +267,10 @@
 
     </div>
 
+
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <button form="part_info_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input"></a>
+        <button form="used_info_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input"></a>
         <h2 class="text-center">登録</h2></button>
       </div>
       <div class="col mt-5 mb-5">

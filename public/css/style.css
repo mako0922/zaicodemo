@@ -37,6 +37,21 @@ caption {
   display: block;
  }
 
+ /*スクロールバー表示させる*/
+ .text_pc::-webkit-scrollbar{
+    width: 15px;
+ }
+ .text_pc::-webkit-scrollbar-thumb{
+    background: black;
+    border-radius: 10px;
+ }
+ .text_pc::-webkit-scrollbar-track-piece:start{
+    background: #fff;
+ }
+ .text_pc::-webkit-scrollbar-track-piece:end{
+    background: #fff;
+ }
+
 /* ヘッダー(navbar) */
 .navbar{
     border-bottom: 1px solid #a29080;

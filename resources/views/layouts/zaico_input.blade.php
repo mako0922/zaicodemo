@@ -88,6 +88,24 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
+        <h2 class="text-center">保管場所：</h2>
+      </div>
+      <div class="col-8">
+        <h2>{{$info->storage_name}}</h2>
+        <input type="hidden" name="storage_name" @if(!empty($info))value="{{$info->storage_name}}"@endif>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">コメント：</h2>
+      </div>
+      <div class="col-8">
+        <h2 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);">{{$info->comment}}</h2>
+        <input type="hidden" name="comment" @if(!empty($info))value="{{$info->comment}}"@endif>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
         <h2 class="text-center">担当名：</h2>
       </div>
       <div class="col-8">
@@ -108,6 +126,11 @@
         <h2><input type="text" name="utilization" list="work" placeholder="テキスト入力/選択" autocomplete="off">
           <datalist id="work">
             <option class="text-primary" value="">
+            @if ($utilization_info != "")
+            @foreach ($utilization_info as $utilization)
+            <option class="text-primary" value="{{$utilization->utilization}}">
+            @endforeach
+            @endif
             <option class="text-primary" value="交換作業">
             <option class="text-primary" value="修理作業">
             <option class="text-primary" value="売却">
@@ -124,8 +147,8 @@
       <div class="col-8">
         <h2><select name="rec_and_ship">
           <option class="text-primary" value=""></option>
-          <option class="text-primary" value="入荷" @if(!empty($rec_and_ship) and $rec_and_ship === 'arrival') selected @endif>入荷</option>
-          <option class="text-warning" value="出荷" @if(!empty($rec_and_ship) and $rec_and_ship === 'utilize') selected @endif>出荷</option></h2>
+          <option class="text-primary" value="入荷" @if(!empty($status) and $status === 'arrival') selected @endif>入荷</option>
+          <option class="text-warning" value="出荷" @if(!empty($status) and $status === 'utilize') selected @endif>出荷</option></h2>
         </select></h2>
       </div>
     </div>
