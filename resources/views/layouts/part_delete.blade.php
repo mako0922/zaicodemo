@@ -96,7 +96,7 @@
         <h2 class="text-center">初期数量：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="hidden" name="stock" @if(!empty($info -> stock))value="{{$info -> stock}}"@endif>{{$info -> stock}}</h2>
+        <h2><input type="hidden" name="stock" @if(!empty($info -> stock))value="{{$info -> stock}}"@else value="0"@endif>{{$info -> stock}}</h2>
       </div>
     </div>
     <div class="row mb-5">

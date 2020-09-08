@@ -123,7 +123,7 @@
         <h2 class="text-center">初期数量：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="number" name="stock" min="0" @if(!empty($info -> stock))value="{{$info -> stock}}"@endif></h2>
+        <h2><input type="number" name="stock" min="0" @if(!empty($info -> stock))value="{{$info -> stock}}"@else value="0"@endif></h2>
       </div>
     </div>
     <div class="row mb-5">
