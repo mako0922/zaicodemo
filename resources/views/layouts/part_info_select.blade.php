@@ -60,43 +60,12 @@
   <div class="container">
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <a class="" href="zaico_list"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/zaico_list.png" alt="zaico_list"></a>
-        <h2 class="text-center">在庫管理</h2>
-        <h2 class="text-center">入荷・出荷登録</h2>
+        <a class="" href="part_info"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_part.png" alt="new_part"></a>
+        <h2 class="text-center">新品登録</h2>
       </div>
       <div class="col mt-5 mb-5">
-        <a class="" href="zaico_log"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/zaico_log.png" alt="zaico_log"></a>
-        <h2 class="text-center">在庫管理ログ</h2>
-      </div>
-    </div>
-    <div class="row mt-5 mb-5">
-      <div class="col mt-5 mb-5">
-        <a class="" href="manufacturer_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer_icon.png" alt="manufacturer_icon"></a>
-        <h2 class="text-center">メーカ名登録</h2>
-      </div>
-      <div class="col mt-5 mb-5">
-        <a class="" href="class_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/class_icon.png" alt="class_icon"></a>
-        <h2 class="text-center">分類登録</h2>
-      </div>
-    </div>
-    <div class="row mt-5 mb-5">
-      <div class="col mt-5 mb-5">
-        <a class="" href="storage_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/storage_logo.png" alt="storage_logo"></a>
-        <h2 class="text-center">保管場所登録</h2>
-      </div>
-      <div class="col mt-5 mb-5">
-        <a class="" href="part_info_select"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/part_info_icon.png" alt="part_info_icon"></a>
-        <h2 class="text-center">新規部品追加</h2>
-      </div>
-    </div>
-    <div class="row mt-5 mb-5">
-      <div class="col mt-5 mb-5">
-        <a class="" href="status_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/used_logo.png" alt="used_logo"></a>
-        <h2 class="text-center">ステータス登録</h2>
-      </div>
-      <div class="col mt-5 mb-5">
-        <a class="" href="manufacturer"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer.png" alt="manufacturer"></a>
-        <h2 class="text-center">予備アイコン</h2>
+        <a class="" href="used_info"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/used_logo.png" alt="used_logo"></a>
+        <h2 class="text-center">中古品登録</h2>
       </div>
     </div>
   </div>

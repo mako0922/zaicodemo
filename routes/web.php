@@ -38,10 +38,19 @@ Route::get('manufacturer_input','ZaicoController@manufacturer_input')
 Route::post('manufacturer_input/register','ZaicoController@manufacturer_register')
       ->middleware('auth');
 
+Route::get('status_input','ZaicoController@status_input')
+      ->middleware('auth');
+
+Route::post('status_input/register','ZaicoController@status_register')
+      ->middleware('auth');
+
 Route::get('part_info','ZaicoController@part_info')
       ->middleware('auth');
 
 Route::post('part_info/register','ZaicoController@part_info_register')
+      ->middleware('auth');
+
+Route::get('part_info_select','ZaicoController@part_info_select')
       ->middleware('auth');
 
 Route::get('part_update','ZaicoController@part_update')

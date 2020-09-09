@@ -174,6 +174,33 @@ class ZaicoController extends Controller
     return redirect('/zaico_home');
   }
 
+  public function status_input(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $user = Auth::user();
+      return view('status_table.index', $param = ['users' => $user]);
+    }else{
+      return view('auth/login');
+    }
+  }
+
+  public function status_register(Request $request){
+    $validate_rule = [
+      'status_name' => 'required',
+    ];
+    $this->validate($request, $validate_rule);
+
+    $param = [
+      'status_name' => $request -> status_name,
+    ];
+    try{
+      DB::table('status_table')->insert($param);
+    } catch (\Exception $e) {
+      return redirect('/zaico_home');
+    }
+    return redirect('/zaico_home');
+  }
+
   public function storage_input(Request $request){
     // ログインチェック
     if (Auth::check()){
@@ -201,7 +228,7 @@ class ZaicoController extends Controller
     return redirect('/zaico_home');
   }
 
-  public function part_info(Request $request){
+  public function part_info_select(Request $request){
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
@@ -217,6 +244,31 @@ class ZaicoController extends Controller
         'class_info' => $class,
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
+      ];
+      return view('part_info_select.index', $param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
+  public function part_info(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $user = Auth::user();
+      try{
+        $class = DB::table('class_table')->get();
+        $manufacturer = DB::table('manufacturer_table')->get();
+        $storage_name = DB::table('storage_table')->get();
+        $status_name = DB::table('status_table')->get();
+      } catch (\Exception $e) {
+        return redirect('/zaico_home');
+      }
+      $param = [
+        'users' => $user,
+        'class_info' => $class,
+        'manufacturer_info' => $manufacturer,
+        'storage_info' => $storage_name,
+        'status_info' => $status_name,
       ];
       return view('part_info.index', $param);
     }else{
@@ -251,6 +303,24 @@ class ZaicoController extends Controller
       $comment = "";
     }else{
       $comment = $request -> comment;
+    }
+
+    if(empty($request -> status)){
+      $status = "";
+    }else{
+      $status = $request -> status;
+    }
+
+    if(empty($request -> cost_price)){
+      $cost_price = 0;
+    }else{
+      $cost_price = $request -> cost_price;
+    }
+
+    if(empty($request -> selling_price)){
+      $selling_price = 0;
+    }else{
+      $selling_price = $request -> selling_price;
     }
 
     if(!empty($request -> part_photo1)){
@@ -297,7 +367,11 @@ class ZaicoController extends Controller
       'stock' => $request -> stock,
       'storage_name' => $request -> storage,
       'comment' => $comment,
-      'status' => '新品',
+      'status' => $status,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
     try{
       DB::table('part_info')->insert($param);
@@ -311,7 +385,7 @@ class ZaicoController extends Controller
       'datetime' => date('Y-m-d H:i', strtotime('+9hour')),
       'staff_name' => $user -> name,
       'utilization' => '新規登録',
-      'status' => '新品',
+      'status' => $status,
       'partnumber' => $request -> stock,
       'storage_name' => $request -> storage,
       'comment' => $comment,
@@ -331,8 +405,10 @@ class ZaicoController extends Controller
 
     if (Auth::check()){
       $user = Auth::user();
+      $status_name = DB::table('status_table')->get();
       $part_info = $request->old();
       $part_info += ['users' => $user];
+      $part_info += ['status_info' => $status_name];
       return view('part_update.index', $part_info);
     }else{
       return view('auth/login');
@@ -386,6 +462,24 @@ class ZaicoController extends Controller
       $storage = "";
     }else{
       $storage = $request -> storage;
+    }
+
+    if(empty($request -> status)){
+      $status = "";
+    }else{
+      $status = $request -> status;
+    }
+
+    if(empty($request -> cost_price)){
+      $cost_price = 0;
+    }else{
+      $cost_price = $request -> cost_price;
+    }
+
+    if(empty($request -> selling_price)){
+      $selling_price = 0;
+    }else{
+      $selling_price = $request -> selling_price;
     }
 
     if(!empty($request -> part_photo1)){
@@ -445,12 +539,16 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'status' => $request -> status,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
-    //try{
+    try{
       DB::table('part_info')->where('part_name', $request -> part_name)->update($param);
-    //} catch (\Exception $e) {
+    } catch (\Exception $e) {
       return redirect('/zaico_home');
-    //}
+    }
 
     $param_log = [
       'part_number' => $request -> part_name,
@@ -577,6 +675,7 @@ class ZaicoController extends Controller
         $class = DB::table('class_table')->get();
         $manufacturer = DB::table('manufacturer_table')->get();
         $storage_name = DB::table('storage_table')->get();
+        $status_info = DB::table('status_table')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
       }
@@ -585,6 +684,7 @@ class ZaicoController extends Controller
         'class_info' => $class,
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
+        'status_info' => $status_info,
       ];
       return view('used_info.index', $param);
     }else{
@@ -636,6 +736,24 @@ class ZaicoController extends Controller
       $storage = $request -> storage;
     }
 
+    if(empty($request -> status)){
+      $status = "";
+    }else{
+      $status = $request -> status;
+    }
+
+    if(empty($request -> cost_price)){
+      $cost_price = 0;
+    }else{
+      $cost_price = $request -> cost_price;
+    }
+
+    if(empty($request -> selling_price)){
+      $selling_price = 0;
+    }else{
+      $selling_price = $request -> selling_price;
+    }
+
     if(!empty($request -> part_photo1)){
       $image1 = Image::make(file_get_contents($request -> part_photo1));
       $image1->resize(100, null, function ($constraint) {
@@ -680,7 +798,11 @@ class ZaicoController extends Controller
       'stock' => $request -> stock,
       'storage_name' => $storage,
       'comment' => $comment,
-      'status' => '中古',
+      'status' => $status,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
     try{
       DB::table('part_info')->insert($param);
@@ -694,7 +816,7 @@ class ZaicoController extends Controller
       'datetime' => date('Y-m-d H:i', strtotime('+9hour')),
       'staff_name' => $user -> name,
       'utilization' => '新規登録',
-      'status' => '中古',
+      'status' => $status,
       'partnumber' => $request -> stock,
       'storage_name' => $request -> storage,
       'comment' => $comment,

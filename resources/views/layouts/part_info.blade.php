@@ -120,6 +120,57 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
+        <h2 class="text-center">ステータス：</h2>
+      </div>
+      <div class="col-8">
+        <h2>
+          @if ($status_info != "")
+          <select name="status">
+            <option value=""></option>
+            @foreach ($status_info as $status)
+            <option value="{{$status->status_name}}">{{$status->status_name}}</option>
+            @endforeach
+          </select><br/>
+          @endif
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">仕入れ価格：</h2>
+      </div>
+      <div class="col-8">
+        <div class="col-8">
+          <h2><input type="number" name="cost_price" step="0.01" min="0">円</h2>
+        </div>
+        <h2>税区分：
+          <select name="cost_price_tax">
+            <option value="無">無</option>
+            <option value="内">内</option>
+            <option value="外">外</option>
+          </select><br/>
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">販売価格：</h2>
+      </div>
+      <div class="col-8">
+        <div class="col-8">
+          <h2><input type="number" name="selling_price" step="0.01" min="0">円</h2>
+        </div>
+        <h2>税区分：
+          <select name="selling_price_tax">
+            <option value="無">無</option>
+            <option value="内">内</option>
+            <option value="外">外</option>
+          </select><br/>
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
         <h2 class="text-center">初期数量：</h2>
       </div>
       <div class="col-8">

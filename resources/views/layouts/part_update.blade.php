@@ -120,27 +120,61 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">初期数量：</h2>
-      </div>
-      <div class="col-8">
-        <h2><input type="number" name="stock" min="0" @if(!empty($info -> stock))value="{{$info -> stock}}"@else value="0"@endif></h2>
-      </div>
-    </div>
-    <div class="row mb-5">
-      <div class="col-4">
         <h2 class="text-center">ステータス：</h2>
       </div>
       <div class="col-8">
         <h2>
-          @if ($zaico_status != "")
+          @if ($status_info != "")
           <select name="status">
-          	<option value=""></option>
-            @foreach ($zaico_status as $status)
-          	<option value="{{$status->status}}" @if(!empty($info -> status) and $status->status === $info -> status) selected @endif>{{$status->status}}</option>
+            <option value=""></option>
+            @foreach ($status_info as $status)
+            <option value="{{$status->status_name}}" @if(!empty($info -> status) and $status->status_name === $info -> status) selected @endif>{{$status->status_name}}</option>
             @endforeach
           </select><br/>
           @endif
         </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">仕入れ価格：</h2>
+      </div>
+      <div class="col-8">
+        <div class="col-8">
+          <h2><input type="number" name="cost_price" step="0.01" min="0" @if(!empty($info -> cost_price))value="{{$info -> cost_price}}" @endif>円</h2>
+        </div>
+        <h2>税区分：
+          <select name="cost_price_tax">
+            <option value="無" @if(!empty($info -> cost_price_tax) and "無" === $info -> cost_price_tax) selected @endif>無</option>
+            <option value="内" @if(!empty($info -> cost_price_tax) and "内" === $info -> cost_price_tax) selected @endif>内</option>
+            <option value="外" @if(!empty($info -> cost_price_tax) and "外" === $info -> cost_price_tax) selected @endif>外</option>
+          </select><br/>
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">販売価格：</h2>
+      </div>
+      <div class="col-8">
+        <div class="col-8">
+          <h2><input type="number" name="selling_price" step="0.01" min="0" @if(!empty($info -> selling_price))value="{{$info -> selling_price}}" @endif>円</h2>
+        </div>
+        <h2>税区分：
+          <select name="selling_price_tax">
+            <option value="無" @if(!empty($info -> selling_price_tax) and "無" === $info -> selling_price_tax) selected @endif>無</option>
+            <option value="内" @if(!empty($info -> selling_price_tax) and "内" === $info -> selling_price_tax) selected @endif>内</option>
+            <option value="外" @if(!empty($info -> selling_price_tax) and "外" === $info -> selling_price_tax) selected @endif>外</option>
+          </select><br/>
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">初期数量：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="number" name="stock" min="0" @if(!empty($info -> stock))value="{{$info -> stock}}"@else value="0"@endif></h2>
       </div>
     </div>
     <div class="row mb-5">
