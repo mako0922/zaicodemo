@@ -391,6 +391,10 @@ class ZaicoController extends Controller
       'comment' => $comment,
       'class' => $request -> class_name,
       'part_photo' => $part_photo64,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -562,6 +566,10 @@ class ZaicoController extends Controller
       'comment' => $comment,
       'class' => $request -> class_name,
       'part_photo' => $part_photo64,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -629,6 +637,18 @@ class ZaicoController extends Controller
       $storage = $request -> storage;
     }
 
+    if(empty($request -> cost_price)){
+      $cost_price = 0;
+    }else{
+      $cost_price = $request -> cost_price;
+    }
+
+    if(empty($request -> selling_price)){
+      $selling_price = 0;
+    }else{
+      $selling_price = $request -> selling_price;
+    }
+
     $param = [
       'part_name' => $request -> part_name,
       'manufacturer' => $manufacturer,
@@ -638,6 +658,10 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'status' => $request -> status,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
     try{
       DB::table('part_info')->where('part_name', $request -> part_name)->delete();
@@ -657,6 +681,10 @@ class ZaicoController extends Controller
       'comment' => $comment,
       'class' => $request -> class_name,
       'part_photo' => $part_photo64,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -822,6 +850,10 @@ class ZaicoController extends Controller
       'comment' => $comment,
       'class' => $request -> class_name,
       'part_photo' => $part_photo64,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);

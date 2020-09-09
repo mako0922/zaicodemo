@@ -94,18 +94,40 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">初期数量：</h2>
-      </div>
-      <div class="col-8">
-        <h2><input type="hidden" name="stock" @if(!empty($info -> partnumber))value="{{$info -> partnumber}}"@endif>{{$info -> partnumber}}</h2>
-      </div>
-    </div>
-    <div class="row mb-5">
-      <div class="col-4">
         <h2 class="text-center">ステータス：</h2>
       </div>
       <div class="col-8">
         <h2><input type="hidden" name="status" @if(!empty($info -> status))value="{{$info -> status}}"@endif>{{$info -> status}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">仕入れ価格：</h2>
+      </div>
+      <div class="col-8">
+        <div class="col-8">
+          <h2><input type="hidden" name="cost_price" @if(!empty($info -> cost_price))value="{{$info -> cost_price}}" @endif>{{$info -> cost_price}}円</h2>
+        </div>
+        <h2>税区分：<input type="hidden" name="cost_price_tax" @if(!empty($info -> cost_price_tax))value="{{$info -> cost_price_tax}}" @endif>{{$info -> cost_price_tax}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">販売価格：</h2>
+      </div>
+      <div class="col-8">
+        <div class="col-8">
+          <h2><input type="hidden" name="selling_price" @if(!empty($info -> selling_price))value="{{$info -> selling_price}}" @endif>{{$info -> selling_price}}円</h2>
+        </div>
+        <h2>税区分：<input type="hidden" name="selling_price_tax" @if(!empty($info -> selling_price_tax))value="{{$info -> selling_price_tax}}" @endif>{{$info -> selling_price_tax}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">初期数量：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="stock" @if(!empty($info -> partnumber))value="{{$info -> partnumber}}"@endif>{{$info -> partnumber}}</h2>
       </div>
     </div>
     <div class="row mb-5">

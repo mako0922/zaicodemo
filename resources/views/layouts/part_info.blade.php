@@ -128,7 +128,7 @@
           <select name="status">
             <option value=""></option>
             @foreach ($status_info as $status)
-            <option value="{{$status->status_name}}">{{$status->status_name}}</option>
+            <option value="{{$status->status_name}}" @if($status->status_name === "新品")selected @endif>{{$status->status_name}}</option>
             @endforeach
           </select><br/>
           @endif

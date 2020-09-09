@@ -133,6 +133,8 @@
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">ステータス：<br>{{$info->status}}</h5><br>
+        <h5 class="text-left">仕入れ価格：{{$info->cost_price}}/税：{{$info->cost_price_tax}}</h5><br>
+        <h5 class="text-left">販売価格：{{$info->selling_price}}/税：{{$info->selling_price_tax}}</h5><br>
         <h5 class="text-center p-1 border border-primary">在庫：{{$info->stock}}</h5><br>
         <h5 class="text-center">👇</h5><br>
         <form id="zaico_arrival{{$info->part_name}}" action="/zaico_input/arrival" method="post">
