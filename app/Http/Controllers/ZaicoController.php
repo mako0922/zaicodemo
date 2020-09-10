@@ -144,7 +144,13 @@ class ZaicoController extends Controller
     } catch (\Exception $e) {
       return redirect('/zaico_home');
     }
-    return redirect('/zaico_home');
+    if($request->hp_type === "part_info"){
+      return redirect('/part_info');
+    }else if($request->hp_type === "used_info"){
+      return redirect('/used_info');
+    }else{
+      return redirect('/zaico_home');
+    }
   }
 
   public function manufacturer_input(Request $request){
@@ -171,7 +177,13 @@ class ZaicoController extends Controller
     } catch (\Exception $e) {
       return redirect('/zaico_home');
     }
-    return redirect('/zaico_home');
+    if($request->hp_type === "part_info"){
+      return redirect('/part_info');
+    }else if($request->hp_type === "used_info"){
+      return redirect('/used_info');
+    }else{
+      return redirect('/zaico_home');
+    }
   }
 
   public function status_input(Request $request){
@@ -198,7 +210,13 @@ class ZaicoController extends Controller
     } catch (\Exception $e) {
       return redirect('/zaico_home');
     }
-    return redirect('/zaico_home');
+    if($request->hp_type === "part_info"){
+      return redirect('/part_info');
+    }else if($request->hp_type === "used_info"){
+      return redirect('/used_info');
+    }else{
+      return redirect('/zaico_home');
+    }
   }
 
   public function storage_input(Request $request){
@@ -225,7 +243,13 @@ class ZaicoController extends Controller
     } catch (\Exception $e) {
       return redirect('/zaico_home');
     }
-    return redirect('/zaico_home');
+    if($request->hp_type === "part_info"){
+      return redirect('/part_info');
+    }else if($request->hp_type === "used_info"){
+      return redirect('/used_info');
+    }else{
+      return redirect('/zaico_home');
+    }
   }
 
   public function part_info_select(Request $request){
@@ -872,6 +896,7 @@ class ZaicoController extends Controller
         $zaico_log = DB::table('zaico_table')->get();
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->get();
+        $status_info = DB::table('status_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
@@ -881,6 +906,8 @@ class ZaicoController extends Controller
         'class_table' => $class_table,
         'part_info' => $part_info,
         'manufacturer_info' => $manufacturer_info,
+        'status_info' => $status_info,
+        'log_select1' => $request -> log_select1,
         'log_select2' => $request -> log_select2,
         'log_select3' => $request -> log_select3,
         'log_select4' => $request -> log_select4,
@@ -902,6 +929,7 @@ class ZaicoController extends Controller
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info');
         $manufacturer_info = DB::table('manufacturer_table')->get();
+        $status_info = DB::table('status_table')->get();
         foreach ($columns as $column) {
           $part_info = $part_info -> orwhere($column, 'like', '%'. $request -> keyword . '%');
         }
@@ -917,6 +945,8 @@ class ZaicoController extends Controller
         'part_info' => $part_info,
         'keyword' => $request -> keyword,
         'manufacturer_info' => $manufacturer_info,
+        'status_info' => $status_info,
+        'log_select1' => $request -> log_select1,
         'log_select2' => $request -> log_select2,
         'log_select3' => $request -> log_select3,
         'log_select4' => $request -> log_select4,
@@ -1061,6 +1091,7 @@ class ZaicoController extends Controller
         $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->get();
+        $status_info = DB::table('status_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         $columns = Schema::getColumnListing('zaico_table');
       } catch (\Exception $e) {
@@ -1072,6 +1103,7 @@ class ZaicoController extends Controller
         'class_table' => $class_table,
         'part_info' => $part_info,
         'manufacturer_info' => $manufacturer_info,
+        'status_info' => $status_info,
         'columns' => $columns,
       ];
       return view('zaico_log.index', $param);
@@ -1231,6 +1263,7 @@ class ZaicoController extends Controller
         $zaico_log = DB::table('zaico_table');
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->get();
+        $status_info = DB::table('status_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         if ($request -> log_select1 != ''){
           $zaico_log = $zaico_log -> where('status', $request -> log_select1);
@@ -1253,6 +1286,7 @@ class ZaicoController extends Controller
         'zaico_log' => $zaico_log,
         'class_table' => $class_table,
         'part_info' => $part_info,
+        'status_info' => $status_info,
         'manufacturer_info' => $manufacturer_info,
         'log_select1' => $request -> log_select1,
         'log_select2' => $request -> log_select2,
@@ -1272,7 +1306,11 @@ class ZaicoController extends Controller
         try{
           $part_info = DB::table('part_info');
           $class_table = DB::table('class_table')->get();
+          $status_info = DB::table('status_table')->get();
           $manufacturer_info = DB::table('manufacturer_table')->get();
+          if ($request -> log_select1 != ''){
+            $part_info = $part_info -> where('status', $request -> log_select1);
+          }
           if ($request -> log_select2 != ''){
             $part_info = $part_info -> where('class', $request -> log_select2);
           }
@@ -1291,6 +1329,8 @@ class ZaicoController extends Controller
           'part_info' => $part_info,
           'class_table' => $class_table,
           'manufacturer_info' => $manufacturer_info,
+          'status_info' => $status_info,
+          'log_select1' => $request -> log_select1,
           'log_select2' => $request -> log_select2,
           'log_select3' => $request -> log_select3,
           'log_select4' => $request -> log_select4,

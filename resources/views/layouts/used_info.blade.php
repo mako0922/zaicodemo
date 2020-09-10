@@ -81,6 +81,9 @@
             @endforeach
             @endif
           </datalist>
+          新規登録<br><input type="text" name="manufacturer" form="manufacturer_form">
+          <input type="hidden" name="hp_type" value="used_info" form="manufacturer_form">
+          <input type="submit" value="登録" form="manufacturer_form">
         </h2>
       </div>
     </div>
@@ -98,6 +101,9 @@
             @endforeach
             @endif
           </datalist>
+          新規登録<br><input type="text" name="class_name" form="class_form">
+          <input type="hidden" name="hp_type" value="used_info" form="class_form">
+          <input type="submit" value="登録" form="class_form">
         </h2>
       </div>
     </div>
@@ -115,6 +121,9 @@
             @endforeach
             @endif
           </datalist>
+          新規登録<br><input type="text" name="storage_name" form="storage_form">
+          <input type="hidden" name="hp_type" value="used_info" form="storage_form">
+          <input type="submit" value="登録" form="storage_form">
         </h2>
       </div>
     </div>
@@ -132,6 +141,9 @@
             @endforeach
           </select><br/>
           @endif
+          新規登録<br><input type="text" name="status_name" form="status_form">
+          <input type="hidden" name="hp_type" value="used_info" form="status_form">
+          <input type="submit" value="登録" form="status_form">
         </h2>
       </div>
     </div>
@@ -332,12 +344,16 @@
   </div>
 </section>
 </form>
+<form id="class_form" action="/class_input/register" method="post">@csrf</form>
+<form id="manufacturer_form" action="/manufacturer_input/register" method="post">@csrf</form>
+<form id="storage_form" action="/storage_input/register" method="post">@csrf</form>
+<form id="status_form" action="/status_input/register" method="post">@csrf</form>
 
 <!------------------------------------------------------------------------------------------------------------------>
 
 <!------------------------------------------------------------------------------------------------------------------>
 </main>
-
+<div id="page_top"><a href="#"></a></div>
 <footer id="footer">
     <div class="container py-5">
         <div id="footer-contents" class="row mb-5">
@@ -366,5 +382,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
+<script src="js/script_2.js"></script>
 </body>
 </html>

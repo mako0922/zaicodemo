@@ -99,6 +99,16 @@
                 @endforeach
               </select>
           </div>
+          <div class="col mt-1 mb-1">
+            <h3 class="text-left">ステータス検索</h3>
+              @csrf
+              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select1" onChange="submit(this.form)">
+                <option value=""></option>
+                @foreach ($status_info as $status)
+                <option value="{{$status->status_name}}" @if(!empty($log_select1) and $log_select1 === $status->status_name) selected @endif>{{$status->status_name}}</option>
+                @endforeach
+              </select>
+          </div>
           <script type="text/javascript" src="{{ asset('/js/jquery.select-submit-change.js') }}"></script>
           <script type="text/javascript">
             $(function() {
@@ -133,7 +143,9 @@
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">ステータス：<br>{{$info->status}}</h5><br>
+        @if($users->authority == 10)
         <h5 class="text-left">仕入れ価格：{{$info->cost_price}}/税：{{$info->cost_price_tax}}</h5><br>
+        @endif
         <h5 class="text-left">販売価格：{{$info->selling_price}}/税：{{$info->selling_price_tax}}</h5><br>
         <h5 class="text-center p-1 border border-primary">在庫：{{$info->stock}}</h5><br>
         <h5 class="text-center">👇</h5><br>
@@ -171,7 +183,7 @@
 <!------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------>
 </main>
-
+<div id="page_top"><a href="#"></a></div>
 <footer id="footer">
     <div class="container py-5">
         <div id="footer-contents" class="row mb-5">
@@ -200,5 +212,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
+<script src="js/script_2.js"></script>
 </body>
 </html>
