@@ -61,6 +61,15 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-4">
+        <h2 class="text-center">管理番号：</h2>
+      </div>
+      <div class="col-8">
+        <h2>{{$info->part_name}}</h2>
+        <input type="hidden" name="revision_number" @if(!empty($info))value="{{$info->revision_number}}"@endif>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
         <h2 class="text-center">品番：</h2>
       </div>
       <div class="col-8">

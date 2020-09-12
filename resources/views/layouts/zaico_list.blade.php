@@ -130,6 +130,8 @@
         </div>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
+        <h5 class="text-left">管理番号：</h5>
+        <h3 class="text-left">{{$info->revision_number}}</h3><br>
         <h5 class="text-left">品名：</h5>
         <h3 class="text-left">{{$info->part_name}}</h3><br>
         <h5 class="text-left">メーカ：</h5>

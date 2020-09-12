@@ -57,8 +57,17 @@
 <!------------------------------------------------------------------------------------------------------------------>
 <form id="part_update_form" action="/part_update/register" method="post" enctype="multipart/form-data">
 @csrf
+<input type="hidden" name="part_id" value="{{$info -> id}}">
 <section id="sec1">
   <div class="container">
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">管理番号：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="text" name="revision_number" @if(!empty($info -> revision_number))value="{{$info -> revision_number}}"@endif></h2>
+      </div>
+    </div>
     <div class="row mb-5">
       <div class="col-4">
         <h2 class="text-center">品番：</h2>
@@ -81,6 +90,9 @@
             @endforeach
             @endif
           </datalist>
+          新規登録<br><input type="text" name="manufacturer" form="manufacturer_form">
+          <input type="hidden" name="hp_type" value="part_update" form="manufacturer_form">
+          <input type="submit" value="登録" form="manufacturer_form">
         </h2>
       </div>
     </div>
@@ -98,6 +110,9 @@
             @endforeach
             @endif
           </datalist>
+          新規登録<br><input type="text" name="class_name" form="class_form">
+          <input type="hidden" name="hp_type" value="part_update" form="class_form">
+          <input type="submit" value="登録" form="class_form">
         </h2>
       </div>
     </div>
@@ -115,6 +130,9 @@
             @endforeach
             @endif
           </datalist>
+          新規登録<br><input type="text" name="storage_name" form="storage_form">
+          <input type="hidden" name="hp_type" value="part_update" form="storage_form">
+          <input type="submit" value="登録" form="storage_form">
         </h2>
       </div>
     </div>
@@ -132,6 +150,9 @@
             @endforeach
           </select><br/>
           @endif
+          新規登録<br><input type="text" name="status_name" form="status_form">
+          <input type="hidden" name="hp_type" value="part_update" form="status_form">
+          <input type="submit" value="登録" form="status_form">
         </h2>
       </div>
     </div>
@@ -379,6 +400,22 @@
     </div>
   </div>
 </section>
+</form>
+<form id="class_form" action="/class_input/register" method="post">
+  @csrf
+  <input type="hidden" name="part_id" value="{{$info -> id}}">
+</form>
+<form id="manufacturer_form" action="/manufacturer_input/register" method="post">
+  @csrf
+  <input type="hidden" name="part_id" value="{{$info -> id}}">
+</form>
+<form id="storage_form" action="/storage_input/register" method="post">
+  @csrf
+  <input type="hidden" name="part_id" value="{{$info -> id}}">
+</form>
+<form id="status_form" action="/status_input/register" method="post">
+  @csrf
+  <input type="hidden" name="part_id" value="{{$info -> id}}">
 </form>
 
 <!------------------------------------------------------------------------------------------------------------------>

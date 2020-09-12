@@ -61,6 +61,14 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-4">
+        <h2 class="text-center">管理番号：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="revision_number" @if(!empty($info -> revision_number))value="{{$info -> revision_number}}"@endif>{{$info -> revision_number}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
         <h2 class="text-center">品番：</h2>
       </div>
       <div class="col-8">
@@ -140,6 +148,7 @@
     <div class="row mb-5">
       <div class="col-4">
         <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo">
+        <input type="hidden" name="part_photo" value="{{$info->part_photo}}" alt="part_photo">
       </div>
     </div>
     <div class="row mt-5 mb-5">
