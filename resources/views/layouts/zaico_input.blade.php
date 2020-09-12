@@ -104,6 +104,22 @@
         <input type="hidden" name="comment" @if(!empty($info))value="{{$info->comment}}"@endif>
       </div>
     </div>
+    @if($users->authority == 10)
+    <div class="row mb-5">
+      <div class="col-6">
+        <h2 class="text-center">仕入れ価格：{{$info->cost_price}}円/税区分：{{$info->cost_price_tax}}</h2>
+      </div>
+    </div>
+    @endif
+    <div class="row mb-5">
+      <div class="col-6">
+        <h2 class="text-center">販売価格：{{$info->selling_price}}円/税区分：{{$info->selling_price_tax}}</h2>
+        <input type="hidden" name="selling_price" @if(!empty($info))value="{{$info->selling_price}}"@endif>
+        <input type="hidden" name="selling_price_tax" @if(!empty($info->selling_price_tax))value="{{$info->selling_price_tax}}"@endif>
+        <input type="hidden" name="cost_price" @if(!empty($info))value="{{$info->cost_price}}"@endif>
+        <input type="hidden" name="cost_price_tax" @if(!empty($info->cost_price_tax))value="{{$info->cost_price_tax}}"@endif>
+      </div>
+    </div>
     <div class="row mb-5">
       <div class="col-4">
         <h2 class="text-center">担当名：</h2>
@@ -157,20 +173,28 @@
         <h2 class="text-center">数量：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="number" name="partNumber" min="1"></h2>
+        <h2><input type="number" name="partNumber" min="0" value="1"></h2>
       </div>
     </div>
 
     <div class="row mb-5">
       <div class="col-4">
+        @if(!empty($info -> part_photo))
+        <input type="hidden" name="part_photo_origin" value="{{$info -> part_photo}}">
+        @endif
         <label for="chooser">
           写真を選択してください
-        <input  id="chooser" type="file" accept="image/*" name = 'part_photo'>      <!-- ファイル選択ダイアログ（カメラも使える） -->
+        <input  id="chooser" type="file" accept="image/*" name = 'part_photo'><!-- ファイル選択ダイアログ（カメラも使える） -->
         </label>
       </div>
       <div class="col-8">
         <canvas id='canvas' width='300' height='400'></canvas>  <!-- 絵を描くcanvas要素 -->
         <script>
+
+        @if(!empty($info -> part_photo))
+        var data  = "data:image/png;base64,{{$info -> part_photo}}";
+        @endif
+
 
         // canvas要素に描画するためのお決まりの2行
         var canvas  = document.getElementById("canvas");        // canvas 要素の取得
@@ -179,7 +203,11 @@
         // ファイルを読む（カメラを使う）準備
         var chooser = document.getElementById("chooser");       // ファイル選択用 input 要素の取得
         var reader  = new FileReader();                         // ファイルを読む FileReader オブジェクトを作成
-        var image   = new Image();                              // 画像を入れておく Image オブジェクトを作成
+        var image   = new Image();
+
+        @if(!empty($info -> part_photo))
+        image.src  = data;
+        @endif                            // 画像を入れておく Image オブジェクトを作成
         // ファイルを読み込む処理
         chooser.addEventListener("change", () => {              // ファイル選択ダイアログの値が変わったら
             var file = chooser.files[0];                        // ファイル名取得
@@ -194,7 +222,6 @@
         </script>
       </div>
     </div>
-
 
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">

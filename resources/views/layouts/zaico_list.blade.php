@@ -122,11 +122,11 @@
     @foreach ($part_info as $info)
     <div class="row mt-1 mb-1 border-bottom">
       <div class="col-6 mt-1 mb-1">
-        <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo"><br><br>
+        <img name="image_main_{{$info->id}}" class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo"><br><br>
         <div class="row">
-        <img class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_1}}" alt="part_photo1">
-        <img class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_2}}" alt="part_photo2">
-        <img class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_3}}" alt="part_photo3">
+        <img name="image_sub1_{{$info->id}}" class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_1}}" alt="part_photo1" onmouseover="onmouseover1_{{$info->id}}()" onmouseout="onmouseout_{{$info->id}}()">
+        <img name="image_sub2_{{$info->id}}" class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_2}}" alt="part_photo2" onmouseover="onmouseover2_{{$info->id}}()" onmouseout="onmouseout_{{$info->id}}()">
+        <img name="image_sub3_{{$info->id}}" class="p-2 rounded mx-auto d-block" width="20%" src="data:png;base64,{{$info->sub_part_photo_3}}" alt="part_photo3" onmouseover="onmouseover3_{{$info->id}}()" onmouseout="onmouseout_{{$info->id}}()">
         </div>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
@@ -180,6 +180,36 @@
     @endforeach
   </div>
 </section>
+
+<script type="text/javascript">
+  @foreach ($part_info as $info)
+    function onmouseover1_{{$info->id}}() {
+      var photo_baffer = document.image_main_{{$info->id}}.src;
+      document.image_main_{{$info->id}}.src = document.image_sub1_{{$info->id}}.src;
+      document.image_sub1_{{$info->id}}.src = photo_baffer;
+    }
+
+    function onmouseover2_{{$info->id}}() {
+      var photo_baffer = document.image_main_{{$info->id}}.src;
+      document.image_main_{{$info->id}}.src = document.image_sub2_{{$info->id}}.src;
+      document.image_sub2_{{$info->id}}.src = photo_baffer;
+    }
+
+    function onmouseover3_{{$info->id}}() {
+      var photo_baffer = document.image_main_{{$info->id}}.src;
+      document.image_main_{{$info->id}}.src = document.image_sub3_{{$info->id}}.src;
+      document.image_sub3_{{$info->id}}.src = photo_baffer;
+    }
+
+    function onmouseout_{{$info->id}}() {
+      document.image_main_{{$info->id}}.src = "data:png;base64,{{$info->part_photo}}";
+      document.image_sub1_{{$info->id}}.src = "data:png;base64,{{$info->sub_part_photo_1}}";
+      document.image_sub2_{{$info->id}}.src = "data:png;base64,{{$info->sub_part_photo_2}}";
+      document.image_sub3_{{$info->id}}.src = "data:png;base64,{{$info->sub_part_photo_3}}";
+    }
+  @endforeach
+</script>
+
 <!------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------>
 </main>

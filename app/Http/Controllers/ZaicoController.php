@@ -48,7 +48,11 @@ class ZaicoController extends Controller
       $image->save($resize_path);
       $part_photo64 = base64_encode($image);
     }else{
-      $part_photo64 = "";
+      if(!empty($request -> part_photo_origin)){
+        $part_photo64 = $request -> part_photo_origin;
+      }else{
+        $part_photo64 = "";
+      }
     }
 
     if(empty($request -> comment)){
@@ -81,6 +85,18 @@ class ZaicoController extends Controller
       $utilization = $request -> utilization;
     }
 
+    if(empty($request -> cost_price_tax)){
+      $cost_price_tax = "";
+    }else{
+      $cost_price_tax = $request -> cost_price_tax;
+    }
+
+    if(empty($request -> selling_price_tax)){
+      $selling_price_tax = "";
+    }else{
+      $selling_price_tax = $request -> selling_price_tax;
+    }
+
     $param = [
       'part_number' => $request -> partName,
       'manufacturer' => $manufacturer,
@@ -93,6 +109,10 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'part_photo' => $part_photo64,
+      'cost_price' => $request -> cost_price,
+      'cost_price_tax' => $cost_price_tax,
+      'selling_price' => $request -> selling_price,
+      'selling_price_tax' => $selling_price_tax,
     ];
 
     try{
@@ -111,12 +131,12 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
 
-    try{
+    //try{
       DB::table('zaico_table')->insert($param);
       DB::table('part_info')->where('part_name', $request -> partName)->update($part_update);
-    } catch (\Exception $e) {
-      return redirect('/zaico_home');
-    }
+    //} catch (\Exception $e) {
+    //  return redirect('/zaico_home');
+    //}
     return redirect('/zaico_home');
   }
 
@@ -486,7 +506,7 @@ class ZaicoController extends Controller
       $class_name = $request -> class_name;
     }
 
-    if(empty($request -> storage_name)){
+    if(empty($request -> storage)){
       $storage = "";
     }else{
       $storage = $request -> storage;

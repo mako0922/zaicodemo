@@ -72,15 +72,15 @@
         <h2 class="text-center">メーカ：</h2>
       </div>
       <div class="col-8">
-        <h2>
-          @if ($manufacturer_info != "")
-          <select name="manufacturer">
-          	<option value=""></option>
+        <h2><input type="text" name="manufacturer" list="manufacturer_work" placeholder="テキスト入力/選択" autocomplete="off" @if(!empty($info -> manufacturer))value="{{$info -> manufacturer}}"@endif>
+          <datalist id="manufacturer_work">
+            <option class="text-primary" value="">
+            @if ($manufacturer_info != "")
             @foreach ($manufacturer_info as $manufacturer)
-          	<option value="{{$manufacturer->manufacturer}}" @if(!empty($info -> manufacturer) and $manufacturer->manufacturer === $info -> manufacturer) selected @endif>{{$manufacturer->manufacturer}}</option>
+            <option class="text-primary" value="{{$manufacturer->manufacturer}}">
             @endforeach
-          </select><br/>
-          @endif
+            @endif
+          </datalist>
         </h2>
       </div>
     </div>
@@ -89,15 +89,15 @@
         <h2 class="text-center">分類：</h2>
       </div>
       <div class="col-8">
-        <h2>
-          @if ($class_info != "")
-          <select name="class_name">
-          	<option value=""></option>
+        <h2><input type="text" name="class_name" list="class_name_work" placeholder="テキスト入力/選択" autocomplete="off"  @if(!empty($info -> class))value="{{$info -> class}}"@endif>
+          <datalist id="class_name_work">
+            <option class="text-primary" value="">
+            @if ($class_info != "")
             @foreach ($class_info as $class)
-          	<option value="{{$class->class}}" @if(!empty($info -> class) and $class->class === $info -> class) selected @endif>{{$class->class}}</option>
+            <option class="text-primary" value="{{$class->class}}">
             @endforeach
-          </select><br/>
-          @endif
+            @endif
+          </datalist>
         </h2>
       </div>
     </div>
@@ -106,15 +106,15 @@
         <h2 class="text-center">保管場所：</h2>
       </div>
       <div class="col-8">
-        <h2>
-          @if ($storage_info != "")
-          <select name="storage">
-            <option value=""></option>
+        <h2><input type="text" name="storage" list="storage_work" placeholder="テキスト入力/選択" autocomplete="off" @if(!empty($info -> storage_name))value="{{$info -> storage_name}}"@endif>
+          <datalist id="storage_work">
+            <option class="text-primary" value="">
+            @if ($storage_info != "")
             @foreach ($storage_info as $storage)
-            <option value="{{$storage->storage_name}}" @if(!empty($info -> storage_name) and $storage->storage_name === $info -> storage_name) selected @endif>{{$storage->storage_name}}</option>
+            <option class="text-primary" value="{{$storage->storage_name}}">
             @endforeach
-          </select><br/>
-          @endif
+            @endif
+          </datalist>
         </h2>
       </div>
     </div>
