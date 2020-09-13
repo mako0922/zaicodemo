@@ -116,6 +116,9 @@ Route::get('used_info','ZaicoController@used_info')
 Route::post('used_info/register','ZaicoController@used_info_register')
       ->middleware('auth');
 
+Route::post('table_item_delete','ZaicoController@table_item_delete')
+      ->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

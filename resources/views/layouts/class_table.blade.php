@@ -54,11 +54,29 @@
 </div>
 <main>
 <h1 class="text-center ml-5" style="color: black; font-size:3.0em;">@yield('title_exchange')</h1>
+
+<section id="sec0">
+  <div class="container">
+    <h2>登録済み一覧</h2>
+    @foreach ($class_info as $class)
+    <form action="/table_item_delete" method="post">
+      <div class="row mb-5">
+        @csrf
+        <div class="col-6"><h3>{{$class -> class}}:</h3></div>
+        <div class="col-4"><h3><input type="submit" value="削除"></h3></div>
+      </div>
+      <input type="hidden" name="id" value="{{$class -> id}}">
+      <input type="hidden" name="table_item" value="class_table">
+    </form>
+    @endforeach
+  </div>
+</section>
 <!------------------------------------------------------------------------------------------------------------------>
 <form id="class_input" action="/class_input/register" method="post">
 @csrf
 <section id="sec1">
   <div class="container">
+    <h2>新規登録</h2>
     <div class="row mb-5">
       <div class="col-4">
         <h2 class="text-center">分類：</h2>

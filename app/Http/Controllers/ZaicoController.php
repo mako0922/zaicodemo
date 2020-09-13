@@ -151,7 +151,12 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
-      return view('class_table.index', $param = ['users' => $user]);
+      $class_info = DB::table('class_table')->get();
+      $param = [
+        'users' => $user,
+        'class_info' => $class_info,
+      ];
+      return view('class_table.index', $param);
     }else{
       return view('auth/login');
     }
@@ -196,7 +201,7 @@ class ZaicoController extends Controller
       ];
       return redirect('/part_update')->withInput($param);
     }else{
-      return redirect('/zaico_home');
+      return redirect('/class_input');
     }
   }
 
@@ -204,7 +209,12 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
-      return view('manufacturer_table.index', $param = ['users' => $user]);
+      $manufacturer = DB::table('manufacturer_table')->get();
+      $param = [
+        'users' => $user,
+        'manufacturer_info' => $manufacturer,
+      ];
+      return view('manufacturer_table.index', $param);
     }else{
       return view('auth/login');
     }
@@ -249,7 +259,7 @@ class ZaicoController extends Controller
       ];
       return redirect('/part_update')->withInput($param);
     }else{
-      return redirect('/zaico_home');
+      return redirect('/manufacturer_input');
     }
   }
 
@@ -257,7 +267,12 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
-      return view('status_table.index', $param = ['users' => $user]);
+      $status = DB::table('status_table')->get();
+      $param = [
+        'users' => $user,
+        'status_info' => $status,
+      ];
+      return view('status_table.index', $param);
     }else{
       return view('auth/login');
     }
@@ -302,7 +317,7 @@ class ZaicoController extends Controller
       ];
       return redirect('/part_update')->withInput($param);
     }else{
-      return redirect('/zaico_home');
+      return redirect('/status_input');
     }
   }
 
@@ -310,7 +325,12 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
-      return view('storage_table.index', $param = ['users' => $user]);
+      $storage = DB::table('storage_table')->get();
+      $param = [
+        'users' => $user,
+        'storage_info' => $storage,
+      ];
+      return view('storage_table.index', $param);
     }else{
       return view('auth/login');
     }
@@ -355,7 +375,7 @@ class ZaicoController extends Controller
       ];
       return redirect('/part_update')->withInput($param);
     }else{
-      return redirect('/zaico_home');
+      return redirect('/storage_input');
     }
   }
 
@@ -1358,6 +1378,39 @@ class ZaicoController extends Controller
 
     return redirect('/zaico_home');
   }
+
+  public function table_item_delete(Request $request){
+    $user = Auth::user();
+
+    $status = DB::table('status_table')->get();
+    $class = DB::table('class_table')->get();
+    $manufacturer = DB::table('manufacturer_table')->get();
+    $storage  = DB::table('storage_table')->get();
+
+    if($request -> table_item == "class_table"){
+      $re_hp = "/class_input";
+    }else if($request -> table_item == "manufacturer_table"){
+      $re_hp = "/manufacturer_input";
+    }else if($request -> table_item == "status_table"){
+      $re_hp = "/status_input";
+    }else if($request -> table_item == "storage_table"){
+      $re_hp = "/storage_input";
+    }
+
+    $param = [
+      'manufacturer_info' => $manufacturer,
+      'class_info' => $class,
+      'storage_info' => $storage,
+      'status_info' => $status,
+    ];
+    try{
+      DB::table( $request -> table_item)->where('id', $request -> id)->delete();
+    } catch (\Exception $e) {
+      return redirect('/zaico_home');
+    }
+    return redirect($re_hp)->withInput($param);
+  }
+
 
   public function zaico_log_serch(Request $request){
     // ログインチェック

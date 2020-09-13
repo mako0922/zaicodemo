@@ -81,15 +81,15 @@
         <h2 class="text-center">メーカ：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="manufacturer" list="manufacturer_work" placeholder="テキスト入力/選択" autocomplete="off" @if(!empty($info -> manufacturer))value="{{$info -> manufacturer}}"@endif>
-          <datalist id="manufacturer_work">
-            <option class="text-primary" value="">
-            @if ($manufacturer_info != "")
+        <h2>
+          @if ($manufacturer_info != "")
+          <select name="manufacturer">
+          	<option value=""></option>
             @foreach ($manufacturer_info as $manufacturer)
-            <option class="text-primary" value="{{$manufacturer->manufacturer}}">
+          	<option value="{{$manufacturer->manufacturer}}">{{$manufacturer->manufacturer}}</option>
             @endforeach
-            @endif
-          </datalist>
+          </select><br/>
+          @endif
           新規登録<br><input type="text" name="manufacturer" form="manufacturer_form">
           <input type="hidden" name="hp_type" value="part_update" form="manufacturer_form">
           <input type="submit" value="登録" form="manufacturer_form">
@@ -101,15 +101,15 @@
         <h2 class="text-center">分類：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="class_name" list="class_name_work" placeholder="テキスト入力/選択" autocomplete="off"  @if(!empty($info -> class))value="{{$info -> class}}"@endif>
-          <datalist id="class_name_work">
-            <option class="text-primary" value="">
-            @if ($class_info != "")
+        <h2>
+          @if ($class_info != "")
+          <select name="class_name">
+          	<option value=""></option>
             @foreach ($class_info as $class)
-            <option class="text-primary" value="{{$class->class}}">
+          	<option value="{{$class->class}}">{{$class->class}}</option>
             @endforeach
-            @endif
-          </datalist>
+          </select><br/>
+          @endif
           新規登録<br><input type="text" name="class_name" form="class_form">
           <input type="hidden" name="hp_type" value="part_update" form="class_form">
           <input type="submit" value="登録" form="class_form">
@@ -121,15 +121,15 @@
         <h2 class="text-center">保管場所：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="storage" list="storage_work" placeholder="テキスト入力/選択" autocomplete="off" @if(!empty($info -> storage_name))value="{{$info -> storage_name}}"@endif>
-          <datalist id="storage_work">
-            <option class="text-primary" value="">
-            @if ($storage_info != "")
+        <h2>
+          @if ($storage_info != "")
+          <select name="storage">
+            <option value=""></option>
             @foreach ($storage_info as $storage)
-            <option class="text-primary" value="{{$storage->storage_name}}">
+            <option value="{{$storage->storage_name}}">{{$storage->storage_name}}</option>
             @endforeach
-            @endif
-          </datalist>
+          </select><br/>
+          @endif
           新規登録<br><input type="text" name="storage_name" form="storage_form">
           <input type="hidden" name="hp_type" value="part_update" form="storage_form">
           <input type="submit" value="登録" form="storage_form">
