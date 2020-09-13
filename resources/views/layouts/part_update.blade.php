@@ -86,7 +86,7 @@
           <select name="manufacturer">
           	<option value=""></option>
             @foreach ($manufacturer_info as $manufacturer)
-          	<option value="{{$manufacturer->manufacturer}}">{{$manufacturer->manufacturer}}</option>
+          	<option value="{{$manufacturer->manufacturer}}" @if(!empty($info -> manufacturer) and $info -> manufacturer === $manufacturer->manufacturer ) selected @endif>{{$manufacturer->manufacturer}}</option>
             @endforeach
           </select><br/>
           @endif
@@ -106,7 +106,7 @@
           <select name="class_name">
           	<option value=""></option>
             @foreach ($class_info as $class)
-          	<option value="{{$class->class}}">{{$class->class}}</option>
+          	<option value="{{$class->class}}" @if(!empty($info -> class) and $info -> class === $class->class ) selected @endif>{{$class->class}}</option>
             @endforeach
           </select><br/>
           @endif
@@ -126,7 +126,7 @@
           <select name="storage">
             <option value=""></option>
             @foreach ($storage_info as $storage)
-            <option value="{{$storage->storage_name}}">{{$storage->storage_name}}</option>
+            <option value="{{$storage->storage_name}}" @if(!empty($info -> storage_name) and $info -> storage_name === $storage->storage_name ) selected @endif>{{$storage->storage_name}}</option>
             @endforeach
           </select><br/>
           @endif
