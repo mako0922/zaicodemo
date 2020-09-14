@@ -103,6 +103,12 @@ class ZaicoController extends Controller
       $revision_number = $request -> revision_number;
     }
 
+    if(empty($request -> purchase_date)){
+      $purchase_date = "0000-00-00";
+    }else{
+      $purchase_date = $request -> purchase_date;
+    }
+
     $param = [
       'part_number' => $request -> partName,
       'manufacturer' => $manufacturer,
@@ -120,6 +126,7 @@ class ZaicoController extends Controller
       'selling_price' => $request -> selling_price,
       'selling_price_tax' => $selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date
     ];
 
     try{
@@ -513,6 +520,12 @@ class ZaicoController extends Controller
       $revision_number = $request -> revision_number;
     }
 
+    if(empty($request -> purchase_date)){
+      $purchase_date = "0000-00-00";
+    }else{
+      $purchase_date = $request -> purchase_date;
+    }
+
     $param = [
       'part_name' => $request -> part_name,
       'manufacturer' => $request -> manufacturer,
@@ -530,6 +543,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('part_info')->insert($param);
@@ -554,6 +568,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -696,6 +711,12 @@ class ZaicoController extends Controller
       $revision_number = $request -> revision_number;
     }
 
+    if(empty($request -> purchase_date)){
+      $purchase_date = "0000-00-00";
+    }else{
+      $purchase_date = $request -> purchase_date;
+    }
+
     $param = [
       'part_name' => $request -> part_name,
       'manufacturer' => $manufacturer,
@@ -713,6 +734,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('part_info')->where('id', $request -> part_id)->update($param);
@@ -737,6 +759,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -817,6 +840,12 @@ class ZaicoController extends Controller
       $revision_number = $request -> revision_number;
     }
 
+    if(empty($request -> purchase_date)){
+      $purchase_date = "0000-00-00";
+    }else{
+      $purchase_date = $request -> purchase_date;
+    }
+
     $param = [
       'part_name' => $request -> part_name,
       'manufacturer' => $manufacturer,
@@ -831,6 +860,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('part_info')->where('part_name', $request -> part_name)->delete();
@@ -855,6 +885,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -991,6 +1022,12 @@ class ZaicoController extends Controller
       $revision_number = $request -> revision_number;
     }
 
+    if(empty($request -> purchase_date)){
+      $purchase_date = "0000-00-00";
+    }else{
+      $purchase_date = $request -> purchase_date;
+    }
+
     $param = [
       'part_name' => $request -> part_name,
       'manufacturer' => $manufacturer,
@@ -1008,6 +1045,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('part_info')->insert($param);
@@ -1032,6 +1070,7 @@ class ZaicoController extends Controller
       'selling_price' => $selling_price,
       'selling_price_tax' => $request -> selling_price_tax,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -1359,6 +1398,12 @@ class ZaicoController extends Controller
       $revision_number = $request -> revision_number;
     }
 
+    if(empty($request -> purchase_date)){
+      $purchase_date = "0000-00-00";
+    }else{
+      $purchase_date = $request -> purchase_date;
+    }
+
     $param = [
       'part_name' => $request -> part_name,
       'manufacturer' => $manufacturer,
@@ -1369,6 +1414,7 @@ class ZaicoController extends Controller
       'comment' => $comment,
       'status' => $request -> status,
       'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
     ];
     try{
       DB::table('zaico_table')->where('id', $request -> id)->delete();

@@ -158,6 +158,14 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
+        <h2 class="text-center">仕入れ日：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="date" name="purchase_date" @if(!empty($info -> purchase_date))value="{{$info -> purchase_date}}" @endif></h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
         <h2 class="text-center">仕入れ価格：</h2>
       </div>
       <div class="col-8">

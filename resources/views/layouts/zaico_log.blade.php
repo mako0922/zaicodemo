@@ -145,12 +145,13 @@
         <h3 class="text-left">{{$info->class}}</h3><br>
         <h5 class="text-left">保管場所：</h5>
         <h3 class="text-left">{{$info->storage_name}}</h3><br>
+        <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
+      </div>
+      <div class="col-3 mt-1 mb-1 my-auto">
         @if($users->authority == 10)
         <h5 class="text-left">仕入れ価格：{{$info->cost_price}}/税：{{$info->cost_price_tax}}</h5><br>
         @endif
         <h5 class="text-left">販売価格：{{$info->selling_price}}/税：{{$info->selling_price_tax}}</h5><br>
-      </div>
-      <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">担当：</h5>
         <h3 class="text-left">{{$info->staff_name}}</h3><br>
         <h5 class="text-left">用途：</h5>

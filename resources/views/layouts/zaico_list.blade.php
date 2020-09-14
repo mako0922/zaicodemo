@@ -145,6 +145,7 @@
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">ステータス：<br>{{$info->status}}</h5><br>
+        <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
         @if($users->authority == 10)
         <h5 class="text-left">仕入れ価格：{{$info->cost_price}}/税：{{$info->cost_price_tax}}</h5><br>
         @endif

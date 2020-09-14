@@ -113,6 +113,14 @@
         <input type="hidden" name="comment" @if(!empty($info))value="{{$info->comment}}"@endif>
       </div>
     </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">仕入れ日：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="purchase_date" @if(!empty($info -> purchase_date))value="{{$info -> purchase_date}}"@endif>{{$info -> purchase_date}}</h2>
+      </div>
+    </div>
     @if($users->authority == 10)
     <div class="row mb-5">
       <div class="col-6">
