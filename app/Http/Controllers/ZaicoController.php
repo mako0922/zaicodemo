@@ -191,9 +191,9 @@ class ZaicoController extends Controller
       return redirect('/used_info');
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
-      $zaico_log = DB::table('zaico_table')->get();
+      $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
-      $part_info = DB::table('part_info')->get();
+      $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
@@ -250,9 +250,9 @@ class ZaicoController extends Controller
       return redirect('/used_info');
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
-      $zaico_log = DB::table('zaico_table')->get();
+      $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
-      $part_info = DB::table('part_info')->get();
+      $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
@@ -309,9 +309,9 @@ class ZaicoController extends Controller
       return redirect('/used_info');
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
-      $zaico_log = DB::table('zaico_table')->get();
+      $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
-      $part_info = DB::table('part_info')->get();
+      $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
@@ -368,9 +368,9 @@ class ZaicoController extends Controller
       return redirect('/used_info');
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
-      $zaico_log = DB::table('zaico_table')->get();
+      $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
-      $part_info = DB::table('part_info')->get();
+      $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
@@ -1097,9 +1097,9 @@ class ZaicoController extends Controller
       $user = Auth::user();
       //$request->session()->regenerateToken();
       try{
-        $zaico_log = DB::table('zaico_table')->get();
+        $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
         $class_table = DB::table('class_table')->get();
-        $part_info = DB::table('part_info')->get();
+        $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
       } catch (\Exception $e) {
@@ -1130,7 +1130,7 @@ class ZaicoController extends Controller
       //$request->session()->regenerateToken();
       try{
         $columns = Schema::getColumnListing('part_info');
-        $zaico_log = DB::table('zaico_table')->get();
+        $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info');
         $manufacturer_info = DB::table('manufacturer_table')->get();
@@ -1300,7 +1300,7 @@ class ZaicoController extends Controller
       try{
         $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
         $class_table = DB::table('class_table')->get();
-        $part_info = DB::table('part_info')->get();
+        $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         $columns = Schema::getColumnListing('zaico_table');
@@ -1488,7 +1488,7 @@ class ZaicoController extends Controller
         $columns = Schema::getColumnListing('zaico_table');
         $zaico_log = DB::table('zaico_table');
         $class_table = DB::table('class_table')->get();
-        $part_info = DB::table('part_info')->get();
+        $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         foreach ($columns as $column) {
@@ -1527,7 +1527,7 @@ class ZaicoController extends Controller
       try{
         $zaico_log = DB::table('zaico_table');
         $class_table = DB::table('class_table')->get();
-        $part_info = DB::table('part_info')->get();
+        $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         if ($request -> log_select1 != ''){
@@ -1542,6 +1542,7 @@ class ZaicoController extends Controller
         if ($request -> log_select4 != ''){
           $zaico_log = $zaico_log -> where('manufacturer', $request -> log_select4);
         }
+        $zaico_log = $zaico_log -> orderBy('id', 'desc');
         $zaico_log = $zaico_log -> get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
@@ -1570,7 +1571,7 @@ class ZaicoController extends Controller
         $user = Auth::user();
         //$request->session()->regenerateToken();
         try{
-          $part_info = DB::table('part_info');
+          $part_info = DB::table('part_info') ;
           $class_table = DB::table('class_table')->get();
           $status_info = DB::table('status_table')->get();
           $manufacturer_info = DB::table('manufacturer_table')->get();
@@ -1586,6 +1587,7 @@ class ZaicoController extends Controller
           if ($request -> log_select4 != ''){
             $part_info = $part_info -> where('manufacturer', $request -> log_select4);
           }
+          $part_info = $part_info -> orderBy('id', 'desc');
           $part_info = $part_info -> get();
         } catch (\Exception $e) {
           return redirect('/zaico_home');

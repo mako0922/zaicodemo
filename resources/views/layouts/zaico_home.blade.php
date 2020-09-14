@@ -71,12 +71,12 @@
     </div>
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <a class="" href="manufacturer_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer_icon.png" alt="manufacturer_icon"></a>
-        <h2 class="text-center">メーカ名登録/削除</h2>
+        <a class="" href="part_info_select"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/part_info_icon.png" alt="part_info_icon"></a>
+        <h2 class="text-center">新規部品追加</h2>
       </div>
       <div class="col mt-5 mb-5">
-        <a class="" href="class_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/class_icon.png" alt="class_icon"></a>
-        <h2 class="text-center">分類登録/削除</h2>
+        <a class="" href="manufacturer_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer_icon.png" alt="manufacturer_icon"></a>
+        <h2 class="text-center">メーカ名登録/削除</h2>
       </div>
     </div>
     <div class="row mt-5 mb-5">
@@ -85,8 +85,8 @@
         <h2 class="text-center">保管場所登録/削除</h2>
       </div>
       <div class="col mt-5 mb-5">
-        <a class="" href="part_info_select"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/part_info_icon.png" alt="part_info_icon"></a>
-        <h2 class="text-center">新規部品追加</h2>
+        <a class="" href="class_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/class_icon.png" alt="class_icon"></a>
+        <h2 class="text-center">分類登録/削除</h2>
       </div>
     </div>
     <div class="row mt-5 mb-5">
