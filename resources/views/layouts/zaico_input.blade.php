@@ -64,7 +64,7 @@
         <h2 class="text-center">管理番号：</h2>
       </div>
       <div class="col-8">
-        <h2>{{$info->part_name}}</h2>
+        <h2>{{$info->revision_number}}</h2>
         <input type="hidden" name="revision_number" @if(!empty($info))value="{{$info->revision_number}}"@endif>
       </div>
     </div>

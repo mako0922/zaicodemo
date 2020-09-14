@@ -74,6 +74,10 @@ caption {
     color: rgba(251,251,241,1);
 }
 
+.loading {
+    display: none;
+}
+
 #page_top{
   width: 90px;
   height: 60px;

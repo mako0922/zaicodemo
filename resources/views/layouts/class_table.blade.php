@@ -9,6 +9,17 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <link rel="shortcut icon" href="{{ asset('/favicon/favicon_zaico.ico') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
+<script type="text/javascript">
+//送信ボタンを押した際に送信ボタンを無効化する（連打による多数送信回避）
+$(function(){
+	$('[type="submit"]').click(function(){
+		$(this).prop('disabled',true);//ボタンを無効化する
+		$(this).closest('form').submit();//フォームを送信する
+	});
+});
+</script>
+
 </head>
 <body id="page-top">
 <!------------------------------------------------------------------------------------------------------------------>
@@ -88,7 +99,7 @@
 
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <button form="class_input" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input"></a>
+        <button class="btn" form="class_input" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input"></a>
         <h2 class="text-center">登録</h2></button>
       </div>
       <div class="col mt-5 mb-5">
@@ -101,6 +112,7 @@
 </form>
 <!------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------>
+
 </main>
 
 <footer id="footer">

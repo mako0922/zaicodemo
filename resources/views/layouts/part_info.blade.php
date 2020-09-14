@@ -9,6 +9,15 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <link rel="shortcut icon" href="{{ asset('/favicon/favicon_zaico.ico') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
+<script>
+var set=0;
+function double() {
+if(set==0){ set=1; } else {
+alert("只今処理中です。\nそのままお待ちください。");
+return false; }}
+</script>
+
 </head>
 <body id="page-top">
 <!------------------------------------------------------------------------------------------------------------------>
@@ -348,7 +357,7 @@
 
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <button form="part_info_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input"></a>
+        <button onSubmit="return double()" form="part_info_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input"></a>
         <h2 class="text-center">登録</h2></button>
       </div>
       <div class="col mt-5 mb-5">
@@ -365,6 +374,16 @@
 <form id="status_form" action="/status_input/register" method="post">@csrf</form>
 <!------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------>
+<script type="text/javascript">
+$(function() {
+  $('button').on('click', function() {
+     $(this).prop('disabled', true);
+     $('form').submit();
+  });
+});
+
+</script>
+
 </main>
 <div id="page_top"><a href="#"></a></div>
 <footer id="footer">

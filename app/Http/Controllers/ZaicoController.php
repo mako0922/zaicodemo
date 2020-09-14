@@ -39,6 +39,7 @@ class ZaicoController extends Controller
       'part_photo' => 'image',
     ];
     $this->validate($request, $validate_rule);
+    //$request->session()->regenerateToken();
     $resize_path = public_path('img\logimage.png');
     if(!empty($request -> part_photo)){
       $image = Image::make(file_get_contents($request -> part_photo));
@@ -104,7 +105,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "0000-00-00";
+      $purchase_date = "2014-09-10";
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -174,6 +175,7 @@ class ZaicoController extends Controller
       'class_name' => 'required',
     ];
     $this->validate($request, $validate_rule);
+    //$request->session()->regenerateToken();
 
     $param = [
       'class' => $request -> class_name,
@@ -232,6 +234,7 @@ class ZaicoController extends Controller
       'manufacturer' => 'required',
     ];
     $this->validate($request, $validate_rule);
+    //$request->session()->regenerateToken();
 
     $param = [
       'manufacturer' => $request -> manufacturer,
@@ -290,6 +293,7 @@ class ZaicoController extends Controller
       'status_name' => 'required',
     ];
     $this->validate($request, $validate_rule);
+    //$request->session()->regenerateToken();
 
     $param = [
       'status_name' => $request -> status_name,
@@ -348,6 +352,7 @@ class ZaicoController extends Controller
       'storage_name' => 'required',
     ];
     $this->validate($request, $validate_rule);
+    //$request->session()->regenerateToken();
 
     $param = [
       'storage_name' => $request -> storage_name,
@@ -436,6 +441,8 @@ class ZaicoController extends Controller
 
   public function part_info_register(Request $request){
     $user = Auth::user();
+    //$request->session()->regenerateToken();
+
     $validate_rule = [
       'part_name' => 'required',
       'manufacturer' => 'required',
@@ -521,7 +528,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "0000-00-00";
+      $purchase_date = "2020-01-01";
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -602,6 +609,7 @@ class ZaicoController extends Controller
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
+    //$request->session()->regenerateToken();
 
     if(!empty($request -> part_photo)){
       $image = Image::make(file_get_contents($request -> part_photo));
@@ -712,7 +720,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "0000-00-00";
+      $purchase_date = "2020-01-01";
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -791,6 +799,7 @@ class ZaicoController extends Controller
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
+    //$request->session()->regenerateToken();
 
     if(!empty($request -> part_photo)){
       $part_photo64 = $request -> part_photo;
@@ -841,7 +850,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "0000-00-00";
+      $purchase_date = "2020-01-01";
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -929,6 +938,7 @@ class ZaicoController extends Controller
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
+    //$request->session()->regenerateToken();
 
     if(!empty($request -> part_photo)){
       $image = Image::make(file_get_contents($request -> part_photo));
@@ -1023,7 +1033,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "0000-00-00";
+      $purchase_date = "2020-01-01";
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -1085,6 +1095,7 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
+      //$request->session()->regenerateToken();
       try{
         $zaico_log = DB::table('zaico_table')->get();
         $class_table = DB::table('class_table')->get();
@@ -1116,6 +1127,7 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
+      //$request->session()->regenerateToken();
       try{
         $columns = Schema::getColumnListing('part_info');
         $zaico_log = DB::table('zaico_table')->get();
@@ -1157,6 +1169,7 @@ class ZaicoController extends Controller
       $validate_rule = [
       ];
       $this->validate($request, $validate_rule);
+      //$request->session()->regenerateToken();
       try{
         $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
         $staff = DB::table('users')->get();
@@ -1186,6 +1199,7 @@ class ZaicoController extends Controller
       $validate_rule = [
       ];
       $this->validate($request, $validate_rule);
+      //$request->session()->regenerateToken();
       try{
         $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
         $staff = DB::table('users')->get();
@@ -1213,6 +1227,7 @@ class ZaicoController extends Controller
       $validate_rule = [
       ];
       $this->validate($request, $validate_rule);
+      //$request->session()->regenerateToken();
       try{
         $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
         $zaico_status = DB::table('zaico_table')->groupBy('status')->get(['status']);
@@ -1248,6 +1263,7 @@ class ZaicoController extends Controller
       $validate_rule = [
       ];
       $this->validate($request, $validate_rule);
+      //$request->session()->regenerateToken();
       try{
         $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
         $zaico_status = DB::table('zaico_table')->groupBy('status')->get(['status']);
@@ -1280,6 +1296,7 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
+      //$request->session()->regenerateToken();
       try{
         $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
         $class_table = DB::table('class_table')->get();
@@ -1309,6 +1326,7 @@ class ZaicoController extends Controller
     //$this->validate($request, Attendance::$rules);
     if (Auth::check()){
       $user = Auth::user();
+      //$request->session()->regenerateToken();
       $validate_rule = [
       ];
       $this->validate($request, $validate_rule);
@@ -1346,6 +1364,7 @@ class ZaicoController extends Controller
       $user = Auth::user();
       $part_info = $request->old();
       $part_info += ['users' => $user];
+      //$request->session()->regenerateToken();
       return view('zaico_log_delete.index', $part_info);
     }else{
       return view('auth/login');
@@ -1355,6 +1374,7 @@ class ZaicoController extends Controller
 
   public function zaico_log_delete_register(Request $request){
     $user = Auth::user();
+    //$request->session()->regenerateToken();
     $validate_rule = [
       'part_name' => 'required',
       'stock' => 'required',
@@ -1399,7 +1419,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "0000-00-00";
+      $purchase_date = "2020-01-01";
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -1427,6 +1447,7 @@ class ZaicoController extends Controller
 
   public function table_item_delete(Request $request){
     $user = Auth::user();
+    //$request->session()->regenerateToken();
 
     $status = DB::table('status_table')->get();
     $class = DB::table('class_table')->get();
@@ -1462,6 +1483,7 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
+      //$request->session()->regenerateToken();
       try{
         $columns = Schema::getColumnListing('zaico_table');
         $zaico_log = DB::table('zaico_table');
@@ -1501,6 +1523,7 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
+      //$request->session()->regenerateToken();
       try{
         $zaico_log = DB::table('zaico_table');
         $class_table = DB::table('class_table')->get();
@@ -1545,6 +1568,7 @@ class ZaicoController extends Controller
       // ログインチェック
       if (Auth::check()){
         $user = Auth::user();
+        //$request->session()->regenerateToken();
         try{
           $part_info = DB::table('part_info');
           $class_table = DB::table('class_table')->get();
