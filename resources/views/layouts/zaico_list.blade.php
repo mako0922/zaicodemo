@@ -152,30 +152,34 @@
         <h5 class="text-left">販売価格：{{$info->selling_price}}/税：{{$info->selling_price_tax}}</h5><br>
         <h5 class="text-center p-1 border border-primary">在庫：{{$info->stock}}</h5><br>
         <h5 class="text-center">👇</h5><br>
-        <form id="zaico_arrival{{$info->part_name}}" action="/zaico_input/arrival" method="post">
+        <form id="zaico_arrival{{$info->id}}" action="/zaico_input/arrival" method="post">
           @csrf
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
+          <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="rec_and_ship" value="arrival">
-          <button form="zaico_arrival{{$info->part_name}}" type="submit" style="width:100%;background-color:skyblue;" class="text-center border border-primary rounded p-1"><h3>入荷</h3></button><br><br>
+          <button form="zaico_arrival{{$info->id}}" type="submit" style="width:100%;background-color:skyblue;" class="text-center border border-primary rounded p-1"><h3>入荷</h3></button><br><br>
         </form>
-        <form id="zaico_utilize{{$info->part_name}}" action="/zaico_input/utilize" method="post">
+        <form id="zaico_utilize{{$info->id}}" action="/zaico_input/utilize" method="post">
           @csrf
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
+          <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="rec_and_ship" value="utilize">
-          <button form="zaico_utilize{{$info->part_name}}" type="submit" style="width:100%;background-color:orange;" class="text-center border border-warning rounded p-1"><h3>使用</h3></button><br><br>
+          <button form="zaico_utilize{{$info->id}}" type="submit" style="width:100%;background-color:orange;" class="text-center border border-warning rounded p-1"><h3>使用</h3></button><br><br>
         </form>
         @if($users->authority == 10)
-        <form id="zaico_update{{$info->part_name}}" action="/zaico_input/update" method="post">
+        <form id="zaico_update{{$info->id}}" action="/zaico_input/update" method="post">
           @csrf
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
+          <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="status" value="update">
-          <button form="zaico_update{{$info->part_name}}" type="submit" style="width:100%;background-color:green;" class="text-center border border-primary rounded p-1"><h3>変更</h3></button><br><br>
+          <button form="zaico_update{{$info->id}}" type="submit" style="width:100%;background-color:green;" class="text-center border border-primary rounded p-1"><h3>変更</h3></button><br><br>
         </form>
-        <form id="zaico_delete{{$info->part_name}}" action="/zaico_input/delete" method="post">
+        <form id="zaico_delete{{$info->id}}" action="/zaico_input/delete" method="post">
           @csrf
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
+          <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="status" value="delete">
-          <button form="zaico_delete{{$info->part_name}}" type="submit" style="width:100%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
+          <button form="zaico_delete{{$info->id}}" type="submit" style="width:100%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
         </form>
         @endif
       </div>

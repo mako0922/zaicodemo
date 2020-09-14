@@ -57,6 +57,7 @@
 <!------------------------------------------------------------------------------------------------------------------>
 <form id="zaico_input" action="/zaico_input/register" method="post" enctype="multipart/form-data">
 @csrf
+<input type="hidden" name="id" value="{{$info -> id}}">
 <section id="sec1">
   <div class="container">
     <div class="row mb-5">

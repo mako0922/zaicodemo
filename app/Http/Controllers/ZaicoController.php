@@ -131,7 +131,7 @@ class ZaicoController extends Controller
     ];
 
     try{
-      $part_info = DB::table('part_info')->where('part_name', $request -> partName)->first();
+      $part_info = DB::table('part_info')->where('id', $request -> id)->first();
       if ($request -> rec_and_ship == '入荷'){
         $stock_update = $part_info -> stock + $request -> partNumber;
       }else if($request -> rec_and_ship == '出荷'){
@@ -148,7 +148,7 @@ class ZaicoController extends Controller
 
     //try{
       DB::table('zaico_table')->insert($param);
-      DB::table('part_info')->where('part_name', $request -> partName)->update($part_update);
+      DB::table('part_info')->where('id', $request -> id)->update($part_update);
     //} catch (\Exception $e) {
     //  return redirect('/zaico_home');
     //}
@@ -528,7 +528,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "2020-01-01";
+      $purchase_date = date('Y-m-d');
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -720,7 +720,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "2020-01-01";
+      $purchase_date = date('Y-m-d');
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -850,7 +850,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "2020-01-01";
+      $purchase_date = date('Y-m-d');
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -872,7 +872,7 @@ class ZaicoController extends Controller
       'purchase_date' => $purchase_date,
     ];
     try{
-      DB::table('part_info')->where('part_name', $request -> part_name)->delete();
+      DB::table('part_info')->where('id', $request -> id)->delete();
     } catch (\Exception $e) {
       return redirect('/zaico_home');
     }
@@ -1033,7 +1033,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "2020-01-01";
+      $purchase_date = date('Y-m-d');
     }else{
       $purchase_date = $request -> purchase_date;
     }
@@ -1171,7 +1171,7 @@ class ZaicoController extends Controller
       $this->validate($request, $validate_rule);
       //$request->session()->regenerateToken();
       try{
-        $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
+        $info = DB::table('part_info')->where('id', $request -> id)->first();
         $staff = DB::table('users')->get();
         $zaico_info = DB::table('zaico_table')->groupBy('utilization')->get(['utilization']);
       } catch (\Exception $e) {
@@ -1201,7 +1201,7 @@ class ZaicoController extends Controller
       $this->validate($request, $validate_rule);
       //$request->session()->regenerateToken();
       try{
-        $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
+        $info = DB::table('part_info')->where('id', $request -> id)->first();
         $staff = DB::table('users')->get();
         $zaico_info = DB::table('zaico_table')->groupBy('utilization')->get(['utilization']);
       } catch (\Exception $e) {
@@ -1229,7 +1229,7 @@ class ZaicoController extends Controller
       $this->validate($request, $validate_rule);
       //$request->session()->regenerateToken();
       try{
-        $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
+        $info = DB::table('part_info')->where('id', $request -> id)->first();
         $zaico_status = DB::table('zaico_table')->groupBy('status')->get(['status']);
         $staff = DB::table('users')->get();
         $class = DB::table('class_table')->get();
@@ -1265,7 +1265,7 @@ class ZaicoController extends Controller
       $this->validate($request, $validate_rule);
       //$request->session()->regenerateToken();
       try{
-        $info = DB::table('part_info')->where('part_name', $request -> part_name)->first();
+        $info = DB::table('part_info')->where('id', $request -> id)->first();
         $zaico_status = DB::table('zaico_table')->groupBy('status')->get(['status']);
         $staff = DB::table('users')->get();
         $class = DB::table('class_table')->get();
@@ -1419,7 +1419,7 @@ class ZaicoController extends Controller
     }
 
     if(empty($request -> purchase_date)){
-      $purchase_date = "2020-01-01";
+      $purchase_date = date('Y-m-d');
     }else{
       $purchase_date = $request -> purchase_date;
     }

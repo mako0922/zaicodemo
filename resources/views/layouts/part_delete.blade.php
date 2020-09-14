@@ -68,6 +68,7 @@ $(function(){
 <!------------------------------------------------------------------------------------------------------------------>
 <form id="part_delete_form" action="/part_delete/register" method="post" enctype="multipart/form-data">
 @csrf
+<input type="hidden" name="id" value="{{$info -> id}}">
 <section id="sec1">
   <div class="container">
     <div class="row mb-5">
