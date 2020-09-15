@@ -1871,8 +1871,9 @@ function postCSV($part_info)
     header('Content-Length: '.filesize('zaico_list.csv'));
     header('Content-Disposition: attachment; filename=zaico_list.csv');
     readfile('zaico_list.csv');
+    exit;
 
-    return redirect()->withInput();
+    //return redirect()->withInput();
 }
 
 function logCSV($zaico_log)
@@ -1937,5 +1938,7 @@ function logCSV($zaico_log)
     header('Content-Disposition: attachment; filename=log.csv');
     readfile('log.csv');
 
-    return redirect()->withInput();
+    exit;
+
+    //return redirect()->withInput();
 }
