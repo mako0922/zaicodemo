@@ -54,10 +54,18 @@
 </div>
 
 <main>
-<h1 class="text-center ml-5" style="color: black; font-size:3.0em;">@yield('title_exchange')</h1>
+  <h1 class="text-center ml-5" style="color: black; font-size:3.0em;">@yield('title_exchange')</h1>
 <!------------------------------------------------------------------------------------------------------------------>
 <section id="sec1">
   <div class="container">
+    @if($users->authority == 10)
+    <div class="pb-1 border-bottom">
+      <form action="/csv_download" method="post">
+      @csrf
+      <input type="submit" value="CSVダウンロード">
+      </form>
+    </div>
+    @endif
     <div class="pb-1 border-bottom">
       <div>
           <form id="part_list_serch" action="/part_list_serch" method="post">

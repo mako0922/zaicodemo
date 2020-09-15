@@ -58,6 +58,14 @@
 <!------------------------------------------------------------------------------------------------------------------>
 <section id="sec1">
   <div class="container">
+    @if($users->authority == 10)
+    <div class="pb-1 border-bottom">
+      <form action="/csv_log_download" method="post">
+      @csrf
+      <input type="submit" value="CSVダウンロード">
+      </form>
+    </div>
+    @endif
     <div class="pb-1 border-bottom">
       <div>
           <form id="zaico_serch" action="/zaico_log_serch" method="post">

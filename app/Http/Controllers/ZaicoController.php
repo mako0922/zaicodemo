@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Intervention\Image\Facades\Image;
 
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -1723,4 +1724,276 @@ class ZaicoController extends Controller
         return view('auth/login');
       }
     }
+
+    public function csv_download(Request $request){
+      $user = Auth::user();
+      //$request->session()->regenerateToken();
+
+      //try{
+        $part_info = DB::table('part_info') -> orderBy('id', 'desc') -> get();
+        postCSV($part_info);
+        //export("CSV_FILE",$part_info);
+      //} catch (\Exception $e) {
+      //  return redirect('/zaico_home');
+      //}
+      return redirect()->withInput();
+    }
+
+    public function csv_log_download(Request $request){
+      $user = Auth::user();
+      //$request->session()->regenerateToken();
+
+      //try{
+        $zaico_log = DB::table('zaico_table') -> orderBy('id', 'desc') -> get();
+        logCSV($zaico_log);
+        //export("CSV_FILE",$part_info);
+      //} catch (\Exception $e) {
+      //  return redirect('/zaico_home');
+      //}
+      return redirect()->withInput();
+    }
+
+}
+
+
+function export($file_name, $data)
+{
+  $fp = fopen('test.csv', 'w');
+  fwrite($fp, pack('C*',0xEF,0xBB,0xBF)); // BOM をつける
+
+  $param = [
+    'revision_number',
+    'part_name',
+    'manufacturer',
+    'class',
+    'status',
+    'storage_name',
+    'purchase_date',
+    'stock',
+    'comment',
+    'cost_price',
+    'cost_price_tax',
+    'selling_price',
+    'selling_price_tax',
+    'part_photo',
+    'sub_part_photo_1',
+    'sub_part_photo_2',
+    'sub_part_photo_3',
+  ];
+
+  // UTF-8からSJIS-winへ変換するフィルター
+  //stream_filter_append($fp, 'convert.iconv.UTF-8/CP932//TRANSLIT', STREAM_FILTER_WRITE);
+
+  fputcsv($fp, $param);
+
+  foreach ($data as $row) {
+
+  $csv_date = [
+    $row -> revision_number,
+    $row -> part_name,
+    $row -> manufacturer,
+    $row -> class,
+    $row -> status,
+    $row -> storage_name,
+    $row -> purchase_date,
+    $row -> stock,
+    $row -> comment,
+    $row -> cost_price,
+    $row -> cost_price_tax,
+    $row -> selling_price,
+    $row -> selling_price_tax,
+    $row -> part_photo,
+    $row -> sub_part_photo_1,
+    $row -> sub_part_photo_2,
+    $row -> sub_part_photo_3,
+  ];
+  fputcsv($fp, $csv_date);
+  }
+  fclose($fp);
+  header('Content-Type: application/octet-stream');
+  header("Content-Disposition: attachment; filename={$file_name}");
+  header('Content-Transfer-Encoding: binary');
+  //return response(stream_get_contents($fp), 200)->header('Content-Type', 'text/csv')->header('Content-Disposition', 'attachment; filename="demo.csv"');
+}
+
+function postCSV($part_info)
+{
+    // データの作成
+    /*
+    $param = [
+      'revision_number',
+      'part_name',
+      'manufacturer',
+      'class',
+      'status',
+      'storage_name',
+      'purchase_date',
+      'stock',
+      'comment',
+      'cost_price',
+      'cost_price_tax',
+      'selling_price',
+      'selling_price_tax',
+      //'part_photo',
+      //'sub_part_photo_1',
+      //'sub_part_photo_2',
+      //'sub_part_photo_3',
+    ];
+    */
+    $param = [
+      '管理番号',
+      '品名',
+      'メーカ',
+      '分類',
+      'ステータス',
+      '保管場所',
+      '仕入れ日',
+      'ストック数量',
+      'コメント',
+      '仕入れ価格',
+      '仕入れ価格/税区分',
+      '販売価格',
+      '販売価格/税区分',
+      //'part_photo',
+      //'sub_part_photo_1',
+      //'sub_part_photo_2',
+      //'sub_part_photo_3',
+    ];
+    // 書き込み用ファイルを開く
+    $f = fopen('zaico_list.csv', 'w');
+    if ($f) {
+        // カラムの書き込み
+        mb_convert_variables('SJIS', 'UTF-8', $param);
+        fputcsv($f, $param);
+        // データの書き込み
+        foreach ($part_info as $row) {
+
+          $csv_date = [
+            $row -> revision_number,
+            $row -> part_name,
+            $row -> manufacturer,
+            $row -> class,
+            $row -> status,
+            $row -> storage_name,
+            $row -> purchase_date,
+            $row -> stock,
+            $row -> comment,
+            $row -> cost_price,
+            $row -> cost_price_tax,
+            $row -> selling_price,
+            $row -> selling_price_tax,
+            //$row -> part_photo,
+            //$row -> sub_part_photo_1,
+            //$row -> sub_part_photo_2,
+            //$row -> sub_part_photo_3,
+          ];
+
+          mb_convert_variables('SJIS', 'UTF-8', $csv_date);
+          fputcsv($f, $csv_date);
+        }
+    }
+    // ファイルを閉じる
+    fclose($f);
+
+    // HTTPヘッダ
+    header("Content-Type: application/octet-stream");
+    header('Content-Length: '.filesize('test.csv'));
+    header('Content-Disposition: attachment; filename=zaico_list.csv');
+    readfile('zaico_list.csv');
+
+    return redirect()->withInput();
+}
+
+function logCSV($zaico_log)
+{
+    // データの作成
+    /*
+    $param = [
+      'revision_number',
+      'part_name',
+      'manufacturer',
+      'class',
+      'status',
+      'storage_name',
+      'purchase_date',
+      'stock',
+      'comment',
+      'cost_price',
+      'cost_price_tax',
+      'selling_price',
+      'selling_price_tax',
+      //'part_photo',
+      //'sub_part_photo_1',
+      //'sub_part_photo_2',
+      //'sub_part_photo_3',
+    ];
+    */
+    $param = [
+      '管理番号',
+      '品名',
+      'メーカ',
+      '分類',
+      'ステータス',
+      '保管場所',
+      '仕入れ日',
+      '数量（ストック量または取引数量）',
+      'コメント',
+      '仕入れ価格',
+      '仕入れ価格/税区分',
+      '販売価格',
+      '販売価格/税区分',
+      '担当',
+      '用途',
+      'ログ日時',
+      //'part_photo',
+      //'sub_part_photo_1',
+      //'sub_part_photo_2',
+      //'sub_part_photo_3',
+    ];
+    // 書き込み用ファイルを開く
+    $f = fopen('log.csv', 'w');
+    if ($f) {
+        // カラムの書き込み
+        mb_convert_variables('SJIS', 'UTF-8', $param);
+        fputcsv($f, $param);
+        // データの書き込み
+        foreach ($zaico_log as $row) {
+
+          $csv_date = [
+            $row -> revision_number,
+            $row -> part_number,
+            $row -> manufacturer,
+            $row -> class,
+            $row -> status,
+            $row -> storage_name,
+            $row -> purchase_date,
+            $row -> partnumber,
+            $row -> comment,
+            $row -> cost_price,
+            $row -> cost_price_tax,
+            $row -> selling_price,
+            $row -> selling_price_tax,
+            $row -> staff_name,
+            $row -> utilization,
+            $row -> datetime,
+            //$row -> part_photo,
+            //$row -> sub_part_photo_1,
+            //$row -> sub_part_photo_2,
+            //$row -> sub_part_photo_3,
+          ];
+
+          mb_convert_variables('SJIS', 'UTF-8', $csv_date);
+          fputcsv($f, $csv_date);
+        }
+    }
+    // ファイルを閉じる
+    fclose($f);
+
+    // HTTPヘッダ
+    header("Content-Type: application/octet-stream");
+    header('Content-Length: '.filesize('test.csv'));
+    header('Content-Disposition: attachment; filename=log.csv');
+    readfile('log.csv');
+
+    return redirect()->withInput();
 }

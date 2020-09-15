@@ -119,6 +119,12 @@ Route::post('used_info/register','ZaicoController@used_info_register')
 Route::post('table_item_delete','ZaicoController@table_item_delete')
       ->middleware('auth');
 
+Route::post('csv_download','ZaicoController@csv_download')
+      ->middleware('auth');
+
+Route::post('csv_log_download','ZaicoController@csv_log_download')
+      ->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
