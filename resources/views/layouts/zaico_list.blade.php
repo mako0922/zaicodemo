@@ -141,7 +141,7 @@
         <h5 class="text-left">保管場所：</h5>
         <h3 class="text-left">{{$info->storage_name}}</h3><br>
         <h5 class="text-left">コメント：</h5>
-        <h3 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);">{{$info->comment}}</h3><br>
+        <h3 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);"><pre>{{$info->comment}}</pre></h3><br>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">ステータス：<br>{{$info->status}}</h5><br>

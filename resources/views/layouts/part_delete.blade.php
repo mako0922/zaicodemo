@@ -162,7 +162,7 @@ $(function(){
         <h2 class="text-center">コメント：</h2>
       </div>
       <div class="col-8">
-        <h2 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);">{{$info->comment}}</h2>
+        <h2 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);"><pre>{{$info->comment}}</pre></h2>
       </div>
     </div>
     <div class="row mb-5">

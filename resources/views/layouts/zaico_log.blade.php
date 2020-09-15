@@ -159,7 +159,7 @@
         <h5 class="text-left">数量：</h5>
         <h3 class="text-left">{{$info->partnumber}}</h3><br>
         <h5 class="text-left">コメント：</h5>
-        <h3 class="text-left">{{$info->comment}}</h3><br>
+        <h3 class="text-left"><pre>{{$info->comment}}</pre></h3><br>
       </div>
     </div>
     @endforeach
