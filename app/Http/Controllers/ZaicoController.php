@@ -1897,7 +1897,7 @@ function postCSV($part_info)
 
     // HTTPヘッダ
     header("Content-Type: application/octet-stream");
-    header('Content-Length: '.filesize('test.csv'));
+    header('Content-Length: '.filesize('zaico_list.csv'));
     header('Content-Disposition: attachment; filename=zaico_list.csv');
     readfile('zaico_list.csv');
 
@@ -1991,7 +1991,7 @@ function logCSV($zaico_log)
 
     // HTTPヘッダ
     header("Content-Type: application/octet-stream");
-    header('Content-Length: '.filesize('test.csv'));
+    header('Content-Length: '.filesize('log.csv'));
     header('Content-Disposition: attachment; filename=log.csv');
     readfile('log.csv');
 
