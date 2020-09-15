@@ -1819,27 +1819,6 @@ function export($file_name, $data)
 function postCSV($part_info)
 {
     // データの作成
-    /*
-    $param = [
-      'revision_number',
-      'part_name',
-      'manufacturer',
-      'class',
-      'status',
-      'storage_name',
-      'purchase_date',
-      'stock',
-      'comment',
-      'cost_price',
-      'cost_price_tax',
-      'selling_price',
-      'selling_price_tax',
-      //'part_photo',
-      //'sub_part_photo_1',
-      //'sub_part_photo_2',
-      //'sub_part_photo_3',
-    ];
-    */
     $param = [
       '管理番号',
       '品名',
@@ -1854,10 +1833,6 @@ function postCSV($part_info)
       '仕入れ価格/税区分',
       '販売価格',
       '販売価格/税区分',
-      //'part_photo',
-      //'sub_part_photo_1',
-      //'sub_part_photo_2',
-      //'sub_part_photo_3',
     ];
     // 書き込み用ファイルを開く
     $f = fopen('zaico_list.csv', 'w');
@@ -1882,10 +1857,6 @@ function postCSV($part_info)
             $row -> cost_price_tax,
             $row -> selling_price,
             $row -> selling_price_tax,
-            //$row -> part_photo,
-            //$row -> sub_part_photo_1,
-            //$row -> sub_part_photo_2,
-            //$row -> sub_part_photo_3,
           ];
 
           mb_convert_variables('SJIS', 'UTF-8', $csv_date);
@@ -1907,27 +1878,6 @@ function postCSV($part_info)
 function logCSV($zaico_log)
 {
     // データの作成
-    /*
-    $param = [
-      'revision_number',
-      'part_name',
-      'manufacturer',
-      'class',
-      'status',
-      'storage_name',
-      'purchase_date',
-      'stock',
-      'comment',
-      'cost_price',
-      'cost_price_tax',
-      'selling_price',
-      'selling_price_tax',
-      //'part_photo',
-      //'sub_part_photo_1',
-      //'sub_part_photo_2',
-      //'sub_part_photo_3',
-    ];
-    */
     $param = [
       '管理番号',
       '品名',
@@ -1945,10 +1895,6 @@ function logCSV($zaico_log)
       '担当',
       '用途',
       'ログ日時',
-      //'part_photo',
-      //'sub_part_photo_1',
-      //'sub_part_photo_2',
-      //'sub_part_photo_3',
     ];
     // 書き込み用ファイルを開く
     $f = fopen('log.csv', 'w');
@@ -1976,10 +1922,6 @@ function logCSV($zaico_log)
             $row -> staff_name,
             $row -> utilization,
             $row -> datetime,
-            //$row -> part_photo,
-            //$row -> sub_part_photo_1,
-            //$row -> sub_part_photo_2,
-            //$row -> sub_part_photo_3,
           ];
 
           mb_convert_variables('SJIS', 'UTF-8', $csv_date);
