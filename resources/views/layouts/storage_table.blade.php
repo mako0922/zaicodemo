@@ -81,7 +81,7 @@
         <h2 class="text-center">保管場所：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="storage_name"></h2>
+        <h2><input type="text" name="storage_name_new"></h2>
       </div>
     </div>
 

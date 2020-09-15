@@ -73,7 +73,7 @@ return false; }}
         <h2 class="text-center">管理番号：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="revision_number"></h2>
+        <h2><input type="text" name="revision_number" value="{{old('revision_number')}}"></h2>
       </div>
     </div>
     <div class="row mb-5">
@@ -81,7 +81,7 @@ return false; }}
         <h2 class="text-center">品番：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="part_name"></h2>
+        <h2><input type="text" name="part_name" value="{{old('part_name')}}"></h2>
       </div>
     </div>
     <div class="row mb-5">
@@ -94,13 +94,13 @@ return false; }}
           <select name="manufacturer">
           	<option value=""></option>
             @foreach ($manufacturer_info as $manufacturer)
-          	<option value="{{$manufacturer->manufacturer}}">{{$manufacturer->manufacturer}}</option>
+          	<option value="{{$manufacturer->manufacturer}}" @if(!empty(old('manufacturer')) and old('manufacturer') == $manufacturer->manufacturer ) selected @endif>{{$manufacturer->manufacturer}}</option>
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="manufacturer" form="manufacturer_form">
-          <input type="hidden" name="hp_type" value="part_info" form="manufacturer_form">
-          <input type="submit" value="登録" form="manufacturer_form">
+          新規登録<br><input type="text" name="manufacturer_new">
+          <input type="hidden" name="hp_type" value="part_info">
+          <input type="submit" value="登録" formaction="/manufacturer_input/register">
         </h2>
       </div>
     </div>
@@ -114,13 +114,13 @@ return false; }}
           <select name="class_name">
           	<option value=""></option>
             @foreach ($class_info as $class)
-          	<option value="{{$class->class}}">{{$class->class}}</option>
+          	<option value="{{$class->class}}" @if(!empty(old('class_name')) and old('class_name') == $class->class ) selected @endif>{{$class->class}}</option>
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="class_name" form="class_form">
-          <input type="hidden" name="hp_type" value="part_info" form="class_form">
-          <input type="submit" value="登録" form="class_form">
+          新規登録<br><input type="text" name="class_name_new">
+          <input type="hidden" name="hp_type" value="part_info">
+          <input type="submit" value="登録" formaction="/class_input/register">
         </h2>
       </div>
     </div>
@@ -134,13 +134,13 @@ return false; }}
           <select name="storage">
             <option value=""></option>
             @foreach ($storage_info as $storage)
-            <option value="{{$storage->storage_name}}">{{$storage->storage_name}}</option>
+            <option value="{{$storage->storage_name}}" @if(!empty(old('storage')) and old('storage') == $storage->storage_name ) selected @endif>{{$storage->storage_name}}</option>
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="storage_name" form="storage_form">
-          <input type="hidden" name="hp_type" value="part_info" form="storage_form">
-          <input type="submit" value="登録" form="storage_form">
+          新規登録<br><input type="text" name="storage_name_new">
+          <input type="hidden" name="hp_type" value="part_info">
+          <input type="submit" value="登録" formaction="/storage_input/register">
         </h2>
       </div>
     </div>
@@ -154,13 +154,13 @@ return false; }}
           <select name="status">
             <option value=""></option>
             @foreach ($status_info as $status)
-            <option value="{{$status->status_name}}" @if($status->status_name === "新品")selected @endif>{{$status->status_name}}</option>
+            <option value="{{$status->status_name}}" @if(!empty(old('status')) and old('status') == $status->status_name ) selected @elseif($status->status_name === "新品")selected @endif>{{$status->status_name}}</option>
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="status_name" form="status_form">
-          <input type="hidden" name="hp_type" value="part_info" form="status_form">
-          <input type="submit" value="登録" form="status_form">
+          新規登録<br><input type="text" name="status_name_new">
+          <input type="hidden" name="hp_type" value="part_info">
+          <input type="submit" value="登録" formaction="/status_input/register">
         </h2>
       </div>
     </div>
@@ -169,7 +169,7 @@ return false; }}
         <h2 class="text-center">仕入れ日：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="date" name="purchase_date"></h2>
+        <h2><input type="date" name="purchase_date" value="{{old('purchase_date')}}"></h2>
       </div>
     </div>
     <div class="row mb-5">
@@ -178,13 +178,13 @@ return false; }}
       </div>
       <div class="col-8">
         <div class="col-8">
-          <h2><input type="number" name="cost_price" step="0.01" min="0">円</h2>
+          <h2><input type="number" name="cost_price" step="0.01" min="0" value="{{old('cost_price')}}">円</h2>
         </div>
         <h2>税区分：
           <select name="cost_price_tax">
-            <option value="無">無</option>
-            <option value="内">内</option>
-            <option value="外">外</option>
+            <option value="無" @if(!empty(old('cost_price_tax')) and old('cost_price_tax') == "無") selected @endif>無</option>
+            <option value="内" @if(!empty(old('cost_price_tax')) and old('cost_price_tax') == "内") selected @endif>内</option>
+            <option value="外" @if(!empty(old('cost_price_tax')) and old('cost_price_tax') == "外") selected @endif>外</option>
           </select><br/>
         </h2>
       </div>
@@ -195,13 +195,13 @@ return false; }}
       </div>
       <div class="col-8">
         <div class="col-8">
-          <h2><input type="number" name="selling_price" step="0.01" min="0">円</h2>
+          <h2><input type="number" name="selling_price" step="0.01" min="0" value="{{old('selling_price')}}">円</h2>
         </div>
         <h2>税区分：
-          <select name="selling_price_tax">
-            <option value="無">無</option>
-            <option value="内">内</option>
-            <option value="外">外</option>
+          <select name="selling_price_tax" value="{{old('selling_price')}}">
+            <option value="無" @if(!empty(old('selling_price_tax')) and old('selling_price_tax') == "無") selected @endif>無</option>
+            <option value="内" @if(!empty(old('selling_price_tax')) and old('selling_price_tax') == "内") selected @endif>内</option>
+            <option value="外" @if(!empty(old('selling_price_tax')) and old('selling_price_tax') == "外") selected @endif>外</option>
           </select><br/>
         </h2>
       </div>
@@ -211,7 +211,7 @@ return false; }}
         <h2 class="text-center">初期数量：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="number" name="stock" min="0"></h2>
+        <h2><input type="number" name="stock" min="0" value="{{old('stock')}}"></h2>
       </div>
     </div>
     <div class="row mb-5">
@@ -219,7 +219,7 @@ return false; }}
         <h2 class="text-center">コメント：</h2>
       </div>
       <div class="col-8">
-        <h2><textarea name="comment" placeholder="フリーコメントを記入ください" style="width:373px;"></textarea></h2>
+        <h2><textarea name="comment" placeholder="フリーコメントを記入ください" style="width:373px;">{{old('comment')}}</textarea></h2>
       </div>
     </div>
     <div class="row mb-5">
@@ -368,10 +368,6 @@ return false; }}
   </div>
 </section>
 </form>
-<form id="class_form" action="/class_input/register" method="post">@csrf</form>
-<form id="manufacturer_form" action="/manufacturer_input/register" method="post">@csrf</form>
-<form id="storage_form" action="/storage_input/register" method="post">@csrf</form>
-<form id="status_form" action="/status_input/register" method="post">@csrf</form>
 <!------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------>
 <script type="text/javascript">

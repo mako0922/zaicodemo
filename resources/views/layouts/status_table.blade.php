@@ -81,7 +81,7 @@
         <h2 class="text-center">ステータス名：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="status_name"></h2>
+        <h2><input type="text" name="status_name_new"></h2>
       </div>
     </div>
     <div class="row mt-5 mb-5">

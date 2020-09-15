@@ -93,7 +93,7 @@ $(function(){
         <h2 class="text-center">分類：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="class_name"></h2>
+        <h2><input type="text" name="class_name_new"></h2>
       </div>
     </div>
 

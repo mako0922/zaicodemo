@@ -172,13 +172,13 @@ class ZaicoController extends Controller
 
   public function class_register(Request $request){
     $validate_rule = [
-      'class_name' => 'required',
+      'class_name_new' => 'required',
     ];
     $this->validate($request, $validate_rule);
     //$request->session()->regenerateToken();
 
     $param = [
-      'class' => $request -> class_name,
+      'class' => $request -> class_name_new,
     ];
     try{
       DB::table('class_table')->insert($param);
@@ -186,9 +186,9 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
     if($request->hp_type === "part_info"){
-      return redirect('/part_info');
+      return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
-      return redirect('/used_info');
+      return redirect('/used_info')->withInput();
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
@@ -199,6 +199,20 @@ class ZaicoController extends Controller
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
+      $revision_number_old = $request -> revision_number;
+      $part_name_old = $request -> part_name;
+      $manufacturer_old = $request -> manufacturer;
+      $class_name_old = $request -> class_name;
+      $storage_old = $request -> storage;
+      $status_old = $request -> status;
+      $purchase_date_old = $request -> purchase_date;
+      $cost_price_old = $request -> cost_price;
+      $cost_price_tax_old = $request -> cost_price_tax;
+      $selling_price_old = $request -> selling_price;
+      $selling_price_tax_old = $request -> selling_price_tax;
+      $stock_old = $request -> stock;
+      $comment_old = $request -> comment;
+
       $param = [
         'users' => $user,
         'part_info' => $part_info,
@@ -207,6 +221,21 @@ class ZaicoController extends Controller
         'status_info' => $status_info,
         'storage_info' => $storage_info,
         'info' => $info,
+
+        'part_name_old' => $part_name_old,
+        'revision_number_old' => $revision_number_old,
+        'manufacturer_old' => $manufacturer_old,
+        'class_name_old' => $class_name_old,
+        'storage_old' => $storage_old,
+        'status_old' => $status_old,
+        'purchase_date_old' => $purchase_date_old,
+        'cost_price_old' => $cost_price_old,
+        'cost_price_tax_old' => $cost_price_tax_old,
+        'selling_price_old' => $selling_price_old,
+        'selling_price_tax_old' => $selling_price_tax_old,
+        'stock_old' => $stock_old,
+        'comment_old' => $comment_old,
+
       ];
       return redirect('/part_update')->withInput($param);
     }else{
@@ -231,13 +260,13 @@ class ZaicoController extends Controller
 
   public function manufacturer_register(Request $request){
     $validate_rule = [
-      'manufacturer' => 'required',
+      'manufacturer_new' => 'required',
     ];
     $this->validate($request, $validate_rule);
     //$request->session()->regenerateToken();
 
     $param = [
-      'manufacturer' => $request -> manufacturer,
+      'manufacturer' => $request -> manufacturer_new,
     ];
     try{
       DB::table('manufacturer_table')->insert($param);
@@ -245,9 +274,9 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
     if($request->hp_type === "part_info"){
-      return redirect('/part_info');
+      return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
-      return redirect('/used_info');
+      return redirect('/used_info')->withInput();
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
@@ -258,6 +287,20 @@ class ZaicoController extends Controller
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
+      $revision_number_old = $request -> revision_number;
+      $part_name_old = $request -> part_name;
+      $manufacturer_old = $request -> manufacturer;
+      $class_name_old = $request -> class_name;
+      $storage_old = $request -> storage;
+      $status_old = $request -> status;
+      $purchase_date_old = $request -> purchase_date;
+      $cost_price_old = $request -> cost_price;
+      $cost_price_tax_old = $request -> cost_price_tax;
+      $selling_price_old = $request -> selling_price;
+      $selling_price_tax_old = $request -> selling_price_tax;
+      $stock_old = $request -> stock;
+      $comment_old = $request -> comment;
+
       $param = [
         'users' => $user,
         'part_info' => $part_info,
@@ -266,6 +309,20 @@ class ZaicoController extends Controller
         'status_info' => $status_info,
         'storage_info' => $storage_info,
         'info' => $info,
+
+        'part_name_old' => $part_name_old,
+        'revision_number_old' => $revision_number_old,
+        'manufacturer_old' => $manufacturer_old,
+        'class_name_old' => $class_name_old,
+        'storage_old' => $storage_old,
+        'status_old' => $status_old,
+        'purchase_date_old' => $purchase_date_old,
+        'cost_price_old' => $cost_price_old,
+        'cost_price_tax_old' => $cost_price_tax_old,
+        'selling_price_old' => $selling_price_old,
+        'selling_price_tax_old' => $selling_price_tax_old,
+        'stock_old' => $stock_old,
+        'comment_old' => $comment_old,
       ];
       return redirect('/part_update')->withInput($param);
     }else{
@@ -290,13 +347,13 @@ class ZaicoController extends Controller
 
   public function status_register(Request $request){
     $validate_rule = [
-      'status_name' => 'required',
+      'status_name_new' => 'required',
     ];
     $this->validate($request, $validate_rule);
     //$request->session()->regenerateToken();
 
     $param = [
-      'status_name' => $request -> status_name,
+      'status_name' => $request -> status_name_new,
     ];
     try{
       DB::table('status_table')->insert($param);
@@ -304,9 +361,9 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
     if($request->hp_type === "part_info"){
-      return redirect('/part_info');
+      return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
-      return redirect('/used_info');
+      return redirect('/used_info')->withInput();
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
@@ -317,6 +374,20 @@ class ZaicoController extends Controller
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
+      $revision_number_old = $request -> revision_number;
+      $part_name_old = $request -> part_name;
+      $manufacturer_old = $request -> manufacturer;
+      $class_name_old = $request -> class_name;
+      $storage_old = $request -> storage;
+      $status_old = $request -> status;
+      $purchase_date_old = $request -> purchase_date;
+      $cost_price_old = $request -> cost_price;
+      $cost_price_tax_old = $request -> cost_price_tax;
+      $selling_price_old = $request -> selling_price;
+      $selling_price_tax_old = $request -> selling_price_tax;
+      $stock_old = $request -> stock;
+      $comment_old = $request -> comment;
+
       $param = [
         'users' => $user,
         'part_info' => $part_info,
@@ -325,6 +396,21 @@ class ZaicoController extends Controller
         'status_info' => $status_info,
         'storage_info' => $storage_info,
         'info' => $info,
+
+        'part_name_old' => $part_name_old,
+        'revision_number_old' => $revision_number_old,
+        'manufacturer_old' => $manufacturer_old,
+        'class_name_old' => $class_name_old,
+        'storage_old' => $storage_old,
+        'status_old' => $status_old,
+        'purchase_date_old' => $purchase_date_old,
+        'cost_price_old' => $cost_price_old,
+        'cost_price_tax_old' => $cost_price_tax_old,
+        'selling_price_old' => $selling_price_old,
+        'selling_price_tax_old' => $selling_price_tax_old,
+        'stock_old' => $stock_old,
+        'comment_old' => $comment_old,
+
       ];
       return redirect('/part_update')->withInput($param);
     }else{
@@ -349,13 +435,13 @@ class ZaicoController extends Controller
 
   public function storage_register(Request $request){
     $validate_rule = [
-      'storage_name' => 'required',
+      'storage_name_new' => 'required',
     ];
     $this->validate($request, $validate_rule);
     //$request->session()->regenerateToken();
 
     $param = [
-      'storage_name' => $request -> storage_name,
+      'storage_name' => $request -> storage_name_new,
     ];
     try{
       DB::table('storage_table')->insert($param);
@@ -363,9 +449,9 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
     if($request->hp_type === "part_info"){
-      return redirect('/part_info');
+      return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
-      return redirect('/used_info');
+      return redirect('/used_info')->withInput();
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
@@ -376,6 +462,20 @@ class ZaicoController extends Controller
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
+      $revision_number_old = $request -> revision_number;
+      $part_name_old = $request -> part_name;
+      $manufacturer_old = $request -> manufacturer;
+      $class_name_old = $request -> class_name;
+      $storage_old = $request -> storage;
+      $status_old = $request -> status;
+      $purchase_date_old = $request -> purchase_date;
+      $cost_price_old = $request -> cost_price;
+      $cost_price_tax_old = $request -> cost_price_tax;
+      $selling_price_old = $request -> selling_price;
+      $selling_price_tax_old = $request -> selling_price_tax;
+      $stock_old = $request -> stock;
+      $comment_old = $request -> comment;
+
       $param = [
         'users' => $user,
         'part_info' => $part_info,
@@ -384,6 +484,21 @@ class ZaicoController extends Controller
         'status_info' => $status_info,
         'storage_info' => $storage_info,
         'info' => $info,
+
+        'part_name_old' => $part_name_old,
+        'revision_number_old' => $revision_number_old,
+        'manufacturer_old' => $manufacturer_old,
+        'class_name_old' => $class_name_old,
+        'storage_old' => $storage_old,
+        'status_old' => $status_old,
+        'purchase_date_old' => $purchase_date_old,
+        'cost_price_old' => $cost_price_old,
+        'cost_price_tax_old' => $cost_price_tax_old,
+        'selling_price_old' => $selling_price_old,
+        'selling_price_tax_old' => $selling_price_tax_old,
+        'stock_old' => $stock_old,
+        'comment_old' => $comment_old,
+
       ];
       return redirect('/part_update')->withInput($param);
     }else{

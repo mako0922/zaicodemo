@@ -92,7 +92,7 @@ $(function(){
         <h2 class="text-center">メーカ名：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="manufacturer"></h2>
+        <h2><input type="text" name="manufacturer_new"></h2>
       </div>
     </div>
 
