@@ -65,7 +65,12 @@
         <h2 class="text-center">管理番号：</h2>
       </div>
       <div class="col-8">
+        @if($users->authority == 10)
         <h2><input type="text" name="revision_number" @if(!empty($revision_number_old)) value="{{$revision_number_old}}" @elseif(!empty($info -> revision_number))value="{{$info -> revision_number}}"@endif></h2>
+        @else
+        <input type="hidden" name="revision_number" @if(!empty($revision_number_old)) value="{{$revision_number_old}}" @elseif(!empty($info -> revision_number))value="{{$info -> revision_number}}"@endif>
+        <h2>@if(!empty($revision_number_old)){{$revision_number_old}}@elseif(!empty($info -> revision_number)){{$info -> revision_number}}@endif</h2>
+        @endif
       </div>
     </div>
     <div class="row mb-5">
@@ -73,7 +78,12 @@
         <h2 class="text-center">品番：</h2>
       </div>
       <div class="col-8">
+        @if($users->authority == 10)
         <h2><input type="text" name="part_name" @if(!empty($part_name_old)) value="{{$part_name_old}}" @elseif(!empty($info -> part_name))value="{{$info -> part_name}}"@endif></h2>
+        @else
+        <input type="hidden" name="part_name" @if(!empty($part_name_old)) value="{{$part_name_old}}" @elseif(!empty($info -> part_name))value="{{$info -> part_name}}"@endif>
+        <h2>@if(!empty($part_name_old)){{$part_name_old}}@elseif(!empty($info -> part_name)){{$info -> part_name}}@endif</h2>
+        @endif
       </div>
     </div>
     <div class="row mb-5">
@@ -81,6 +91,7 @@
         <h2 class="text-center">メーカ：</h2>
       </div>
       <div class="col-8">
+        @if($users->authority == 10)
         <h2>
           @if ($manufacturer_info != "")
           <select name="manufacturer">
@@ -94,6 +105,10 @@
           <input type="hidden" name="hp_type" value="part_update">
           <input type="submit" value="登録" formaction="/manufacturer_input/register">
         </h2>
+        @else
+        <input type="hidden" name="manufacturer" @if(!empty($manufacturer_old)) value="{{$manufacturer_old}}" @elseif(!empty($info -> manufacturer))value="{{$info -> manufacturer}}"@endif>
+        <h2>@if(!empty($manufacturer_old)){{$manufacturer_old}}@elseif(!empty($info -> manufacturer)){{$info -> manufacturer}}@endif</h2>
+        @endif
       </div>
     </div>
     <div class="row mb-5">
@@ -101,6 +116,7 @@
         <h2 class="text-center">分類：</h2>
       </div>
       <div class="col-8">
+        @if($users->authority == 10)
         <h2>
           @if ($class_info != "")
           <select name="class_name">
@@ -114,6 +130,10 @@
           <input type="hidden" name="hp_type" value="part_update">
           <input type="submit" value="登録" formaction="/class_input/register">
         </h2>
+        @else
+        <input type="hidden" name="class_name" @if(!empty($class_name_old)) value="{{$class_name_old}}" @elseif(!empty($info -> class))value="{{$info -> class}}"@endif>
+        <h2>@if(!empty($class_name_old)){{$class_name_old}}@elseif(!empty($info -> class)){{$info -> class}}@endif</h2>
+        @endif
       </div>
     </div>
     <div class="row mb-5">
@@ -161,9 +181,15 @@
         <h2 class="text-center">仕入れ日：</h2>
       </div>
       <div class="col-8">
+        @if($users->authority == 10)
         <h2><input type="date" name="purchase_date" @if(!empty($purchase_date_old)) value="{{$purchase_date_old}}" @elseif(!empty($info -> purchase_date))value="{{$info -> purchase_date}}" @endif></h2>
+        @else
+        <input type="hidden" name="purchase_date" @if(!empty($purchase_date_old)) value="{{$purchase_date_old}}" @elseif(!empty($info -> purchase_date))value="{{$info -> purchase_date}}"@endif>
+        <h2>@if(!empty($purchase_date_old)){{$purchase_date_old}}@elseif(!empty($info -> purchase_date)){{$info -> purchase_date}}@endif</h2>
+        @endif
       </div>
     </div>
+    @if($users->authority == 10)
     <div class="row mb-5">
       <div class="col-4">
         <h2 class="text-center">仕入れ価格：</h2>
@@ -181,29 +207,48 @@
         </h2>
       </div>
     </div>
+    @else
+    <input type="hidden" name="cost_price" @if(!empty($cost_price_old)) value="{{$cost_price_old}}" @elseif(!empty($info -> cost_price))value="{{$info -> cost_price}}"@endif>
+    <input type="hidden" name="cost_price_tax" @if(!empty($cost_price_tax_old)) value="{{$cost_price_tax_old}}" @elseif(!empty($info -> cost_price_tax))value="{{$info -> cost_price_tax}}"@endif>
+    @endif
     <div class="row mb-5">
       <div class="col-4">
         <h2 class="text-center">販売価格：</h2>
       </div>
       <div class="col-8">
         <div class="col-8">
+          @if($users->authority == 10)
           <h2><input type="number" name="selling_price" step="0.01" min="0" @if(!empty($selling_price_old)) value="{{$selling_price_old}}" @elseif(!empty($info -> selling_price))value="{{$info -> selling_price}}" @endif>円</h2>
+          @else
+          <input type="hidden" name="selling_price" @if(!empty($selling_price_old)) value="{{$selling_price_old}}" @elseif(!empty($info -> selling_price))value="{{$info -> selling_price}}"@endif>
+          <h2>@if(!empty($selling_price_old)){{$selling_price_old}}@elseif(!empty($info -> selling_price)){{$info -> selling_price}}@endif円</h2>
+          @endif
         </div>
         <h2>税区分：
+          @if($users->authority == 10)
           <select name="selling_price_tax">
             <option value="無" @if(!empty($selling_price_tax_old) and $selling_price_tax_old == "無" ) selected @elseif(empty($selling_price_tax_old) and !empty($info -> selling_price_tax) and "無" === $info -> selling_price_tax) selected @endif>無</option>
             <option value="内" @if(!empty($selling_price_tax_old) and $selling_price_tax_old == "内" ) selected @elseif(empty($selling_price_tax_old) and !empty($info -> selling_price_tax) and "内" === $info -> selling_price_tax) selected @endif>内</option>
             <option value="外" @if(!empty($selling_price_tax_old) and $selling_price_tax_old == "外" ) selected @elseif(empty($selling_price_tax_old) and !empty($info -> selling_price_tax) and "外" === $info -> selling_price_tax) selected @endif>外</option>
           </select><br/>
+          @else
+          <input type="hidden" name="selling_price_tax" @if(!empty($selling_price_tax_old)) value="{{$selling_price_tax_old}}" @elseif(!empty($info -> selling_price_tax))value="{{$info -> selling_price_tax}}"@endif>
+          @if(!empty($selling_price_tax_old)){{$selling_price_tax_old}}@elseif(!empty($info -> selling_price_tax)){{$info -> selling_price_tax}}@endif
+          @endif
         </h2>
       </div>
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">初期数量：</h2>
+        <h2 class="text-center">数量：</h2>
       </div>
       <div class="col-8">
+        @if($users->authority == 10)
         <h2><input type="number" name="stock" min="0" @if(!empty($stock_old)) value="{{$stock_old}}" @elseif(!empty($info -> stock))value="{{$info -> stock}}"@else value="0"@endif></h2>
+        @else
+        <input type="hidden" name="stock" @if(!empty($stock_old)) value="{{$stock_old}}" @elseif(!empty($info -> stock))value="{{$info -> stock}}"@endif>
+        <h2>@if(!empty($stock_old)){{$stock_old}}@elseif(!empty($info -> stock)){{$info -> stock}}@endif</h2>
+        @endif
       </div>
     </div>
     <div class="row mb-5">
