@@ -1289,6 +1289,7 @@ class ZaicoController extends Controller
         'keyword' => $request -> keyword,
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
+        'storage_info' => $storage_info,
         'log_select1' => $request -> log_select1,
         'log_select2' => $request -> log_select2,
         'log_select3' => $request -> log_select3,
@@ -1575,6 +1576,7 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'status' => $request -> status,
+      'new_used' => $request -> new_used,
       'revision_number' => $revision_number,
       'purchase_date' => $purchase_date,
     ];
