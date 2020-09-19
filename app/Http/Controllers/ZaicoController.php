@@ -548,15 +548,32 @@ class ZaicoController extends Controller
         $manufacturer = DB::table('manufacturer_table')->get();
         $storage_name = DB::table('storage_table')->get();
         $status_name = DB::table('status_table')->get();
+        $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
       }
+
+      if(!empty($revision_number_info)){
+        $number_buf = 1;
+        foreach ($revision_number_info as $revision_number_value) {
+          $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+          if($revision_number_auto == $revision_number_value -> revision_number){
+            $number_buf += 1;
+          }
+        }
+      }else{
+        $number_buf = 1;
+      }
+
+      $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+
       $param = [
         'users' => $user,
         'class_info' => $class,
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
         'status_info' => $status_name,
+        'revision_number_auto' => $revision_number_auto,
       ];
       return view('part_info.index', $param);
     }else{
@@ -718,9 +735,26 @@ class ZaicoController extends Controller
     if (Auth::check()){
       $user = Auth::user();
       $status_name = DB::table('status_table')->get();
+      $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
       $part_info = $request->old();
+
+      if(!empty($revision_number_info)){
+        $number_buf = 1;
+        foreach ($revision_number_info as $revision_number_value) {
+          $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+          if($revision_number_auto == $revision_number_value -> revision_number){
+            $number_buf += 1;
+          }
+        }
+      }else{
+        $number_buf = 1;
+      }
+
+      $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+
       $part_info += ['users' => $user];
       $part_info += ['status_info' => $status_name];
+      $part_info += ['revision_number_auto' => $revision_number_auto];
       return view('part_update.index', $part_info);
     }else{
       return view('auth/login');
@@ -1045,15 +1079,32 @@ class ZaicoController extends Controller
         $manufacturer = DB::table('manufacturer_table')->get();
         $storage_name = DB::table('storage_table')->get();
         $status_info = DB::table('status_table')->get();
+        $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
       }
+
+      if(!empty($revision_number_info)){
+        $number_buf = 1;
+        foreach ($revision_number_info as $revision_number_value) {
+          $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+          if($revision_number_auto == $revision_number_value -> revision_number){
+            $number_buf += 1;
+          }
+        }
+      }else{
+        $number_buf = 1;
+      }
+
+      $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+
       $param = [
         'users' => $user,
         'class_info' => $class,
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
         'status_info' => $status_info,
+        'revision_number_auto' => $revision_number_auto,
       ];
       return view('used_info.index', $param);
     }else{

@@ -18,6 +18,19 @@ alert("只今処理中です。\nそのままお待ちください。");
 return false; }}
 </script>
 
+<script type="text/javascript">
+<!--
+function changeDisabled() {
+    if ( document.Form1["revision_number"][1].checked ) {
+        document.Form1["revision_number"][2].disabled = false;
+    } else {
+        document.Form1["revision_number"][2].disabled = true;
+    }
+}
+window.onload = changeDisabled;
+// -->
+</script>
+
 </head>
 <body id="page-top">
 <!------------------------------------------------------------------------------------------------------------------>
@@ -64,7 +77,7 @@ return false; }}
 <main>
 <h1 class="text-center ml-5" style="color: black; font-size:3.0em;">@yield('title_exchange')</h1>
 <!------------------------------------------------------------------------------------------------------------------>
-<form id="part_info_form" action="/part_info/register" method="post" enctype="multipart/form-data">
+<form id="part_info_form" name="Form1" action="/part_info/register" method="post" enctype="multipart/form-data">
 @csrf
 <section id="sec1">
   <div class="container">
@@ -73,7 +86,11 @@ return false; }}
         <h2 class="text-center">管理番号：</h2>
       </div>
       <div class="col-8">
-        <h2><input type="text" name="revision_number" value="{{old('revision_number')}}"></h2>
+        <h2>
+          <input type="radio" name="revision_number" value="{{$revision_number_auto}}" id="radio-0" @if(empty(old('revision_number'))) checked @endif onClick="changeDisabled()"><label for="radio-0">自動採番:   {{$revision_number_auto}}</label>&nbsp;<br>
+          <input type="radio" name="revision_number" value="その他" id="radio-other" @if(!empty(old('revision_number'))) checked @endif onClick="changeDisabled()"><label for="radio-other">手動採番</label>&nbsp;
+          <p style="display:inline;"><input type="text" name="revision_number" value="{{old('revision_number')}}"></p>
+        </h2>
       </div>
     </div>
     <div class="row mb-5">
