@@ -244,6 +244,18 @@
     }
   @endforeach
 </script>
+<section id="sec2">
+  <div class="container">
+    <div class="row text-center mx-auto my-auto">
+      <div class="text-center mx-auto my-auto">
+        {{ $part_info->appends(Request::only('keyword'))->appends(Request::only('log_select1'))
+        ->appends(Request::only('log_select2'))->appends(Request::only('log_select3'))
+        ->appends(Request::only('log_select4'))->appends(Request::only('log_select5'))
+        ->appends(Request::only('log_select6'))->links() }}
+      </div>
+    </div>
+  </div>
+</section>
 
 <!------------------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------------------>

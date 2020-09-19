@@ -71,6 +71,9 @@ Route::get('zaico_list','ZaicoController@zaico_list')
 Route::post('part_list_serch','ZaicoController@part_list_serch')
       ->middleware('auth');
 
+Route::get('part_list_serch','ZaicoController@part_list_serch')
+      ->middleware('auth');
+
 Route::post('zaico_input/arrival','ZaicoController@zaico_input_arrival')
       ->middleware('auth');
 
@@ -98,10 +101,18 @@ Route::post('zaico_log_delete/register','ZaicoController@zaico_log_delete_regist
 Route::post('zaico_log_serch','ZaicoController@zaico_log_serch')
       ->middleware('auth');
 
+Route::get('zaico_log_serch','ZaicoController@zaico_log_serch')
+      ->middleware('auth');
+
 Route::post('onchange_log','ZaicoController@onchange_log')
             ->middleware('auth');
 
+Route::get('onchange_log','ZaicoController@onchange_log')
+            ->middleware('auth');
+
 Route::post('onchange_list','ZaicoController@onchange_list')
+            ->middleware('auth');
+Route::get('onchange_list','ZaicoController@onchange_list')
             ->middleware('auth');
 
 Route::get('storage_input','ZaicoController@storage_input')

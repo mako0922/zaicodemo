@@ -1283,7 +1283,7 @@ class ZaicoController extends Controller
       try{
         $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
         $class_table = DB::table('class_table')->get();
-        $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
+        $part_info = DB::table('part_info')->orderBy('id', 'desc')->paginate(15);
         $status_info = DB::table('status_table')->get();
         $storage_info = DB::table('storage_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
@@ -1328,7 +1328,7 @@ class ZaicoController extends Controller
           $part_info = $part_info -> orwhere($column, 'like', '%'. $request -> keyword . '%');
         }
         $part_info = $part_info -> orderBy('id', 'desc');
-        $part_info = $part_info -> get();
+        $part_info = $part_info -> paginate(15);
 
       } catch (\Exception $e) {
         return redirect('/zaico_home');
@@ -1490,7 +1490,7 @@ class ZaicoController extends Controller
       $user = Auth::user();
       //$request->session()->regenerateToken();
       try{
-        $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
+        $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->paginate(15);
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
@@ -1691,7 +1691,7 @@ class ZaicoController extends Controller
           $zaico_log = $zaico_log -> orwhere($column, 'like', '%'. $request -> keyword . '%');
         }
         $zaico_log = $zaico_log -> orderBy('id', 'desc');
-        $zaico_log = $zaico_log -> get();
+        $zaico_log = $zaico_log -> paginate(15);
       } catch (\Exception $e) {
         return redirect('/zaico_home');
       }
@@ -1749,7 +1749,7 @@ class ZaicoController extends Controller
           $zaico_log = $zaico_log -> where('storage_name', $request -> log_select6);
         }
         $zaico_log = $zaico_log -> orderBy('id', 'desc');
-        $zaico_log = $zaico_log -> get();
+        $zaico_log = $zaico_log -> paginate(15);
       } catch (\Exception $e) {
         return redirect('/zaico_home');
       }
@@ -1804,7 +1804,7 @@ class ZaicoController extends Controller
             $part_info = $part_info -> where('storage_name', $request -> log_select6);
           }
           $part_info = $part_info -> orderBy('id', 'desc');
-          $part_info = $part_info -> get();
+          $part_info = $part_info -> paginate(15);
         } catch (\Exception $e) {
           return redirect('/zaico_home');
         }
