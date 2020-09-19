@@ -69,7 +69,7 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">品番：</h2>
+        <h2 class="text-center">品名：</h2>
       </div>
       <div class="col-8">
         <h2><input type="text" name="part_name" value="{{old('part_name')}}"></h2>
@@ -90,7 +90,7 @@
           </select><br/>
           @endif
           新規登録<br><input type="text" name="manufacturer_new">
-          <input type="hidden" name="hp_type" value="part_info">
+          <input type="hidden" name="hp_type" value="used_info">
           <input type="submit" value="登録" formaction="/manufacturer_input/register">
         </h2>
       </div>
@@ -110,7 +110,7 @@
           </select><br/>
           @endif
           新規登録<br><input type="text" name="class_name_new">
-          <input type="hidden" name="hp_type" value="part_info">
+          <input type="hidden" name="hp_type" value="used_info">
           <input type="submit" value="登録" formaction="/class_input/register">
         </h2>
       </div>
@@ -130,7 +130,7 @@
           </select><br/>
           @endif
           新規登録<br><input type="text" name="storage_name_new">
-          <input type="hidden" name="hp_type" value="part_info">
+          <input type="hidden" name="hp_type" value="used_info">
           <input type="submit" value="登録" formaction="/storage_input/register">
         </h2>
       </div>
@@ -145,13 +145,26 @@
           <select name="status">
             <option value=""></option>
             @foreach ($status_info as $status)
-            <option value="{{$status->status_name}}" @if(!empty(old('status')) and old('status') == $status->status_name ) selected @elseif($status->status_name === "中古")selected @endif>{{$status->status_name}}</option>
+            <option value="{{$status->status_name}}" @if(!empty(old('status')) and old('status') == $status->status_name ) selected @endif>{{$status->status_name}}</option>
             @endforeach
           </select><br/>
           @endif
           新規登録<br><input type="text" name="status_name_new">
-          <input type="hidden" name="hp_type" value="part_info">
+          <input type="hidden" name="hp_type" value="used_info">
           <input type="submit" value="登録" formaction="/status_input/register">
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">コンディション：</h2>
+      </div>
+      <div class="col-8">
+        <h2>
+          <select name="new_used">
+            <option value="新品" @if(!empty(old('new_used')) and old('new_used') == "新品" ) selected @endif>新品</option>
+            <option value="中古" @if(!empty(old('new_used')) and old('new_used') == "新品" ) @else selected @endif>中古</option>
+          </select><br/>
         </h2>
       </div>
     </div>

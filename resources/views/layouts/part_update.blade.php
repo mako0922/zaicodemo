@@ -75,7 +75,7 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">品番：</h2>
+        <h2 class="text-center">品名：</h2>
       </div>
       <div class="col-8">
         @if($users->authority == 10)
@@ -173,6 +173,19 @@
           新規登録<br><input type="text" name="status_name_new">
           <input type="hidden" name="hp_type" value="part_update">
           <input type="submit" value="登録" formaction="/status_input/register">
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">コンディション：</h2>
+      </div>
+      <div class="col-8">
+        <h2>
+          <select name="new_used">
+            <option value="新品" @if(!empty($new_used_old) and $new_used_old == "中古" ) @elseif(empty($new_used_old) and !empty($info -> new_used) and $info -> new_used == "中古") @else selected @endif>新品</option>
+            <option value="中古" @if(!empty($new_used_old) and $new_used_old == "中古" ) selected @elseif(empty($new_used_old) and !empty($info -> new_used) and $info -> new_used == "中古") selected @endif>中古</option>
+          </select><br/>
         </h2>
       </div>
     </div>

@@ -1,5 +1,5 @@
 @extends('layouts.part_update')
 
-@section('title', '品番修正')
+@section('title', '在庫情報修正')
 
-@section('title_exchange', '品番修正画面')
+@section('title_exchange', '在庫情報修正画面')

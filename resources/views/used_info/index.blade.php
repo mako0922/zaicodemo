@@ -1,5 +1,5 @@
 @extends('layouts.used_info')
 
-@section('title', '中古品登録')
+@section('title', '在庫情報登録（中古品）')
 
-@section('title_exchange', '中古品登録画面')
+@section('title_exchange', '在庫情報登録画面（中古品）')

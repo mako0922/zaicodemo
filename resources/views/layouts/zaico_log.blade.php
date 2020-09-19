@@ -118,6 +118,25 @@
                 @endforeach
               </select>
           </div>
+          <div class="col mt-1 mb-1">
+            <h3 class="text-left">コンディション検索</h3>
+              @csrf
+              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
+                <option value=""></option>
+                <option value="新品" @if(!empty($log_select5) and $log_select5 === "新品") selected @endif>新品</option>
+                <option value="中古" @if(!empty($log_select5) and $log_select5 === "中古") selected @endif>中古</option>
+              </select>
+          </div>
+          <div class="col mt-1 mb-1">
+            <h3 class="text-left">保管場所検索</h3>
+              @csrf
+              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select6" onChange="submit(this.form)">
+                <option value=""></option>
+                @foreach ($storage_info as $storage)
+                <option value="{{$storage->storage_name}}" @if(!empty($log_select6) and $log_select6 === $storage->storage_name) selected @endif>{{$storage->storage_name}}</option>
+                @endforeach
+              </select>
+          </div>
           <script type="text/javascript" src="{{ asset('/js/jquery.select-submit-change.js') }}"></script>
           <script type="text/javascript">
             $(function() {
@@ -131,7 +150,8 @@
     @foreach ($zaico_log as $info)
     <div class="row mt-1 mb-1 border-bottom">
       <div class="col-6 mt-1 mb-1">
-        <h3 class="text-center">{{$info->datetime}} {{$info->status}}</h3>
+        <h3 class="text-left">{{$info->datetime}} ステータス：{{$info->status}}</h3>
+        <h3 class="text-left">コンディション：{{$info->new_used}}</h3>
         <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo">
         @if($users->authority == 10)
         <form id="zaico_log_delete{{$info->id}}" action="/zaico_log/delete" method="post">

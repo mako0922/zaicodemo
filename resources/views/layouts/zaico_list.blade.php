@@ -117,6 +117,25 @@
                 @endforeach
               </select>
           </div>
+          <div class="col mt-1 mb-1">
+            <h3 class="text-left">コンディション検索</h3>
+              @csrf
+              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
+                <option value=""></option>
+                <option value="新品" @if(!empty($log_select5) and $log_select5 === "新品") selected @endif>新品</option>
+                <option value="中古" @if(!empty($log_select5) and $log_select5 === "中古") selected @endif>中古</option>
+              </select>
+          </div>
+          <div class="col mt-1 mb-1">
+            <h3 class="text-left">保管場所検索</h3>
+              @csrf
+              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select6" onChange="submit(this.form)">
+                <option value=""></option>
+                @foreach ($storage_info as $storage)
+                <option value="{{$storage->storage_name}}" @if(!empty($log_select6) and $log_select6 === $storage->storage_name) selected @endif>{{$storage->storage_name}}</option>
+                @endforeach
+              </select>
+          </div>
           <script type="text/javascript" src="{{ asset('/js/jquery.select-submit-change.js') }}"></script>
           <script type="text/javascript">
             $(function() {
@@ -152,7 +171,8 @@
         <h3 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);"><pre>{{$info->comment}}</pre></h3><br>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
-        <h5 class="text-left">ステータス：<br>{{$info->status}}</h5><br>
+        <h5 class="text-left">ステータス：{{$info->status}}</h5><br>
+        <h5 class="text-left">コンディション：{{$info->new_used}}</h5><br>
         <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
         @if($users->authority == 10)
         <h5 class="text-left">仕入れ価格：{{$info->cost_price}}円/税：{{$info->cost_price_tax}}</h5><br>

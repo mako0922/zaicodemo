@@ -1,5 +1,5 @@
 @extends('layouts.part_delete')
 
-@section('title', '品番削除')
+@section('title', '在庫情報削除')
 
-@section('title_exchange', '品番削除画面')
+@section('title_exchange', '在庫情報削除画面')

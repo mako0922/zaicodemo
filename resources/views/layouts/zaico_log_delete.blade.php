@@ -70,7 +70,7 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">品番：</h2>
+        <h2 class="text-center">品名：</h2>
       </div>
       <div class="col-8">
         <h2><input type="hidden" name="part_name" @if(!empty($info -> part_number))value="{{$info -> part_number}}"@endif>{{$info -> part_number}}</h2>
@@ -106,6 +106,14 @@
       </div>
       <div class="col-8">
         <h2><input type="hidden" name="status" @if(!empty($info -> status))value="{{$info -> status}}"@endif>{{$info -> status}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">コンディション：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="new_used" @if(!empty($info -> new_used))value="{{$info -> new_used}}"@endif>{{$info -> new_used}}</h2>
       </div>
     </div>
     <div class="row mb-5">
