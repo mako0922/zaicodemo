@@ -74,6 +74,7 @@
         <a class="" href="part_info_select"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/part_info_icon.png" alt="part_info_icon"></a>
         <h2 class="text-center">新規部品追加</h2>
       </div>
+      @if($users->authority == 10)
       <div class="col mt-5 mb-5">
         <a class="" href="manufacturer_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer_icon.png" alt="manufacturer_icon"></a>
         <h2 class="text-center">メーカ名登録/削除</h2>
@@ -98,6 +99,7 @@
         <a class="" href="manufacturer"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer.png" alt="manufacturer"></a>
         <h2 class="text-center">予備アイコン</h2>
       </div>
+      @endif
     </div>
   </div>
 </section>
