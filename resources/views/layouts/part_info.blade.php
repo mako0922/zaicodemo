@@ -115,9 +115,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="manufacturer_new">
+          新規登録<br><input type="text" name="manufacturer_new" id="input_click1">
           <input type="hidden" name="hp_type" value="part_info">
-          <input type="submit" value="登録" formaction="/manufacturer_input/register">
+          <input type="submit" value="登録" id="click1" formaction="/manufacturer_input/register">
         </h2>
       </div>
     </div>
@@ -135,9 +135,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="class_name_new">
+          新規登録<br><input type="text" name="class_name_new" id="input_click2">
           <input type="hidden" name="hp_type" value="part_info">
-          <input type="submit" value="登録" formaction="/class_input/register">
+          <input type="submit" value="登録" id="click2" formaction="/class_input/register" disabled>
         </h2>
       </div>
     </div>
@@ -155,9 +155,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="storage_name_new">
+          新規登録<br><input type="text" name="storage_name_new" id="input_click3">
           <input type="hidden" name="hp_type" value="part_info">
-          <input type="submit" value="登録" formaction="/storage_input/register">
+          <input type="submit" value="登録" id="click3" formaction="/storage_input/register">
         </h2>
       </div>
     </div>
@@ -175,9 +175,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="status_name_new">
+          新規登録<br><input type="text" name="status_name_new" id="input_click4">
           <input type="hidden" name="hp_type" value="part_info">
-          <input type="submit" value="登録" formaction="/status_input/register">
+          <input type="submit" value="登録" id="click4" formaction="/status_input/register">
         </h2>
       </div>
     </div>
@@ -408,6 +408,90 @@ $(function() {
   });
 });
 
+</script>
+
+<script>
+  function func_click1() {
+    document.getElementById("click1").disabled = false;
+  }
+
+  function func2() {
+    document.getElementById("button1").disabled = false;
+    document.getElementById("button2").disabled = true;
+    document.getElementById("myname").value = "";
+    document.getElementById("output").innerHTML = "";
+  }
+</script>
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click1').disabled = true;
+document.getElementById('input_click1').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click1').disabled = true;
+} else {
+document.getElementById('click1').disabled = false;
+}
+},false);
+document.getElementById('input_click1').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click1').disabled = true;
+}
+},false);
+},false);
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click2').disabled = true;
+document.getElementById('input_click2').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click2').disabled = true;
+} else {
+document.getElementById('click2').disabled = false;
+}
+},false);
+document.getElementById('input_click2').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click2').disabled = true;
+}
+},false);
+},false);
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click3').disabled = true;
+document.getElementById('input_click3').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click3').disabled = true;
+} else {
+document.getElementById('click3').disabled = false;
+}
+},false);
+document.getElementById('input_click3').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click3').disabled = true;
+}
+},false);
+},false);
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click4').disabled = true;
+document.getElementById('input_click4').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click4').disabled = true;
+} else {
+document.getElementById('click4').disabled = false;
+}
+},false);
+document.getElementById('input_click4').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click4').disabled = true;
+}
+},false);
+},false);
 </script>
 
 </main>

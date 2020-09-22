@@ -119,9 +119,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="manufacturer_new">
+          新規登録<br><input type="text" name="manufacturer_new" id="input_click1">
           <input type="hidden" name="hp_type" value="part_update">
-          <input type="submit" value="登録" formaction="/manufacturer_input/register">
+          <input type="submit" value="登録" id="click1" formaction="/manufacturer_input/register">
         </h2>
         @else
         <input type="hidden" name="manufacturer" @if(!empty($manufacturer_old)) value="{{$manufacturer_old}}" @elseif(!empty($info -> manufacturer))value="{{$info -> manufacturer}}"@endif>
@@ -144,9 +144,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="class_name_new">
+          新規登録<br><input type="text" name="class_name_new" id="input_click2">
           <input type="hidden" name="hp_type" value="part_update">
-          <input type="submit" value="登録" formaction="/class_input/register">
+          <input type="submit" value="登録" id="click2" formaction="/class_input/register">
         </h2>
         @else
         <input type="hidden" name="class_name" @if(!empty($class_name_old)) value="{{$class_name_old}}" @elseif(!empty($info -> class))value="{{$info -> class}}"@endif>
@@ -168,9 +168,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="storage_name_new">
+          新規登録<br><input type="text" name="storage_name_new" id="input_click3">
           <input type="hidden" name="hp_type" value="part_update">
-          <input type="submit" value="登録" formaction="/storage_input/register">
+          <input type="submit" value="登録" id="click3" formaction="/storage_input/register">
         </h2>
       </div>
     </div>
@@ -188,9 +188,9 @@ window.onload = changeDisabled;
             @endforeach
           </select><br/>
           @endif
-          新規登録<br><input type="text" name="status_name_new">
+          新規登録<br><input type="text" name="status_name_new" id="input_click4">
           <input type="hidden" name="hp_type" value="part_update">
-          <input type="submit" value="登録" formaction="/status_input/register">
+          <input type="submit" value="登録" id="click4" formaction="/status_input/register">
         </h2>
       </div>
     </div>
@@ -277,8 +277,8 @@ window.onload = changeDisabled;
         @if($users->authority == 10)
         <h2><input type="number" name="stock" min="0" @if(!empty($stock_old)) value="{{$stock_old}}" @elseif(!empty($info -> stock))value="{{$info -> stock}}"@else value="0"@endif></h2>
         @else
-        <input type="hidden" name="stock" @if(!empty($stock_old)) value="{{$stock_old}}" @elseif(!empty($info -> stock))value="{{$info -> stock}}"@endif>
-        <h2>@if(!empty($stock_old)){{$stock_old}}@elseif(!empty($info -> stock)){{$info -> stock}}@endif</h2>
+        <input type="hidden" name="stock" @if(!empty($stock_old)) value="{{$stock_old}}" @elseif(!empty($info -> stock))value="{{$info -> stock}}"@else value="0" @endif>
+        <h2>@if(!empty($stock_old)){{$stock_old}}@elseif(!empty($info -> stock)){{$info -> stock}} @else 0 @endif</h2>
         @endif
       </div>
     </div>
@@ -486,6 +486,78 @@ window.onload = changeDisabled;
 </section>
 </form>
 <!------------------------------------------------------------------------------------------------------------------>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click1').disabled = true;
+document.getElementById('input_click1').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click1').disabled = true;
+} else {
+document.getElementById('click1').disabled = false;
+}
+},false);
+document.getElementById('input_click1').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click1').disabled = true;
+}
+},false);
+},false);
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click2').disabled = true;
+document.getElementById('input_click2').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click2').disabled = true;
+} else {
+document.getElementById('click2').disabled = false;
+}
+},false);
+document.getElementById('input_click2').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click2').disabled = true;
+}
+},false);
+},false);
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click3').disabled = true;
+document.getElementById('input_click3').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click3').disabled = true;
+} else {
+document.getElementById('click3').disabled = false;
+}
+},false);
+document.getElementById('input_click3').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click3').disabled = true;
+}
+},false);
+},false);
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click4').disabled = true;
+document.getElementById('input_click4').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click4').disabled = true;
+} else {
+document.getElementById('click4').disabled = false;
+}
+},false);
+document.getElementById('input_click4').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click4').disabled = true;
+}
+},false);
+},false);
+</script>
 
 <!------------------------------------------------------------------------------------------------------------------>
 </main>
