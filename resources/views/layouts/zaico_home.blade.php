@@ -96,8 +96,8 @@
         <h2 class="text-center">ステータス登録/削除</h2>
       </div>
       <div class="col mt-5 mb-5">
-        <a class="" href="manufacturer"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/manufacturer.png" alt="manufacturer"></a>
-        <h2 class="text-center">予備アイコン</h2>
+        <a class="" href="supplier_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/supplier.png" alt="supplier"></a>
+        <h2 class="text-center">仕入れ先登録/削除</h2>
       </div>
       @endif
     </div>

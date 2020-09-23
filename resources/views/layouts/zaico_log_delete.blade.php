@@ -57,6 +57,7 @@
 <!------------------------------------------------------------------------------------------------------------------>
 <form id="zaico_log_delete_form" action="/zaico_log_delete/register" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" @if(!empty($info -> id))value="{{$info -> id}}"@endif>
+<input type="hidden" name="url" value="{{$url}}">
 @csrf
 <section id="sec1">
   <div class="container">
@@ -106,6 +107,14 @@
       </div>
       <div class="col-8">
         <h2><input type="hidden" name="status" @if(!empty($info -> status))value="{{$info -> status}}"@endif>{{$info -> status}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">仕入れ先：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="supplier" @if(!empty($info -> supplier))value="{{$info -> supplier}}"@endif>{{$info -> supplier}}</h2>
       </div>
     </div>
     <div class="row mb-5">

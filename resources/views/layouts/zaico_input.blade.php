@@ -57,6 +57,7 @@
 <!------------------------------------------------------------------------------------------------------------------>
 <form id="zaico_input" action="/zaico_input/register" method="post" enctype="multipart/form-data">
 @csrf
+<input type="hidden" name="url" value="{{$url}}">
 <input type="hidden" name="id" value="{{$info -> id}}">
 <section id="sec1">
   <div class="container">
@@ -107,6 +108,30 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
+        <h2 class="text-center">ステータス：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="status" @if(!empty($info -> status))value="{{$info -> status}}"@endif>{{$info -> status}}</h2>
+      </div>
+    </div>
+		<div class="row mb-5">
+      <div class="col-4">
+        <h2 class="text-center">仕入れ先：</h2>
+      </div>
+      <div class="col-8">
+        <h2><input type="hidden" name="supplier" @if(!empty($info -> supplier))value="{{$info -> supplier}}"@endif>{{$info -> supplier}}</h2>
+      </div>
+    </div>
+		<div class="row mb-5">
+			<div class="col-4">
+				<h2 class="text-center">コンディション：</h2>
+			</div>
+			<div class="col-8">
+				<h2><input type="hidden" name="new_used" @if(!empty($info -> new_used))value="{{$info -> new_used}}"@endif>{{$info -> new_used}}</h2>
+			</div>
+		</div>
+    <div class="row mb-5">
+      <div class="col-4">
         <h2 class="text-center">コメント：</h2>
       </div>
       <div class="col-8">
@@ -124,14 +149,20 @@
     </div>
     @if($users->authority == 10)
     <div class="row mb-5">
-      <div class="col-6">
-        <h2 class="text-center">仕入れ価格：{{$info->cost_price}}円/税区分：{{$info->cost_price_tax}}</h2>
+      <div class="col-4">
+        <h2 class="text-center">仕入れ価格：</h2>
+      </div>
+      <div class="col-8">
+        <h2>{{$info->cost_price}}円/税区分：{{$info->cost_price_tax}}</h2>
       </div>
     </div>
     @endif
     <div class="row mb-5">
-      <div class="col-6">
-        <h2 class="text-center">販売価格：{{$info->selling_price}}円/税区分：{{$info->selling_price_tax}}</h2>
+      <div class="col-4">
+        <h2 class="text-center">販売価格：</h2>
+      </div>
+      <div class="col-8">
+        <h2>{{$info->selling_price}}円/税区分：{{$info->selling_price_tax}}</h2>
         <input type="hidden" name="selling_price" @if(!empty($info))value="{{$info->selling_price}}"@endif>
         <input type="hidden" name="selling_price_tax" @if(!empty($info->selling_price_tax))value="{{$info->selling_price_tax}}"@endif>
         <input type="hidden" name="cost_price" @if(!empty($info))value="{{$info->cost_price}}"@endif>

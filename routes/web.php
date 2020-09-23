@@ -44,6 +44,12 @@ Route::get('status_input','ZaicoController@status_input')
 Route::post('status_input/register','ZaicoController@status_register')
       ->middleware('auth');
 
+Route::get('supplier_input','ZaicoController@supplier_input')
+      ->middleware('auth');
+
+Route::post('supplier_input/register','ZaicoController@supplier_register')
+      ->middleware('auth');
+
 Route::get('part_info','ZaicoController@part_info')
       ->middleware('auth');
 

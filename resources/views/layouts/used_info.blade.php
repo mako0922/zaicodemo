@@ -175,6 +175,26 @@ window.onload = changeDisabled;
     </div>
     <div class="row mb-5">
       <div class="col-4">
+        <h2 class="text-center">仕入れ先：</h2>
+      </div>
+      <div class="col-8">
+        <h2>
+          @if ($supplier_info != "")
+          <select name="supplier">
+            <option value=""></option>
+            @foreach ($supplier_info as $supplier)
+            <option value="{{$supplier->supplier_name}}" @if(!empty(old('supplier')) and old('supplier') == $status->supplier_name ) selected @endif>{{$supplier->supplier_name}}</option>
+            @endforeach
+          </select><br/>
+          @endif
+          新規登録<br><input type="text" name="supplier_name_new" id="input_click5">
+          <input type="hidden" name="hp_type" value="used_info">
+          <input type="submit" value="登録" id="click5" formaction="/supplier_input/register">
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
         <h2 class="text-center">コンディション：</h2>
       </div>
       <div class="col-8">
@@ -461,6 +481,24 @@ document.getElementById('click4').disabled = false;
 document.getElementById('input_click4').addEventListener('change',function(){
 if (this.value.length < 2) {
 document.getElementById('click4').disabled = true;
+}
+},false);
+},false);
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+document.getElementById('click5').disabled = true;
+document.getElementById('input_click5').addEventListener('keyup',function(){
+if (this.value.length < 2) {
+document.getElementById('click5').disabled = true;
+} else {
+document.getElementById('click5').disabled = false;
+}
+},false);
+document.getElementById('input_click5').addEventListener('change',function(){
+if (this.value.length < 2) {
+document.getElementById('click5').disabled = true;
 }
 },false);
 },false);

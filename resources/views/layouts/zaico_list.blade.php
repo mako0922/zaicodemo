@@ -68,18 +68,17 @@
     @endif
     <div class="pb-1 border-bottom">
       <div>
-          <form id="part_list_serch" action="/part_list_serch" method="post">
+          <form id="part_list_serch" action="/part_list_serch" method="get">
             <h3>あいまい検索</h3>
              @csrf
              <h3><input class="text-left" type="text" name="keyword" @if(!empty($keyword))value="{{$keyword}}"@endif><input form="part_list_serch" type="submit" value="検索"></h3>
              <br>
           </form>
       </div>
-      <form id="submit_form" action="/onchange_list" method="post">
+      <form id="submit_form" action="/onchange_list" method="get">
       <div class="row">
           <div class="col mt-1 mb-1">
             <h3 class="text-left">分類検索</h3>
-              @csrf
               <select class="mt-1 mb-1 mx-auto" id="submit_select2" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select2" onChange="submit(this.form)">
                 <option value=""></option>
                 @foreach ($class_table as $class_info)
@@ -89,7 +88,6 @@
           </div>
           <div class="col mt-1 mb-1">
             <h3 class="text-left">メーカ検索</h3>
-              @csrf
               <select class="mt-1 mb-1 mx-auto" id="submit_select4" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select4" onChange="submit(this.form)">
                 <option value=""></option>
                 @foreach ($manufacturer_info as $manufacturer)
@@ -99,7 +97,6 @@
           </div>
           <div class="col mt-1 mb-1">
             <h3 class="text-left">品名検索</h3>
-              @csrf
               <select class="mt-1 mb-1 mx-auto" id="submit_select3" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select3" onChange="submit(this.form)">
                 <option value=""></option>
                 @foreach ($part_info as $part)
@@ -109,7 +106,6 @@
           </div>
           <div class="col mt-1 mb-1">
             <h3 class="text-left">ステータス検索</h3>
-              @csrf
               <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select1" onChange="submit(this.form)">
                 <option value=""></option>
                 @foreach ($status_info as $status)
@@ -119,8 +115,7 @@
           </div>
           <div class="col mt-1 mb-1">
             <h3 class="text-left">コンディション検索</h3>
-              @csrf
-              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
+              <select class="mt-1 mb-1 mx-auto" id="submit_select5" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
                 <option value=""></option>
                 <option value="新品" @if(!empty($log_select5) and $log_select5 === "新品") selected @endif>新品</option>
                 <option value="中古" @if(!empty($log_select5) and $log_select5 === "中古") selected @endif>中古</option>
@@ -128,11 +123,19 @@
           </div>
           <div class="col mt-1 mb-1">
             <h3 class="text-left">保管場所検索</h3>
-              @csrf
-              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select6" onChange="submit(this.form)">
+              <select class="mt-1 mb-1 mx-auto" id="submit_select6" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select6" onChange="submit(this.form)">
                 <option value=""></option>
                 @foreach ($storage_info as $storage)
                 <option value="{{$storage->storage_name}}" @if(!empty($log_select6) and $log_select6 === $storage->storage_name) selected @endif>{{$storage->storage_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col mt-1 mb-1">
+            <h3 class="text-left">仕入れ先検索</h3>
+              <select class="mt-1 mb-1 mx-auto" id="submit_select7" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select7" onChange="submit(this.form)">
+                <option value=""></option>
+                @foreach ($supplier_info as $supplier)
+                <option value="{{$supplier->supplier_name}}" @if(!empty($log_select7) and $log_select7 === $supplier->supplier_name) selected @endif>{{$supplier->supplier_name}}</option>
                 @endforeach
               </select>
           </div>
@@ -172,6 +175,7 @@
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">ステータス：{{$info->status}}</h5><br>
+        <h5 class="text-left">仕入れ先：{{$info->supplier}}</h5><br>
         <h5 class="text-left">コンディション：{{$info->new_used}}</h5><br>
         <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
         @if($users->authority == 10)
@@ -185,6 +189,7 @@
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
           <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="rec_and_ship" value="arrival">
+          <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
           <button form="zaico_arrival{{$info->id}}" type="submit" style="width:100%;background-color:skyblue;" class="text-center border border-primary rounded p-1"><h3>入荷</h3></button><br><br>
         </form>
         <form id="zaico_utilize{{$info->id}}" action="/zaico_input/utilize" method="post">
@@ -192,6 +197,7 @@
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
           <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="rec_and_ship" value="utilize">
+          <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
           <button form="zaico_utilize{{$info->id}}" type="submit" style="width:100%;background-color:orange;" class="text-center border border-warning rounded p-1"><h3>使用</h3></button><br><br>
         </form>
         <form id="zaico_update{{$info->id}}" action="/zaico_input/update" method="post">
@@ -199,6 +205,7 @@
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
           <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="status" value="update">
+          <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
           <button form="zaico_update{{$info->id}}" type="submit" style="width:100%;background-color:green;" class="text-center border border-primary rounded p-1"><h3>変更</h3></button><br><br>
         </form>
         @if($users->authority == 10)
@@ -207,6 +214,7 @@
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
           <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="status" value="delete">
+          <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
           <button form="zaico_delete{{$info->id}}" type="submit" style="width:100%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
         </form>
         @endif
@@ -251,7 +259,7 @@
         {{ $part_info->appends(Request::only('keyword'))->appends(Request::only('log_select1'))
         ->appends(Request::only('log_select2'))->appends(Request::only('log_select3'))
         ->appends(Request::only('log_select4'))->appends(Request::only('log_select5'))
-        ->appends(Request::only('log_select6'))->links() }}
+        ->appends(Request::only('log_select6'))->appends(Request::only('$log_select7'))->links() }}
       </div>
     </div>
   </div>

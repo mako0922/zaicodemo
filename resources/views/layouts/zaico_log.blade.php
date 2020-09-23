@@ -68,14 +68,14 @@
     @endif
     <div class="pb-1 border-bottom">
       <div>
-          <form id="zaico_serch" action="/zaico_log_serch" method="post">
+          <form id="zaico_serch" action="/zaico_log_serch" method="get">
             <h3>あいまい検索</h3>
              @csrf
              <h3><input class="text-left" type="text" name="keyword" @if(!empty($keyword))value="{{$keyword}}"@endif><input form="zaico_serch" type="submit" value="検索"></h3>
              <br>
           </form>
       </div>
-      <form id="submit_form" action="/onchange_log" method="post">
+      <form id="submit_form" action="/onchange_log" method="get">
       <h3>絞り込み検索</h3>
       <div class="row">
           <div class="col mt-1 mb-1">
@@ -121,7 +121,7 @@
           <div class="col mt-1 mb-1">
             <h3 class="text-left">コンディション検索</h3>
               @csrf
-              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
+              <select class="mt-1 mb-1 mx-auto" id="submit_select5" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
                 <option value=""></option>
                 <option value="新品" @if(!empty($log_select5) and $log_select5 === "新品") selected @endif>新品</option>
                 <option value="中古" @if(!empty($log_select5) and $log_select5 === "中古") selected @endif>中古</option>
@@ -130,10 +130,20 @@
           <div class="col mt-1 mb-1">
             <h3 class="text-left">保管場所検索</h3>
               @csrf
-              <select class="mt-1 mb-1 mx-auto" id="submit_select1" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select6" onChange="submit(this.form)">
+              <select class="mt-1 mb-1 mx-auto" id="submit_select6" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select6" onChange="submit(this.form)">
                 <option value=""></option>
                 @foreach ($storage_info as $storage)
                 <option value="{{$storage->storage_name}}" @if(!empty($log_select6) and $log_select6 === $storage->storage_name) selected @endif>{{$storage->storage_name}}</option>
+                @endforeach
+              </select>
+          </div>
+          <div class="col mt-1 mb-1">
+            <h3 class="text-left">仕入れ先検索</h3>
+              @csrf
+              <select class="mt-1 mb-1 mx-auto" id="submit_select7" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select7" onChange="submit(this.form)">
+                <option value=""></option>
+                @foreach ($supplier_info as $supplier)
+                <option value="{{$supplier->supplier_name}}" @if(!empty($log_select7) and $log_select7 === $supplier->supplier_name) selected @endif>{{$supplier->supplier_name}}</option>
                 @endforeach
               </select>
           </div>
@@ -156,8 +166,9 @@
         @if($users->authority == 10)
         <form id="zaico_log_delete{{$info->id}}" action="/zaico_log/delete" method="post">
           @csrf
-          <input type="hidden" name="part_id" value="{{$info->id}}">
+          <input type="hidden" name="part_id" value="{{$info->id}}">{{$info->id}}
           <input type="hidden" name="status" value="delete">
+          <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
           <button form="zaico_log_delete{{$info->id}}" type="submit" style="width:50%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
         </form>
         @endif
@@ -173,6 +184,7 @@
         <h3 class="text-left">{{$info->class}}</h3><br>
         <h5 class="text-left">保管場所：</h5>
         <h3 class="text-left">{{$info->storage_name}}</h3><br>
+        <h5 class="text-left">仕入れ先：{{$info->supplier}}</h5><br>
         <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
@@ -201,7 +213,7 @@
         {{ $zaico_log->appends(Request::only('keyword'))->appends(Request::only('log_select1'))
         ->appends(Request::only('log_select2'))->appends(Request::only('log_select3'))
         ->appends(Request::only('log_select4'))->appends(Request::only('log_select5'))
-        ->appends(Request::only('log_select6'))->links() }}
+        ->appends(Request::only('log_select6'))->appends(Request::only('log_select7'))->links() }}
       </div>
     </div>
   </div>

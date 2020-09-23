@@ -154,7 +154,7 @@ class ZaicoController extends Controller
     //} catch (\Exception $e) {
     //  return redirect('/zaico_home');
     //}
-    return redirect('/zaico_home');
+    return redirect($request -> url);
   }
 
   public function class_input(Request $request){
@@ -199,6 +199,7 @@ class ZaicoController extends Controller
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
+      $supplier_info = DB::table('supplier_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
       $revision_number_old = $request -> revision_number;
@@ -207,6 +208,7 @@ class ZaicoController extends Controller
       $class_name_old = $request -> class_name;
       $storage_old = $request -> storage;
       $status_old = $request -> status;
+      $supplier_old = $request -> supplier;
       $purchase_date_old = $request -> purchase_date;
       $cost_price_old = $request -> cost_price;
       $cost_price_tax_old = $request -> cost_price_tax;
@@ -223,6 +225,7 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
         'storage_info' => $storage_info,
+        'supplier_info' => $supplier_info,
         'info' => $info,
 
         'part_name_old' => $part_name_old,
@@ -231,6 +234,7 @@ class ZaicoController extends Controller
         'class_name_old' => $class_name_old,
         'storage_old' => $storage_old,
         'status_old' => $status_old,
+        'supplier_old' => $supplier_old,
         'purchase_date_old' => $purchase_date_old,
         'cost_price_old' => $cost_price_old,
         'cost_price_tax_old' => $cost_price_tax_old,
@@ -289,6 +293,7 @@ class ZaicoController extends Controller
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
+      $supplier_info = DB::table('supplier_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
       $revision_number_old = $request -> revision_number;
@@ -297,6 +302,7 @@ class ZaicoController extends Controller
       $class_name_old = $request -> class_name;
       $storage_old = $request -> storage;
       $status_old = $request -> status;
+      $supplier_old = $request -> supplier;
       $purchase_date_old = $request -> purchase_date;
       $cost_price_old = $request -> cost_price;
       $cost_price_tax_old = $request -> cost_price_tax;
@@ -313,6 +319,7 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
         'storage_info' => $storage_info,
+        'supplier_info' => $supplier_info,
         'info' => $info,
 
         'part_name_old' => $part_name_old,
@@ -321,6 +328,7 @@ class ZaicoController extends Controller
         'class_name_old' => $class_name_old,
         'storage_old' => $storage_old,
         'status_old' => $status_old,
+        'supplier_old' => $supplier_old,
         'purchase_date_old' => $purchase_date_old,
         'cost_price_old' => $cost_price_old,
         'cost_price_tax_old' => $cost_price_tax_old,
@@ -378,6 +386,7 @@ class ZaicoController extends Controller
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
+      $supplier_info = DB::table('supplier_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
       $revision_number_old = $request -> revision_number;
@@ -386,6 +395,7 @@ class ZaicoController extends Controller
       $class_name_old = $request -> class_name;
       $storage_old = $request -> storage;
       $status_old = $request -> status;
+      $supplier_old = $request -> supplier;
       $purchase_date_old = $request -> purchase_date;
       $cost_price_old = $request -> cost_price;
       $cost_price_tax_old = $request -> cost_price_tax;
@@ -402,6 +412,7 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
         'storage_info' => $storage_info,
+        'supplier_info' => $supplier_info,
         'info' => $info,
 
         'part_name_old' => $part_name_old,
@@ -410,6 +421,7 @@ class ZaicoController extends Controller
         'class_name_old' => $class_name_old,
         'storage_old' => $storage_old,
         'status_old' => $status_old,
+        'supplier_old' => $supplier_old,
         'purchase_date_old' => $purchase_date_old,
         'cost_price_old' => $cost_price_old,
         'cost_price_tax_old' => $cost_price_tax_old,
@@ -468,6 +480,7 @@ class ZaicoController extends Controller
       $storage_info = DB::table('storage_table')->get();
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
+      $supplier_info = DB::table('supplier_table')->get();
       $info = DB::table('part_info')->where('id', $request -> part_id)->first();
 
       $revision_number_old = $request -> revision_number;
@@ -476,6 +489,7 @@ class ZaicoController extends Controller
       $class_name_old = $request -> class_name;
       $storage_old = $request -> storage;
       $status_old = $request -> status;
+      $supplier_old = $request -> supplier;
       $purchase_date_old = $request -> purchase_date;
       $cost_price_old = $request -> cost_price;
       $cost_price_tax_old = $request -> cost_price_tax;
@@ -492,6 +506,7 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
         'storage_info' => $storage_info,
+        'supplier_info' => $supplier_info,
         'info' => $info,
 
         'part_name_old' => $part_name_old,
@@ -500,6 +515,7 @@ class ZaicoController extends Controller
         'class_name_old' => $class_name_old,
         'storage_old' => $storage_old,
         'status_old' => $status_old,
+        'supplier_old' => $supplier_old,
         'purchase_date_old' => $purchase_date_old,
         'cost_price_old' => $cost_price_old,
         'cost_price_tax_old' => $cost_price_tax_old,
@@ -513,6 +529,100 @@ class ZaicoController extends Controller
       return redirect('/part_update')->withInput($param);
     }else{
       return redirect('/storage_input');
+    }
+  }
+
+  public function supplier_input(Request $request){
+    // ログインチェック
+    if (Auth::check()){
+      $user = Auth::user();
+      $supplier = DB::table('supplier_table')->get();
+      $param = [
+        'users' => $user,
+        'supplier_info' => $supplier,
+      ];
+      return view('supplier_table.index', $param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
+  public function supplier_register(Request $request){
+    $validate_rule = [
+      'supplier_name_new' => 'required',
+    ];
+    $this->validate($request, $validate_rule);
+    //$request->session()->regenerateToken();
+
+    $param = [
+      'supplier_name' => $request -> supplier_name_new,
+    ];
+    try{
+      DB::table('supplier_table')->insert($param);
+    } catch (\Exception $e) {
+      return redirect('/zaico_home');
+    }
+    if($request->hp_type === "part_info"){
+      return redirect('/part_info')->withInput();
+    }else if($request->hp_type === "used_info"){
+      return redirect('/used_info')->withInput();
+    }else if($request->hp_type === "part_update"){
+      $user = Auth::user();
+      $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
+      $class_info = DB::table('class_table')->get();
+      $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
+      $storage_info = DB::table('storage_table')->get();
+      $status_info = DB::table('status_table')->get();
+      $manufacturer_info = DB::table('manufacturer_table')->get();
+      $supplier_info = DB::table('supplier_table')->get();
+      $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+
+      $revision_number_old = $request -> revision_number;
+      $part_name_old = $request -> part_name;
+      $manufacturer_old = $request -> manufacturer;
+      $class_name_old = $request -> class_name;
+      $storage_old = $request -> storage;
+      $status_old = $request -> status;
+      $supplier_old = $request -> supplier;
+      $purchase_date_old = $request -> purchase_date;
+      $cost_price_old = $request -> cost_price;
+      $cost_price_tax_old = $request -> cost_price_tax;
+      $selling_price_old = $request -> selling_price;
+      $selling_price_tax_old = $request -> selling_price_tax;
+      $stock_old = $request -> stock;
+      $comment_old = $request -> comment;
+      $new_used_old = $request -> new_used;
+
+      $param = [
+        'users' => $user,
+        'part_info' => $part_info,
+        'class_info' => $class_info,
+        'manufacturer_info' => $manufacturer_info,
+        'status_info' => $status_info,
+        'storage_info' => $storage_info,
+        'supplier_info' => $supplier_info,
+        'info' => $info,
+
+        'part_name_old' => $part_name_old,
+        'revision_number_old' => $revision_number_old,
+        'manufacturer_old' => $manufacturer_old,
+        'class_name_old' => $class_name_old,
+        'storage_old' => $storage_old,
+        'status_old' => $status_old,
+        'supplier_old' => $supplier_old,
+        'purchase_date_old' => $purchase_date_old,
+        'cost_price_old' => $cost_price_old,
+        'cost_price_tax_old' => $cost_price_tax_old,
+        'selling_price_old' => $selling_price_old,
+        'selling_price_tax_old' => $selling_price_tax_old,
+        'stock_old' => $stock_old,
+        'comment_old' => $comment_old,
+        'new_used_old' => $new_used_old,
+
+      ];
+      return redirect('/part_update')->withInput($param);
+    }else{
+      return redirect('/supplier_input');
     }
   }
 
@@ -548,6 +658,7 @@ class ZaicoController extends Controller
         $manufacturer = DB::table('manufacturer_table')->get();
         $storage_name = DB::table('storage_table')->get();
         $status_name = DB::table('status_table')->get();
+        $supplier_name = DB::table('supplier_table')->get();
         $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
@@ -573,6 +684,7 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
         'status_info' => $status_name,
+        'supplier_info' => $supplier_name,
         'revision_number_auto' => $revision_number_auto,
       ];
       return view('part_info.index', $param);
@@ -616,6 +728,12 @@ class ZaicoController extends Controller
       $status = "";
     }else{
       $status = $request -> status;
+    }
+
+    if(empty($request -> supplier)){
+      $supplier = "";
+    }else{
+      $supplier = $request -> supplier;
     }
 
     if(empty($request -> cost_price)){
@@ -687,6 +805,7 @@ class ZaicoController extends Controller
       'storage_name' => $request -> storage,
       'comment' => $comment,
       'status' => $status,
+      'supplier' => $supplier,
       'cost_price' => $cost_price,
       'cost_price_tax' => $request -> cost_price_tax,
       'selling_price' => $selling_price,
@@ -708,6 +827,7 @@ class ZaicoController extends Controller
       'staff_name' => $user -> name,
       'utilization' => '新規登録',
       'status' => $status,
+      'supplier' => $supplier,
       'partnumber' => $request -> stock,
       'storage_name' => $request -> storage,
       'comment' => $comment,
@@ -735,6 +855,7 @@ class ZaicoController extends Controller
     if (Auth::check()){
       $user = Auth::user();
       $status_name = DB::table('status_table')->get();
+      $supplier_name = DB::table('supplier_table')->get();
       $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
       $part_info = $request->old();
 
@@ -754,6 +875,7 @@ class ZaicoController extends Controller
 
       $part_info += ['users' => $user];
       $part_info += ['status_info' => $status_name];
+      $part_info += ['supplier_info' => $supplier_name];
       $part_info += ['revision_number_auto' => $revision_number_auto];
       return view('part_update.index', $part_info);
     }else{
@@ -815,6 +937,12 @@ class ZaicoController extends Controller
       $status = "";
     }else{
       $status = $request -> status;
+    }
+
+    if(empty($request -> supplier)){
+      $supplier = "";
+    }else{
+      $supplier = $request -> supplier;
     }
 
     if(empty($request -> cost_price)){
@@ -898,6 +1026,7 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'status' => $request -> status,
+      'supplier' => $request -> supplier,
       'cost_price' => $cost_price,
       'cost_price_tax' => $request -> cost_price_tax,
       'selling_price' => $selling_price,
@@ -919,6 +1048,7 @@ class ZaicoController extends Controller
       'staff_name' => $user -> name,
       'utilization' => '在庫管理修正処理',
       'status' => $request -> status,
+      'supplier' => $request -> supplier,
       'partnumber' => $request -> stock,
       'storage_name' => $storage,
       'comment' => $comment,
@@ -938,7 +1068,7 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
 
-    return redirect('/zaico_home');
+    return redirect($request -> url);
   }
 
   public function part_delete(Request $request){
@@ -994,6 +1124,12 @@ class ZaicoController extends Controller
       $storage = $request -> storage;
     }
 
+    if(empty($request -> supplier)){
+      $supplier = "";
+    }else{
+      $supplier = $request -> supplier;
+    }
+
     if(empty($request -> cost_price)){
       $cost_price = 0;
     }else{
@@ -1027,6 +1163,7 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'status' => $request -> status,
+      'supplier' => $request -> supplier,
       'cost_price' => $cost_price,
       'cost_price_tax' => $request -> cost_price_tax,
       'selling_price' => $selling_price,
@@ -1048,6 +1185,7 @@ class ZaicoController extends Controller
       'staff_name' => $user -> name,
       'utilization' => '在庫管理データ削除処理',
       'status' => $request -> status,
+      'supplier' => $request -> supplier,
       'partnumber' => $request -> stock,
       'storage_name' => $storage,
       'comment' => $comment,
@@ -1067,7 +1205,7 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
 
-    return redirect('/zaico_home');
+    return redirect($request -> url);
   }
 
   public function used_info(Request $request){
@@ -1079,6 +1217,7 @@ class ZaicoController extends Controller
         $manufacturer = DB::table('manufacturer_table')->get();
         $storage_name = DB::table('storage_table')->get();
         $status_info = DB::table('status_table')->get();
+        $supplier_info = DB::table('supplier_table')->get();
         $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
@@ -1104,6 +1243,7 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
         'status_info' => $status_info,
+        'supplier_info' => $supplier_info,
         'revision_number_auto' => $revision_number_auto,
       ];
       return view('used_info.index', $param);
@@ -1161,6 +1301,12 @@ class ZaicoController extends Controller
       $status = "";
     }else{
       $status = $request -> status;
+    }
+
+    if(empty($request -> supplier)){
+      $supplier = "";
+    }else{
+      $supplier = $request -> supplier;
     }
 
     if(empty($request -> cost_price)){
@@ -1232,6 +1378,7 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'status' => $status,
+      'supplier' => $supplier,
       'cost_price' => $cost_price,
       'cost_price_tax' => $request -> cost_price_tax,
       'selling_price' => $selling_price,
@@ -1253,6 +1400,7 @@ class ZaicoController extends Controller
       'staff_name' => $user -> name,
       'utilization' => '新規登録',
       'status' => $status,
+      'supplier' => $supplier,
       'partnumber' => $request -> stock,
       'storage_name' => $request -> storage,
       'comment' => $comment,
@@ -1285,6 +1433,7 @@ class ZaicoController extends Controller
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->orderBy('id', 'desc')->paginate(15);
         $status_info = DB::table('status_table')->get();
+        $supplier_info = DB::table('supplier_table')->get();
         $storage_info = DB::table('storage_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
       } catch (\Exception $e) {
@@ -1296,6 +1445,7 @@ class ZaicoController extends Controller
         'part_info' => $part_info,
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
+        'supplier_info' => $supplier_info,
         'storage_info' => $storage_info,
         'log_select1' => $request -> log_select1,
         'log_select2' => $request -> log_select2,
@@ -1303,6 +1453,7 @@ class ZaicoController extends Controller
         'log_select4' => $request -> log_select4,
         'log_select5' => $request -> log_select5,
         'log_select6' => $request -> log_select6,
+        'log_select7' => $request -> log_select7,
       ];
       return view('zaico_list.index', $param);
     }else{
@@ -1323,6 +1474,7 @@ class ZaicoController extends Controller
         $part_info = DB::table('part_info');
         $manufacturer_info = DB::table('manufacturer_table')->get();
         $status_info = DB::table('status_table')->get();
+        $supplier_info = DB::table('supplier_table')->get();
         $storage_info = DB::table('storage_table')->get();
         foreach ($columns as $column) {
           $part_info = $part_info -> orwhere($column, 'like', '%'. $request -> keyword . '%');
@@ -1340,6 +1492,7 @@ class ZaicoController extends Controller
         'keyword' => $request -> keyword,
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
+        'supplier_info' => $supplier_info,
         'storage_info' => $storage_info,
         'log_select1' => $request -> log_select1,
         'log_select2' => $request -> log_select2,
@@ -1347,6 +1500,7 @@ class ZaicoController extends Controller
         'log_select4' => $request -> log_select4,
         'log_select5' => $request -> log_select5,
         'log_select6' => $request -> log_select6,
+        'log_select7' => $request -> log_select7,
       ];
       return view('zaico_list.index', $param);
     }else{
@@ -1375,6 +1529,7 @@ class ZaicoController extends Controller
         'staff' => $staff,
         'info' => $info,
         'utilization_info' => $zaico_info,
+        'url' => $request -> url,
       ];
 
       $param += ['status' => $request -> rec_and_ship];
@@ -1404,6 +1559,7 @@ class ZaicoController extends Controller
         'staff' => $staff,
         'info' => $info,
         'utilization_info' => $zaico_info,
+        'url' => $request -> url,
       ];
       $param += ['status' => $request -> rec_and_ship];
       return redirect('/zaico_input')->withInput($param);
@@ -1439,9 +1595,11 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
         'zaico_status' => $zaico_status,
+        'url' => $request -> url,
       ];
 
       $param += ['status' => $request -> status];
+      $param += ['supplier' => $request -> supplier];
       return redirect('/part_update')->withInput($param);
     }else{
       return view('auth/login');
@@ -1475,9 +1633,11 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
         'zaico_status' => $zaico_status,
+        'url' => $request -> url,
       ];
 
       $param += ['status' => $request -> status];
+      $param += ['supplier' => $request -> supplier];
       return redirect('/part_delete')->withInput($param);
     }else{
       return view('auth/login');
@@ -1494,6 +1654,7 @@ class ZaicoController extends Controller
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
+        $supplier_info = DB::table('supplier_table')->get();
         $storage_info = DB::table('storage_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         $columns = Schema::getColumnListing('zaico_table');
@@ -1507,6 +1668,7 @@ class ZaicoController extends Controller
         'part_info' => $part_info,
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
+        'supplier_info' => $supplier_info,
         'storage_info' => $storage_info,
         'columns' => $columns,
       ];
@@ -1543,9 +1705,11 @@ class ZaicoController extends Controller
         'manufacturer_info' => $manufacturer,
         'storage_info' => $storage_name,
         'zaico_status' => $zaico_status,
+        'url' => $request -> url,
       ];
 
       $param += ['status' => $request -> status];
+      $param += ['supplier' => $request -> supplier];
       return redirect('/zaico_log_delete')->withInput($param);
     }else{
       return view('auth/login');
@@ -1570,8 +1734,6 @@ class ZaicoController extends Controller
     $user = Auth::user();
     //$request->session()->regenerateToken();
     $validate_rule = [
-      'part_name' => 'required',
-      'stock' => 'required',
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
@@ -1606,6 +1768,12 @@ class ZaicoController extends Controller
       $storage = $request -> storage;
     }
 
+    if(empty($request -> supplier)){
+      $supplier = "";
+    }else{
+      $supplier = $request -> supplier;
+    }
+
     if(empty($request -> revision_number)){
       $revision_number = "";
     }else{
@@ -1627,6 +1795,7 @@ class ZaicoController extends Controller
       'storage_name' => $storage,
       'comment' => $comment,
       'status' => $request -> status,
+      'supplier' => $request -> supplier,
       'new_used' => $request -> new_used,
       'revision_number' => $revision_number,
       'purchase_date' => $purchase_date,
@@ -1637,7 +1806,7 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
 
-    return redirect('/zaico_home');
+    return redirect($request -> url);
   }
 
   public function table_item_delete(Request $request){
@@ -1648,6 +1817,7 @@ class ZaicoController extends Controller
     $class = DB::table('class_table')->get();
     $manufacturer = DB::table('manufacturer_table')->get();
     $storage  = DB::table('storage_table')->get();
+    $supplier  = DB::table('supplier_table')->get();
 
     if($request -> table_item == "class_table"){
       $re_hp = "/class_input";
@@ -1657,6 +1827,8 @@ class ZaicoController extends Controller
       $re_hp = "/status_input";
     }else if($request -> table_item == "storage_table"){
       $re_hp = "/storage_input";
+    }else if($request -> table_item == "supplier_table"){
+      $re_hp = "/supplier_input";
     }
 
     $param = [
@@ -1664,6 +1836,7 @@ class ZaicoController extends Controller
       'class_info' => $class,
       'storage_info' => $storage,
       'status_info' => $status,
+      'supplier_info' => $supplier,
     ];
     try{
       DB::table( $request -> table_item)->where('id', $request -> id)->delete();
@@ -1685,6 +1858,7 @@ class ZaicoController extends Controller
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
+        $supplier_info = DB::table('supplier_table')->get();
         $storage_info = DB::table('storage_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         foreach ($columns as $column) {
@@ -1703,6 +1877,7 @@ class ZaicoController extends Controller
         'cloums' => $columns,
         'manufacturer_info' => $manufacturer_info,
         'status_info' => $status_info,
+        'supplier_info' => $supplier_info,
         'storage_info' => $storage_info,
         'keyword' => $request -> keyword,
         'log_select1' => $request -> log_select1,
@@ -1711,6 +1886,7 @@ class ZaicoController extends Controller
         'log_select4' => $request -> log_select4,
         'log_select5' => $request -> log_select5,
         'log_select6' => $request -> log_select6,
+        'log_select7' => $request -> log_select7,
       ];
       return view('zaico_log.index', $param);
     }else{
@@ -1728,6 +1904,7 @@ class ZaicoController extends Controller
         $class_table = DB::table('class_table')->get();
         $part_info = DB::table('part_info')->orderBy('id', 'desc')->get();
         $status_info = DB::table('status_table')->get();
+        $supplier_info = DB::table('supplier_table')->get();
         $storage_info = DB::table('storage_table')->get();
         $manufacturer_info = DB::table('manufacturer_table')->get();
         if ($request -> log_select1 != ''){
@@ -1748,6 +1925,9 @@ class ZaicoController extends Controller
         if ($request -> log_select6 != ''){
           $zaico_log = $zaico_log -> where('storage_name', $request -> log_select6);
         }
+        if ($request -> log_select7 != ''){
+          $zaico_log = $zaico_log -> where('supplier', $request -> log_select7);
+        }
         $zaico_log = $zaico_log -> orderBy('id', 'desc');
         $zaico_log = $zaico_log -> paginate(15);
       } catch (\Exception $e) {
@@ -1759,6 +1939,7 @@ class ZaicoController extends Controller
         'class_table' => $class_table,
         'part_info' => $part_info,
         'status_info' => $status_info,
+        'supplier_info' => $supplier_info,
         'storage_info' => $storage_info,
         'manufacturer_info' => $manufacturer_info,
         'log_select1' => $request -> log_select1,
@@ -1767,6 +1948,7 @@ class ZaicoController extends Controller
         'log_select4' => $request -> log_select4,
         'log_select5' => $request -> log_select5,
         'log_select6' => $request -> log_select6,
+        'log_select7' => $request -> log_select7,
       ];
       return view('zaico_log.index', $param);
     }else{
@@ -1783,6 +1965,7 @@ class ZaicoController extends Controller
           $part_info = DB::table('part_info') ;
           $class_table = DB::table('class_table')->get();
           $status_info = DB::table('status_table')->get();
+          $supplier_info = DB::table('supplier_table')->get();
           $storage_info = DB::table('storage_table')->get();
           $manufacturer_info = DB::table('manufacturer_table')->get();
           if ($request -> log_select1 != ''){
@@ -1803,6 +1986,9 @@ class ZaicoController extends Controller
           if ($request -> log_select6 != ''){
             $part_info = $part_info -> where('storage_name', $request -> log_select6);
           }
+          if ($request -> log_select7 != ''){
+            $part_info = $part_info -> where('supplier', $request -> log_select7);
+          }
           $part_info = $part_info -> orderBy('id', 'desc');
           $part_info = $part_info -> paginate(15);
         } catch (\Exception $e) {
@@ -1814,6 +2000,7 @@ class ZaicoController extends Controller
           'class_table' => $class_table,
           'manufacturer_info' => $manufacturer_info,
           'status_info' => $status_info,
+          'supplier_info' => $supplier_info,
           'storage_info' => $storage_info,
           'log_select1' => $request -> log_select1,
           'log_select2' => $request -> log_select2,
@@ -1821,6 +2008,7 @@ class ZaicoController extends Controller
           'log_select4' => $request -> log_select4,
           'log_select5' => $request -> log_select5,
           'log_select6' => $request -> log_select6,
+          'log_select7' => $request -> log_select7,
         ];
         return view('zaico_list.index', $param);
       }else{
@@ -1870,6 +2058,7 @@ function export($file_name, $data)
     'manufacturer',
     'class',
     'status',
+    'supplier',
     'new_used',
     'storage_name',
     'purchase_date',
@@ -1898,6 +2087,7 @@ function export($file_name, $data)
     $row -> manufacturer,
     $row -> class,
     $row -> status,
+    $row -> supplier,
     $row -> new_used,
     $row -> storage_name,
     $row -> purchase_date,
@@ -1951,6 +2141,7 @@ function postCSV($part_info)
       'メーカ',
       '分類',
       'ステータス',
+      '仕入れ先',
       'コンディション',
       '保管場所',
       '仕入れ日',
@@ -1980,6 +2171,7 @@ function postCSV($part_info)
             $row -> manufacturer,
             $row -> class,
             $row -> status,
+            $row -> supplier,
             $row -> new_used,
             $row -> storage_name,
             $row -> purchase_date,
@@ -2043,6 +2235,7 @@ function logCSV($zaico_log)
       'メーカ',
       '分類',
       'ステータス',
+      '仕入れ先',
       'コンディション',
       '保管場所',
       '仕入れ日',
@@ -2075,6 +2268,7 @@ function logCSV($zaico_log)
             $row -> manufacturer,
             $row -> class,
             $row -> status,
+            $row -> supplier,
             $row -> new_used,
             $row -> storage_name,
             $row -> purchase_date,
