@@ -166,7 +166,7 @@
         @if($users->authority == 10)
         <form id="zaico_log_delete{{$info->id}}" action="/zaico_log/delete" method="post">
           @csrf
-          <input type="hidden" name="part_id" value="{{$info->id}}">{{$info->id}}
+          <input type="hidden" name="part_id" value="{{$info->id}}">
           <input type="hidden" name="status" value="delete">
           <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
           <button form="zaico_log_delete{{$info->id}}" type="submit" style="width:50%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
