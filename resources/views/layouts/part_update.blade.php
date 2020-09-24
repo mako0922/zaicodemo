@@ -71,8 +71,8 @@ window.onload = changeDisabled;
 <!------------------------------------------------------------------------------------------------------------------>
 <form id="part_update_form" name="Form1" action="/part_update/register" method="post" enctype="multipart/form-data">
 @csrf
-<input type="hidden" name="part_id" value="{{$info -> id}}">
-<input type="hidden" name="url" value="{{$url}}">
+<input type="hidden" name="part_id" @if(!empty($id_old)) value="{{$id_old}}" @elseif(!empty($info -> id))value="{{$info -> id}}"@endif>
+<input type="hidden" name="url" @if(!empty($url_old)) value="{{$url_old}}" @elseif(!empty($url))value="{{$url}}"@endif>
 <section id="sec1">
   <div class="container">
     <div class="row mb-5">

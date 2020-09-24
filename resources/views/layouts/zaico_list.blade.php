@@ -56,6 +56,7 @@
 <main>
   <h1 class="text-center ml-5" style="color: black; font-size:3.0em;">@yield('title_exchange')</h1>
 <!------------------------------------------------------------------------------------------------------------------>
+
 <section id="sec1">
   <div class="container">
     @if($users->authority == 10)
@@ -66,6 +67,14 @@
       </form>
     </div>
     @endif
+    <div class="row text-center mx-auto my-auto">
+      <div class="text-center mx-auto my-auto">
+        {{ $part_info->appends(Request::only('keyword'))->appends(Request::only('log_select1'))
+        ->appends(Request::only('log_select2'))->appends(Request::only('log_select3'))
+        ->appends(Request::only('log_select4'))->appends(Request::only('log_select5'))
+        ->appends(Request::only('log_select6'))->appends(Request::only('$log_select7'))->links() }}
+      </div>
+    </div>
     <div class="pb-1 border-bottom">
       <div>
           <form id="part_list_serch" action="/part_list_serch" method="get">

@@ -217,6 +217,8 @@ class ZaicoController extends Controller
       $stock_old = $request -> stock;
       $comment_old = $request -> comment;
       $new_used_old = $request -> new_used;
+      $id_old = $request -> id;
+      $url_old = $request -> url;
 
       $param = [
         'users' => $user,
@@ -243,6 +245,8 @@ class ZaicoController extends Controller
         'stock_old' => $stock_old,
         'comment_old' => $comment_old,
         'new_used_old' => $new_used_old,
+        'id_old' => $id_old,
+        'url_old' => $url_old,
 
       ];
       return redirect('/part_update')->withInput($param);
@@ -311,6 +315,8 @@ class ZaicoController extends Controller
       $stock_old = $request -> stock;
       $comment_old = $request -> comment;
       $new_used_old = $request -> new_used;
+      $id_old = $request -> id;
+      $url_old = $request -> url;
 
       $param = [
         'users' => $user,
@@ -337,6 +343,8 @@ class ZaicoController extends Controller
         'stock_old' => $stock_old,
         'comment_old' => $comment_old,
         'new_used_old' => $new_used_old,
+        'id_old' => $id_old,
+        'url_old' => $url_old,
       ];
       return redirect('/part_update')->withInput($param);
     }else{
@@ -404,6 +412,8 @@ class ZaicoController extends Controller
       $stock_old = $request -> stock;
       $comment_old = $request -> comment;
       $new_used_old = $request -> new_used;
+      $id_old = $request -> id;
+      $url_old = $request -> url;
 
       $param = [
         'users' => $user,
@@ -430,6 +440,8 @@ class ZaicoController extends Controller
         'stock_old' => $stock_old,
         'comment_old' => $comment_old,
         'new_used_old' => $new_used_old,
+        'id_old' => $id_old,
+        'url_old' => $url_old,
 
       ];
       return redirect('/part_update')->withInput($param);
@@ -498,6 +510,8 @@ class ZaicoController extends Controller
       $stock_old = $request -> stock;
       $comment_old = $request -> comment;
       $new_used_old = $request -> new_used;
+      $id_old = $request -> id;
+      $url_old = $request -> url;
 
       $param = [
         'users' => $user,
@@ -524,6 +538,8 @@ class ZaicoController extends Controller
         'stock_old' => $stock_old,
         'comment_old' => $comment_old,
         'new_used_old' => $new_used_old,
+        'id_old' => $id_old,
+        'url_old' => $url_old,
 
       ];
       return redirect('/part_update')->withInput($param);
@@ -592,6 +608,8 @@ class ZaicoController extends Controller
       $stock_old = $request -> stock;
       $comment_old = $request -> comment;
       $new_used_old = $request -> new_used;
+      $id_old = $request -> id;
+      $url_old = $request -> url;
 
       $param = [
         'users' => $user,
@@ -618,6 +636,8 @@ class ZaicoController extends Controller
         'stock_old' => $stock_old,
         'comment_old' => $comment_old,
         'new_used_old' => $new_used_old,
+        'id_old' => $id_old,
+        'url_old' => $url_old,
 
       ];
       return redirect('/part_update')->withInput($param);

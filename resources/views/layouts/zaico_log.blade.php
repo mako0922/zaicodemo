@@ -66,6 +66,14 @@
       </form>
     </div>
     @endif
+    <div class="row text-center mx-auto my-auto">
+      <div class="text-center mx-auto my-auto">
+        {{ $zaico_log->appends(Request::only('keyword'))->appends(Request::only('log_select1'))
+        ->appends(Request::only('log_select2'))->appends(Request::only('log_select3'))
+        ->appends(Request::only('log_select4'))->appends(Request::only('log_select5'))
+        ->appends(Request::only('log_select6'))->appends(Request::only('log_select7'))->links() }}
+      </div>
+    </div>  
     <div class="pb-1 border-bottom">
       <div>
           <form id="zaico_serch" action="/zaico_log_serch" method="get">
