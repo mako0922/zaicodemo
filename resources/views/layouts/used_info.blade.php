@@ -200,8 +200,8 @@ window.onload = changeDisabled;
       <div class="col-8">
         <h2>
           <select name="new_used">
-            <option value="新品" @if(!empty(old('new_used')) and old('new_used') == "新品" ) selected @endif>新品</option>
-            <option value="中古" @if(!empty(old('new_used')) and old('new_used') == "新品" ) @else selected @endif>中古</option>
+            <option value="新品-常時在庫管理無し" @if(!empty(old('new_used')) and old('new_used') == "新品-常時在庫管理無し" ) selected @endif>新品-常時在庫管理無し</option>
+            <option value="中古-常時在庫管理無し" @if(!empty(old('new_used')) and old('new_used') == "中古-常時在庫管理無し" ) @else selected @endif>中古-常時在庫管理無し</option>
           </select><br/>
         </h2>
       </div>

@@ -210,11 +210,10 @@
         <h2 class="text-center">入出荷：</h2>
       </div>
       <div class="col-8">
-        <h2><select name="rec_and_ship">
-          <option class="text-primary" value=""></option>
-          <option class="text-primary" value="入荷" @if(!empty($status) and $status === 'arrival') selected @endif>入荷</option>
-          <option class="text-warning" value="出荷" @if(!empty($status) and $status === 'utilize') selected @endif>出荷</option></h2>
-        </select></h2>
+        <h2>
+          <input type="hidden" name="rec_and_ship" @if(!empty($status) and $status === 'arrival') value="入荷" @elseif(!empty($status) and $status === 'utilize') value="出荷" @endif>
+          @if(!empty($status) and $status === 'arrival') 入荷 @elseif(!empty($status) and $status === 'utilize') 出荷 @endif <br>
+        </h2>
       </div>
     </div>
     <div class="row mb-5">

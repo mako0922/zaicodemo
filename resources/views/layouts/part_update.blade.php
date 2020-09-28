@@ -221,10 +221,14 @@ window.onload = changeDisabled;
       </div>
       <div class="col-8">
         <h2>
+          @if((!empty($new_used_old) and $new_used_old == "新品-常時在庫管理あり") or (empty($new_used_old) and !empty($info -> new_used) and $info -> new_used == "新品-常時在庫管理あり"))
+          <input type="hidden" name="new_used" value="新品-常時在庫管理あり">新品-常時在庫管理あり<br>
+          @else
           <select name="new_used">
-            <option value="新品" @if(!empty($new_used_old) and $new_used_old == "中古" ) @elseif(empty($new_used_old) and !empty($info -> new_used) and $info -> new_used == "中古") @else selected @endif>新品</option>
-            <option value="中古" @if(!empty($new_used_old) and $new_used_old == "中古" ) selected @elseif(empty($new_used_old) and !empty($info -> new_used) and $info -> new_used == "中古") selected @endif>中古</option>
+            <option value="新品-常時在庫管理無し" @if(!empty($new_used_old) and $new_used_old == "新品-常時在庫管理無し" ) selected @elseif(empty($new_used_old) and !empty($info -> new_used) and $info -> new_used == "新品-常時在庫管理無し") selected @endif>新品-常時在庫管理無し</option>
+            <option value="中古-常時在庫管理無し" @if(!empty($new_used_old) and $new_used_old == "中古-常時在庫管理無し" ) selected @elseif(empty($new_used_old) and !empty($info -> new_used) and $info -> new_used == "中古-常時在庫管理無し") selected @endif>中古-常時在庫管理無し</option>
           </select><br/>
+          @endif
         </h2>
       </div>
     </div>

@@ -73,7 +73,7 @@
         ->appends(Request::only('log_select4'))->appends(Request::only('log_select5'))
         ->appends(Request::only('log_select6'))->appends(Request::only('log_select7'))->links() }}
       </div>
-    </div>  
+    </div>
     <div class="pb-1 border-bottom">
       <div>
           <form id="zaico_serch" action="/zaico_log_serch" method="get">
@@ -131,8 +131,9 @@
               @csrf
               <select class="mt-1 mb-1 mx-auto" id="submit_select5" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
                 <option value=""></option>
-                <option value="新品" @if(!empty($log_select5) and $log_select5 === "新品") selected @endif>新品</option>
-                <option value="中古" @if(!empty($log_select5) and $log_select5 === "中古") selected @endif>中古</option>
+                <option value="新品-常時在庫管理あり" @if(!empty($log_select5) and $log_select5 === "新品-常時在庫管理あり") selected @endif>新品-常時在庫管理あり</option>
+                <option value="新品-常時在庫管理無し" @if(!empty($log_select5) and $log_select5 === "新品-常時在庫管理無し") selected @endif>新品-常時在庫管理無し</option>
+                <option value="中古-常時在庫管理無し" @if(!empty($log_select5) and $log_select5 === "中古-常時在庫管理無し") selected @endif>中古-常時在庫管理無し</option>
               </select>
           </div>
           <div class="col mt-1 mb-1">
@@ -169,7 +170,7 @@
     <div class="row mt-1 mb-1 border-bottom">
       <div class="col-6 mt-1 mb-1">
         <h3 class="text-left">{{$info->datetime}} ステータス：{{$info->status}}</h3>
-        <h3 class="text-left">コンディション：{{$info->new_used}}</h3>
+        <h3 class="text-left">コンディション：<br>{{$info->new_used}}</h3>
         <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo">
         @if($users->authority == 10)
         <form id="zaico_log_delete{{$info->id}}" action="/zaico_log/delete" method="post">

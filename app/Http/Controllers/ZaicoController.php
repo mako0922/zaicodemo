@@ -150,7 +150,11 @@ class ZaicoController extends Controller
 
     //try{
       DB::table('zaico_table')->insert($param);
-      DB::table('part_info')->where('id', $request -> id)->update($part_update);
+      if($stock_update <= 0 and ($request -> new_used == "新品-常時在庫管理無し" or $request -> new_used == "中古-常時在庫管理無し")){
+        DB::table('part_info')->where('id', $request -> id)->delete();
+      }else{
+        DB::table('part_info')->where('id', $request -> id)->update($part_update);
+      }
     //} catch (\Exception $e) {
     //  return redirect('/zaico_home');
     //}

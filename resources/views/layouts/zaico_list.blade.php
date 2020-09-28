@@ -126,8 +126,9 @@
             <h3 class="text-left">コンディション検索</h3>
               <select class="mt-1 mb-1 mx-auto" id="submit_select5" style="font-size: 20px; width:250px; margin-left:80px; padding-left:30px" name="log_select5" onChange="submit(this.form)">
                 <option value=""></option>
-                <option value="新品" @if(!empty($log_select5) and $log_select5 === "新品") selected @endif>新品</option>
-                <option value="中古" @if(!empty($log_select5) and $log_select5 === "中古") selected @endif>中古</option>
+                <option value="新品-常時在庫管理あり" @if(!empty($log_select5) and $log_select5 === "新品-常時在庫管理あり") selected @endif>新品-常時在庫管理あり</option>
+                <option value="新品-常時在庫管理無し" @if(!empty($log_select5) and $log_select5 === "新品-常時在庫管理無し") selected @endif>新品-常時在庫管理無し</option>
+                <option value="中古-常時在庫管理無し" @if(!empty($log_select5) and $log_select5 === "中古-常時在庫管理無し") selected @endif>中古-常時在庫管理無し</option>
               </select>
           </div>
           <div class="col mt-1 mb-1">
@@ -185,7 +186,7 @@
       <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">ステータス：{{$info->status}}</h5><br>
         <h5 class="text-left">仕入れ先：{{$info->supplier}}</h5><br>
-        <h5 class="text-left">コンディション：{{$info->new_used}}</h5><br>
+        <h5 class="text-left">コンディション：<br>{{$info->new_used}}</h5><br>
         <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
         @if($users->authority == 10)
         <h5 class="text-left">仕入れ価格：{{$info->cost_price}}円/税：{{$info->cost_price_tax}}</h5><br>
@@ -207,7 +208,7 @@
           <input type="hidden" name="id" value="{{$info->id}}">
           <input type="hidden" name="rec_and_ship" value="utilize">
           <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
-          <button form="zaico_utilize{{$info->id}}" type="submit" style="width:100%;background-color:orange;" class="text-center border border-warning rounded p-1"><h3>使用</h3></button><br><br>
+          <button form="zaico_utilize{{$info->id}}" type="submit" style="width:100%;background-color:orange;" class="text-center border border-warning rounded p-1"><h3>出荷</h3></button><br><br>
         </form>
         <form id="zaico_update{{$info->id}}" action="/zaico_input/update" method="post">
           @csrf
