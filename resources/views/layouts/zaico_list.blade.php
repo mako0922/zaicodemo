@@ -194,6 +194,7 @@
         <h5 class="text-left">販売価格：{{$info->selling_price}}円/税：{{$info->selling_price_tax}}</h5><br>
         <h5 class="text-center p-1 border border-primary">在庫：{{$info->stock}}</h5><br>
         <h5 class="text-center">👇</h5><br>
+        @if($info->new_used == "新品-常時在庫管理あり")
         <form id="zaico_arrival{{$info->id}}" action="/zaico_input/arrival" method="post">
           @csrf
           <input type="hidden" name="part_name" value="{{$info->part_name}}">
@@ -202,6 +203,7 @@
           <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
           <button form="zaico_arrival{{$info->id}}" type="submit" style="width:100%;background-color:skyblue;" class="text-center border border-primary rounded p-1"><h3>入荷</h3></button><br><br>
         </form>
+        @endif
         <form id="zaico_utilize{{$info->id}}" action="/zaico_input/utilize" method="post">
           @csrf
           <input type="hidden" name="part_name" value="{{$info->part_name}}">

@@ -174,12 +174,7 @@
         <h2 class="text-center">担当名：</h2>
       </div>
       <div class="col-8">
-        <h2><select name="staff_name">
-          <option class="text-primary" value=""></option>
-          @foreach ($staff as $staff_name)
-          <option class="text-primary" value="{{$staff_name->name}}" @if( $staff_name->name === $users -> name) selected @endif>{{$staff_name->name}}</option>
-          @endforeach
-        </select></h2>
+        <h2>@if(!empty($users)){{$users->name}}@endif</h2>
         <input type="hidden" name="staff_name" @if(!empty($users))value="{{$users->name}}"@endif>
       </div>
     </div>
