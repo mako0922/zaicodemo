@@ -180,6 +180,7 @@ $(function(){
       </div>
       <div class="col-8">
         <h2 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);"><pre>{{$info->comment}}</pre></h2>
+				<input type="hidden" name="comment" value="{{$info->comment}}">
       </div>
     </div>
     <div class="row mb-5">

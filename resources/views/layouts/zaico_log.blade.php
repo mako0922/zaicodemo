@@ -178,7 +178,14 @@
           <input type="hidden" name="part_id" value="{{$info->id}}">
           <input type="hidden" name="status" value="delete">
           <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
-          <button form="zaico_log_delete{{$info->id}}" type="submit" style="width:50%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>削除</h3></button><br>
+          <button form="zaico_log_delete{{$info->id}}" type="submit" style="width:50%;background-color:red;" class="text-center border border-warning rounded p-1"><h3>ログ削除</h3></button><br><br>
+        </form>
+        <form id="zaico_log_registration{{$info->id}}" action="/zaico_log/registration" method="post">
+          @csrf
+          <input type="hidden" name="part_id" value="{{$info->id}}">
+          <input type="hidden" name="status" value="registration">
+          <input type="hidden" name="url" value="{{ str_replace(url('/'),"",request()->fullUrl()) }}">
+          <button form="zaico_log_registration{{$info->id}}" type="submit" style="width:50%;background-color:green;" class="text-center border border-warning rounded p-1"><h3>ログから登録</h3></button><br>
         </form>
         @endif
       </div>

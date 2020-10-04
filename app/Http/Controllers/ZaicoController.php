@@ -114,6 +114,12 @@ class ZaicoController extends Controller
       $purchase_date = $request -> purchase_date;
     }
 
+    if(empty($request -> supplier)){
+      $supplier = "";
+    }else{
+      $supplier = $request -> supplier;
+    }
+
     $param = [
       'part_number' => $request -> partName,
       'manufacturer' => $manufacturer,
@@ -123,6 +129,7 @@ class ZaicoController extends Controller
       'status' => $request -> status,
       'partnumber' => $request -> partNumber,
       'class' => $class_name,
+      'supplier' => $supplier,
       'storage_name' => $storage,
       'comment' => $comment,
       'part_photo' => $part_photo64,
@@ -200,7 +207,7 @@ class ZaicoController extends Controller
       return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
       return redirect('/used_info')->withInput();
-    }else if($request->hp_type === "part_update"){
+    }else if($request->hp_type === "part_update" or $request->hp_type === "zaico_log_registration"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
@@ -209,7 +216,11 @@ class ZaicoController extends Controller
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $supplier_info = DB::table('supplier_table')->get();
-      $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      if($request->hp_type === "part_update"){
+        $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      }else if($request->hp_type === "zaico_log_registration"){
+        $info = DB::table('zaico_table')->where('id', $request -> part_id)->first();
+      }
 
       $revision_number_old = $request -> revision_number;
       $part_name_old = $request -> part_name;
@@ -258,7 +269,11 @@ class ZaicoController extends Controller
         'url_old' => $url_old,
 
       ];
-      return redirect('/part_update')->withInput($param);
+      if($request->hp_type === "part_update"){
+        return redirect('/part_update')->withInput($param);
+      }else if($request->hp_type === "zaico_log_registration"){
+        return redirect('/zaico_log_registration')->withInput($param);
+      }
     }else{
       return redirect('/class_input');
     }
@@ -298,7 +313,7 @@ class ZaicoController extends Controller
       return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
       return redirect('/used_info')->withInput();
-    }else if($request->hp_type === "part_update"){
+    }else if($request->hp_type === "part_update" or $request->hp_type === "zaico_log_registration"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
@@ -307,7 +322,11 @@ class ZaicoController extends Controller
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $supplier_info = DB::table('supplier_table')->get();
-      $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      if($request->hp_type === "part_update"){
+        $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      }else if($request->hp_type === "zaico_log_registration"){
+        $info = DB::table('zaico_table')->where('id', $request -> part_id)->first();
+      }
 
       $revision_number_old = $request -> revision_number;
       $part_name_old = $request -> part_name;
@@ -355,7 +374,11 @@ class ZaicoController extends Controller
         'id_old' => $id_old,
         'url_old' => $url_old,
       ];
-      return redirect('/part_update')->withInput($param);
+      if($request->hp_type === "part_update"){
+        return redirect('/part_update')->withInput($param);
+      }else if($request->hp_type === "zaico_log_registration"){
+        return redirect('/zaico_log_registration')->withInput($param);
+      }
     }else{
       return redirect('/manufacturer_input');
     }
@@ -397,7 +420,7 @@ class ZaicoController extends Controller
       return redirect('/used_info')->withInput();
     }else if($request->hp_type === "zaico_input_arrival"){
       return redirect('/zaico_input')->withInput();
-    }else if($request->hp_type === "part_update"){
+    }else if($request->hp_type === "part_update" or $request->hp_type === "zaico_log_registration"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
@@ -406,7 +429,11 @@ class ZaicoController extends Controller
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $supplier_info = DB::table('supplier_table')->get();
-      $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      if($request->hp_type === "part_update"){
+        $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      }else if($request->hp_type === "zaico_log_registration"){
+        $info = DB::table('zaico_table')->where('id', $request -> part_id)->first();
+      }
 
       $revision_number_old = $request -> revision_number;
       $part_name_old = $request -> part_name;
@@ -455,7 +482,11 @@ class ZaicoController extends Controller
         'url_old' => $url_old,
 
       ];
-      return redirect('/part_update')->withInput($param);
+      if($request->hp_type === "part_update"){
+        return redirect('/part_update')->withInput($param);
+      }else if($request->hp_type === "zaico_log_registration"){
+        return redirect('/zaico_log_registration')->withInput($param);
+      }
     }else{
       return redirect('/status_input');
     }
@@ -495,7 +526,7 @@ class ZaicoController extends Controller
       return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
       return redirect('/used_info')->withInput();
-    }else if($request->hp_type === "part_update"){
+    }else if($request->hp_type === "part_update" or $request->hp_type === "zaico_log_registration"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
@@ -504,7 +535,11 @@ class ZaicoController extends Controller
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $supplier_info = DB::table('supplier_table')->get();
-      $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      if($request->hp_type === "part_update"){
+        $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      }else if($request->hp_type === "zaico_log_registration"){
+        $info = DB::table('zaico_table')->where('id', $request -> part_id)->first();
+      }
 
       $revision_number_old = $request -> revision_number;
       $part_name_old = $request -> part_name;
@@ -553,7 +588,11 @@ class ZaicoController extends Controller
         'url_old' => $url_old,
 
       ];
-      return redirect('/part_update')->withInput($param);
+      if($request->hp_type === "part_update"){
+        return redirect('/part_update')->withInput($param);
+      }else if($request->hp_type === "zaico_log_registration"){
+        return redirect('/zaico_log_registration')->withInput($param);
+      }
     }else{
       return redirect('/storage_input');
     }
@@ -593,7 +632,7 @@ class ZaicoController extends Controller
       return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
       return redirect('/used_info')->withInput();
-    }else if($request->hp_type === "part_update"){
+    }else if($request->hp_type === "part_update" or $request->hp_type === "zaico_log_registration"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
       $class_info = DB::table('class_table')->get();
@@ -602,7 +641,11 @@ class ZaicoController extends Controller
       $status_info = DB::table('status_table')->get();
       $manufacturer_info = DB::table('manufacturer_table')->get();
       $supplier_info = DB::table('supplier_table')->get();
-      $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      if($request->hp_type === "part_update"){
+        $info = DB::table('part_info')->where('id', $request -> part_id)->first();
+      }else if($request->hp_type === "zaico_log_registration"){
+        $info = DB::table('zaico_table')->where('id', $request -> part_id)->first();
+      }
 
       $revision_number_old = $request -> revision_number;
       $part_name_old = $request -> part_name;
@@ -651,7 +694,11 @@ class ZaicoController extends Controller
         'url_old' => $url_old,
 
       ];
-      return redirect('/part_update')->withInput($param);
+      if($request->hp_type === "part_update"){
+        return redirect('/part_update')->withInput($param);
+      }else if($request->hp_type === "zaico_log_registration"){
+        return redirect('/zaico_log_registration')->withInput($param);
+      }
     }else{
       return redirect('/supplier_input');
     }
@@ -1149,7 +1196,7 @@ class ZaicoController extends Controller
       $class_name = $request -> class_name;
     }
 
-    if(empty($request -> storage_name)){
+    if(empty($request -> storage)){
       $storage = "";
     }else{
       $storage = $request -> storage;
@@ -1837,6 +1884,284 @@ class ZaicoController extends Controller
     ];
     try{
       DB::table('zaico_table')->where('id', $request -> id)->delete();
+    } catch (\Exception $e) {
+      return redirect('/zaico_home');
+    }
+
+    return redirect($request -> url);
+  }
+
+  public function zaico_log_input_registration(Request $request){
+    //$this->validate($request, Attendance::$rules);
+    if (Auth::check()){
+      $user = Auth::user();
+      //$request->session()->regenerateToken();
+      $validate_rule = [
+      ];
+      $this->validate($request, $validate_rule);
+      try{
+        $info = DB::table('zaico_table')->where('id', $request -> part_id)->first();
+        $zaico_status = DB::table('zaico_table')->groupBy('status')->get(['status']);
+        $staff = DB::table('users')->get();
+        $class = DB::table('class_table')->get();
+        $manufacturer = DB::table('manufacturer_table')->get();
+        $storage_name = DB::table('storage_table')->get();
+        $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
+        $status_name = DB::table('status_table')->get();
+        $supplier_name = DB::table('supplier_table')->get();
+
+        if(!empty($revision_number_info)){
+          $number_buf = 1;
+          foreach ($revision_number_info as $revision_number_value) {
+            $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+            if($revision_number_auto == $revision_number_value -> revision_number){
+              $number_buf += 1;
+            }
+          }
+        }else{
+          $number_buf = 1;
+        }
+
+        $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+
+      } catch (\Exception $e) {
+        return redirect('/zaico_home');
+      }
+
+      $param = [
+        'users' => $user,
+        'info' => $info,
+        'staff' => $staff,
+        'class_info' => $class,
+        'manufacturer_info' => $manufacturer,
+        'storage_info' => $storage_name,
+        'zaico_status' => $zaico_status,
+        'url' => $request -> url,
+      ];
+
+      $param += ['status' => $request -> status];
+      $param += ['supplier' => $request -> supplier];
+      $param += ['revision_number_auto' => $revision_number_auto];
+      $param += ['status_info' => $status_name];
+      $param += ['supplier_info' => $supplier_name];
+      return redirect('/zaico_log_registration')->withInput($param);
+    }else{
+      return view('auth/login');
+    }
+  }
+
+  public function zaico_log_registration(Request $request){
+
+    if (Auth::check()){
+      $user = Auth::user();
+      $part_info = $request->old();
+      $part_info += ['users' => $user];
+
+      $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
+
+      if(!empty($revision_number_info)){
+        $number_buf = 1;
+        foreach ($revision_number_info as $revision_number_value) {
+          $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+          if($revision_number_auto == $revision_number_value -> revision_number){
+            $number_buf += 1;
+          }
+        }
+      }else{
+        $number_buf = 1;
+      }
+
+      $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
+
+      $part_info += ['revision_number_auto' => $revision_number_auto];
+      //$request->session()->regenerateToken();
+      return view('zaico_log_registration.index', $part_info);
+    }else{
+      return view('auth/login');
+    }
+
+  }
+
+  public function zaico_log_registration_register(Request $request){
+    $user = Auth::user();
+    $validate_rule = [
+      'part_name' => 'required',
+      'stock' => 'required',
+    ];
+    $this->validate($request, $validate_rule);
+    $resize_path = public_path('img\new.png');
+    //$request->session()->regenerateToken();
+
+    if(!empty($request -> part_photo)){
+      $image = Image::make(file_get_contents($request -> part_photo));
+      $image->resize(200, null, function ($constraint) {
+        $constraint->aspectRatio();
+      });
+      $image->save($resize_path);
+      $part_photo64 = base64_encode($image);
+    }else{
+      if(!empty($request -> part_photo_origin)){
+        $part_photo64 = $request -> part_photo_origin;
+      }else{
+        $part_photo64 = "";
+      }
+    }
+
+    if(empty($request -> comment)){
+      $comment = "";
+    }else{
+      $comment = $request -> comment;
+    }
+
+    if(empty($request -> manufacturer)){
+      $manufacturer = "";
+    }else{
+      $manufacturer = $request -> manufacturer;
+    }
+
+    if(empty($request -> class_name)){
+      $class_name = "";
+    }else{
+      $class_name = $request -> class_name;
+    }
+
+    if(empty($request -> storage)){
+      $storage = "";
+    }else{
+      $storage = $request -> storage;
+    }
+
+    if(empty($request -> status)){
+      $status = "";
+    }else{
+      $status = $request -> status;
+    }
+
+    if(empty($request -> supplier)){
+      $supplier = "";
+    }else{
+      $supplier = $request -> supplier;
+    }
+
+    if(empty($request -> cost_price)){
+      $cost_price = 0;
+    }else{
+      $cost_price = $request -> cost_price;
+    }
+
+    if(empty($request -> selling_price)){
+      $selling_price = 0;
+    }else{
+      $selling_price = $request -> selling_price;
+    }
+
+    if(!empty($request -> part_photo1)){
+      $image1 = Image::make(file_get_contents($request -> part_photo1));
+      $image1->resize(100, null, function ($constraint) {
+        $constraint->aspectRatio();
+    });
+      $image1->save($resize_path);
+      $part_photo64_1 = base64_encode($image1);
+    }else{
+      if(!empty($request -> part_photo1_origin)){
+        $part_photo64_1 = $request -> part_photo1_origin;
+      }else{
+        $part_photo64_1 = "";
+      }
+    }
+
+    if(!empty($request -> part_photo2)){
+      $image2 = Image::make(file_get_contents($request -> part_photo2));
+      $image2->resize(100, null, function ($constraint) {
+        $constraint->aspectRatio();
+    });
+      $image2->save($resize_path);
+      $part_photo64_2 = base64_encode($image2);
+    }else{
+      if(!empty($request -> part_photo2_origin)){
+        $part_photo64_2 = $request -> part_photo2_origin;
+      }else{
+        $part_photo64_2 = "";
+      }
+    }
+
+    if(!empty($request -> part_photo3)){
+      $image3 = Image::make(file_get_contents($request -> part_photo3));
+      $image3->resize(100, null, function ($constraint) {
+        $constraint->aspectRatio();
+    });
+      $image3->save($resize_path);
+      $part_photo64_3 = base64_encode($image3);
+    }else{
+      if(!empty($request -> part_photo3_origin)){
+        $part_photo64_3 = $request -> part_photo3_origin;
+      }else{
+        $part_photo64_3 = "";
+      }
+    }
+
+    if(empty($request -> revision_number)){
+      $revision_number = "";
+    }else{
+      $revision_number = $request -> revision_number;
+    }
+
+    if(empty($request -> purchase_date)){
+      $purchase_date = date('Y-m-d');
+    }else{
+      $purchase_date = $request -> purchase_date;
+    }
+
+    $param = [
+      'part_name' => $request -> part_name,
+      'manufacturer' => $manufacturer,
+      'part_photo' => $part_photo64,
+      'sub_part_photo_1' => $part_photo64_1,
+      'sub_part_photo_2' => $part_photo64_2,
+      'sub_part_photo_3' => $part_photo64_3,
+      'class' => $class_name,
+      'stock' => $request -> stock,
+      'storage_name' => $storage,
+      'comment' => $comment,
+      'status' => $request -> status,
+      'supplier' => $request -> supplier,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
+      'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
+      'new_used' => $request -> new_used,
+    ];
+    //try{
+      DB::table('part_info')->insert($param);
+    //} catch (\Exception $e) {
+    //  return redirect('/zaico_home');
+    //}
+
+    $param_log = [
+      'part_number' => $request -> part_name,
+      'manufacturer' => $manufacturer,
+      'datetime' => date('Y-m-d H:i', strtotime('+9hour')),
+      'staff_name' => $user -> name,
+      'utilization' => 'ログから登録処理',
+      'status' => $request -> status,
+      'supplier' => $request -> supplier,
+      'partnumber' => $request -> stock,
+      'storage_name' => $storage,
+      'comment' => $comment,
+      'class' => $request -> class_name,
+      'part_photo' => $part_photo64,
+      'cost_price' => $cost_price,
+      'cost_price_tax' => $request -> cost_price_tax,
+      'selling_price' => $selling_price,
+      'selling_price_tax' => $request -> selling_price_tax,
+      'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
+      'new_used' => $request -> new_used,
+    ];
+    try{
+      DB::table('zaico_table')->insert($param_log);
     } catch (\Exception $e) {
       return redirect('/zaico_home');
     }

@@ -107,6 +107,15 @@ Route::post('zaico_log/delete','ZaicoController@zaico_log_input_delete')
 Route::post('zaico_log_delete/register','ZaicoController@zaico_log_delete_register')
       ->middleware('auth');
 
+Route::get('zaico_log_registration','ZaicoController@zaico_log_registration')
+      ->middleware('auth');
+
+Route::post('zaico_log/registration','ZaicoController@zaico_log_input_registration')
+      ->middleware('auth');
+
+Route::post('zaico_log_registration/register','ZaicoController@zaico_log_registration_register')
+      ->middleware('auth');
+
 Route::post('zaico_log_serch','ZaicoController@zaico_log_serch')
       ->middleware('auth');
 
