@@ -25,8 +25,11 @@ class ZaicoController extends Controller
     // ログインチェック
     if (Auth::check()){
       $user = Auth::user();
+      $status_info = DB::table('status_table')->get();
       $part_info = $request->old();
+      $info = DB::table('part_info')->where('id', $request -> id)->first();
       $part_info += ['users' => $user];
+      $part_info += ['status_info' => $status_info];
       return view('zaico_input.index', $part_info);
     }else{
       return view('auth/login');
@@ -117,7 +120,7 @@ class ZaicoController extends Controller
       'datetime' => date('Y-m-d H:i', strtotime('+9hour')),
       'staff_name' => $request -> staff_name,
       'utilization' => $utilization,
-      'status' => $request -> rec_and_ship,
+      'status' => $request -> status,
       'partnumber' => $request -> partNumber,
       'class' => $class_name,
       'storage_name' => $storage,
@@ -143,6 +146,8 @@ class ZaicoController extends Controller
       }
       $part_update = [
         'stock' => $stock_update,
+        'status' => $request -> status,
+        'comment' => $comment,
       ];
     } catch (\Exception $e) {
       return redirect('/zaico_home');
@@ -390,6 +395,8 @@ class ZaicoController extends Controller
       return redirect('/part_info')->withInput();
     }else if($request->hp_type === "used_info"){
       return redirect('/used_info')->withInput();
+    }else if($request->hp_type === "zaico_input_arrival"){
+      return redirect('/zaico_input')->withInput();
     }else if($request->hp_type === "part_update"){
       $user = Auth::user();
       $zaico_log = DB::table('zaico_table')->orderBy('id', 'desc')->get();
@@ -1544,6 +1551,7 @@ class ZaicoController extends Controller
         $info = DB::table('part_info')->where('id', $request -> id)->first();
         $staff = DB::table('users')->get();
         $zaico_info = DB::table('zaico_table')->groupBy('utilization')->get(['utilization']);
+        $status_info = DB::table('status_table')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
       }
@@ -1554,9 +1562,10 @@ class ZaicoController extends Controller
         'info' => $info,
         'utilization_info' => $zaico_info,
         'url' => $request -> url,
+        'status_info' => $status_info,
       ];
 
-      $param += ['status' => $request -> rec_and_ship];
+      $param += ['rec_and_ship' => $request -> rec_and_ship];
       return redirect('/zaico_input')->withInput($param);
     }else{
       return view('auth/login');
@@ -1575,6 +1584,7 @@ class ZaicoController extends Controller
         $info = DB::table('part_info')->where('id', $request -> id)->first();
         $staff = DB::table('users')->get();
         $zaico_info = DB::table('zaico_table')->groupBy('utilization')->get(['utilization']);
+        $status_info = DB::table('status_table')->get();
       } catch (\Exception $e) {
         return redirect('/zaico_home');
       }
@@ -1584,8 +1594,9 @@ class ZaicoController extends Controller
         'info' => $info,
         'utilization_info' => $zaico_info,
         'url' => $request -> url,
+        'status_info' => $status_info,
       ];
-      $param += ['status' => $request -> rec_and_ship];
+      $param += ['rec_and_ship' => $request -> rec_and_ship];
       return redirect('/zaico_input')->withInput($param);
     }else{
       return view('auth/login');

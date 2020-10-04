@@ -80,6 +80,9 @@ Route::post('part_list_serch','ZaicoController@part_list_serch')
 Route::get('part_list_serch','ZaicoController@part_list_serch')
       ->middleware('auth');
 
+Route::get('zaico_input/arrival','ZaicoController@zaico_input_arrival')
+      ->middleware('auth');
+
 Route::post('zaico_input/arrival','ZaicoController@zaico_input_arrival')
       ->middleware('auth');
 
