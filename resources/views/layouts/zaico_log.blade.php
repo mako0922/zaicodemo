@@ -169,8 +169,8 @@
     @foreach ($zaico_log as $info)
     <div class="row mt-1 mb-1 border-bottom">
       <div class="col-6 mt-1 mb-1">
-        <h3 class="text-left">{{$info->datetime}} ステータス：{{$info->status}}</h3>
-        <h3 class="text-left">コンディション：<br>{{$info->new_used}}</h3>
+        <h3 class="text-left">{{$info->datetime}}<span @if($info->status_change == 1) style="color:red;" @endif> ステータス：{{$info->status}}</span></h3>
+        <h3 class="text-left" @if($info->new_used_change == 1) style="color:red;" @endif>コンディション：<br>{{$info->new_used}}</h3>
         <img class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo">
         @if($users->authority == 10)
         <form id="zaico_log_delete{{$info->id}}" action="/zaico_log/delete" method="post">
@@ -190,32 +190,32 @@
         @endif
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
-        <h5 class="text-left">管理番号：</h5>
-        <h3 class="text-left">{{$info->revision_number}}</h3><br>
-        <h5 class="text-left">品名：</h5>
-        <h3 class="text-left">{{$info->part_number}}</h3><br>
-        <h5 class="text-left">メーカ：</h5>
-        <h3 class="text-left">{{$info->manufacturer}}</h3><br>
-        <h5 class="text-left">分類：</h5>
-        <h3 class="text-left">{{$info->class}}</h3><br>
-        <h5 class="text-left">保管場所：</h5>
-        <h3 class="text-left">{{$info->storage_name}}</h3><br>
-        <h5 class="text-left">仕入れ先：{{$info->supplier}}</h5><br>
-        <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
+        <h5 class="text-left" @if($info->revision_number_change == 1) style="color:red;" @endif>管理番号：</h5>
+        <h3 class="text-left" @if($info->revision_number_change == 1) style="color:red;" @endif>{{$info->revision_number}}</h3><br>
+        <h5 class="text-left" @if($info->part_number_change == 1) style="color:red;" @endif>品名：</h5>
+        <h3 class="text-left" @if($info->part_number_change == 1) style="color:red;" @endif>{{$info->part_number}}</h3><br>
+        <h5 class="text-left" @if($info->manufacturer_change == 1) style="color:red;" @endif>メーカ：</h5>
+        <h3 class="text-left" @if($info->manufacturer_change == 1) style="color:red;" @endif>{{$info->manufacturer}}</h3><br>
+        <h5 class="text-left" @if($info->class_change == 1) style="color:red;" @endif>分類：</h5>
+        <h3 class="text-left" @if($info->class_change == 1) style="color:red;" @endif>{{$info->class}}</h3><br>
+        <h5 class="text-left" @if($info->storage_name_change == 1) style="color:red;" @endif>保管場所：</h5>
+        <h3 class="text-left" @if($info->storage_name_change == 1) style="color:red;" @endif>{{$info->storage_name}}</h3><br>
+        <h5 class="text-left" @if($info->supplier_change == 1) style="color:red;" @endif>仕入れ先：{{$info->supplier}}</h5><br>
+        <h5 class="text-left" @if($info->purchase_date_change == 1) style="color:red;" @endif>仕入れ日：{{$info->purchase_date}}</h5><br>
       </div>
       <div class="col-3 mt-1 mb-1 my-auto">
         @if($users->authority == 10)
-        <h5 class="text-left">仕入れ価格：{{$info->cost_price}}円/税：{{$info->cost_price_tax}}</h5><br>
+        <h5 class="text-left" @if($info->cost_price_change == 1) style="color:red;" @endif>仕入れ価格：{{$info->cost_price}}円/税：{{$info->cost_price_tax}}</h5><br>
         @endif
-        <h5 class="text-left">販売価格：{{$info->selling_price}}円/税：{{$info->selling_price_tax}}</h5><br>
+        <h5 class="text-left" @if($info->selling_price_change == 1) style="color:red;" @endif>販売価格：{{$info->selling_price}}円/税：{{$info->selling_price_tax}}</h5><br>
         <h5 class="text-left">担当：</h5>
         <h3 class="text-left">{{$info->staff_name}}</h3><br>
         <h5 class="text-left">用途：</h5>
         <h3 class="text-left">{{$info->utilization}}</h3><br>
-        <h5 class="text-left">数量：</h5>
-        <h3 class="text-left">{{$info->partnumber}}</h3><br>
-        <h5 class="text-left">コメント：</h5>
-        <h3 class="text-left"><pre>{{$info->comment}}</pre></h3><br>
+        <h5 class="text-left" @if($info->partnumber_change == 1) style="color:red;" @endif>数量：</h5>
+        <h3 class="text-left" @if($info->partnumber_change == 1) style="color:red;" @endif>{{$info->partnumber}}</h3><br>
+        <h5 class="text-left" @if($info->comment_change == 1) style="color:red;" @endif>コメント：</h5>
+        <h3 class="text-left" @if($info->comment_change == 1) style="color:red;" @endif><pre @if($info->comment_change == 1) style="color:red;" @endif>{{$info->comment}}</pre></h3><br>
       </div>
     </div>
     @endforeach

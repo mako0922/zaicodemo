@@ -120,6 +120,9 @@ class ZaicoController extends Controller
       $supplier = $request -> supplier;
     }
 
+    $part_info_master = DB::table('part_info')->where('id', $request -> id)->first();
+    $change_flag = change_flag($part_info_master, $request);
+
     $param = [
       'part_number' => $request -> partName,
       'manufacturer' => $manufacturer,
@@ -160,8 +163,35 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
 
+    $param_log = [
+      'part_number' => $request -> partName,
+      'manufacturer' => $manufacturer,
+      'datetime' => date('Y-m-d H:i', strtotime('+9hour')),
+      'staff_name' => $request -> staff_name,
+      'utilization' => $utilization,
+      'status' => $request -> status,
+      'partnumber' => $request -> partNumber,
+      'class' => $class_name,
+      'supplier' => $supplier,
+      'storage_name' => $storage,
+      'comment' => $comment,
+      'part_photo' => $part_photo64,
+      'cost_price' => $request -> cost_price,
+      'cost_price_tax' => $cost_price_tax,
+      'selling_price' => $request -> selling_price,
+      'selling_price_tax' => $selling_price_tax,
+      'revision_number' => $revision_number,
+      'purchase_date' => $purchase_date,
+      'new_used' => $request -> new_used,
+
+      'status_change' => $change_flag['status_change'],
+      'partnumber_change' => $change_flag['partnumber_change'],
+      'storage_name_change' => $change_flag['storage_name_change'],
+      'comment_change' => $change_flag['comment_change'],
+    ];
+
     //try{
-      DB::table('zaico_table')->insert($param);
+      DB::table('zaico_table')->insert($param_log);
       if($stock_update <= 0 and ($request -> new_used == "新品-常時在庫管理無し" or $request -> new_used == "中古-常時在庫管理無し")){
         DB::table('part_info')->where('id', $request -> id)->delete();
       }else{
@@ -1092,6 +1122,9 @@ class ZaicoController extends Controller
       $purchase_date = $request -> purchase_date;
     }
 
+    $part_info_master = DB::table('part_info')->where('id', $request -> part_id)->first();
+    $change_flag = change_flag($part_info_master, $request);
+
     $param = [
       'part_name' => $request -> part_name,
       'manufacturer' => $manufacturer,
@@ -1119,6 +1152,68 @@ class ZaicoController extends Controller
       return redirect('/zaico_home');
     }
 
+    // $part_number_change = '0';
+    // $manufacturer_change= '0';
+    // $status_change= '0';
+    // $supplier_change= '0';
+    // $partnumber_change= '0';
+    // $storage_name_change= '0';
+    // $comment_change= '0';
+    // $class_change= '0';
+    // $cost_price_change= '0';
+    // $cost_price_tax_change= '0';
+    // $selling_price_change= '0';
+    // $selling_price_tax_change= '0';
+    // $revision_number_change= '0';
+    // $purchase_date_change= '0';
+    // $new_used_change= '0';
+    //
+    // if($part_info_master -> part_name != $request -> part_name){
+    //   $part_number_change = '1';
+    // }
+    // if($part_info_master -> manufacturer != $manufacturer){
+    //   $manufacturer_change = '1';
+    // }
+    // if($part_info_master -> status != $request -> status){
+    //   $status_change = '1';
+    // }
+    // if($part_info_master -> supplier != $request -> supplier){
+    //   $supplier_change = '1';
+    // }
+    // if($part_info_master -> stock != $request -> stock){
+    //   $partnumber_change = '1';
+    // }
+    // if($part_info_master -> storage_name != $storage){
+    //   $storage_name_change = '1';
+    // }
+    // if($part_info_master -> comment != $comment){
+    //   $comment_change = '1';
+    // }
+    // if($part_info_master -> class != $request -> class_name){
+    //   $class_change = '1';
+    // }
+    // if($part_info_master -> cost_price != $cost_price){
+    //   $cost_price_change = '1';
+    // }
+    // if($part_info_master -> cost_price_tax != $request -> cost_price_tax){
+    //   $cost_price_tax_change = '1';
+    // }
+    // if($part_info_master -> selling_price != $selling_price){
+    //   $selling_price_change = '1';
+    // }
+    // if($part_info_master -> selling_price_tax != $request -> selling_price_tax){
+    //   $selling_price_tax_change = '1';
+    // }
+    // if($part_info_master -> revision_number != $revision_number){
+    //   $revision_number_change = '1';
+    // }
+    // if($part_info_master -> purchase_date != $purchase_date){
+    //   $purchase_date_change = '1';
+    // }
+    // if($part_info_master -> new_used != $request -> new_used){
+    //   $new_used_change = '1';
+    // }
+
     $param_log = [
       'part_number' => $request -> part_name,
       'manufacturer' => $manufacturer,
@@ -1139,6 +1234,23 @@ class ZaicoController extends Controller
       'revision_number' => $revision_number,
       'purchase_date' => $purchase_date,
       'new_used' => $request -> new_used,
+
+      'part_number_change' => $change_flag['part_number_change'],
+      'manufacturer_change' => $change_flag['manufacturer_change'],
+      'status_change' => $change_flag['status_change'],
+      'supplier_change' => $change_flag['supplier_change'],
+      'partnumber_change' => $change_flag['partnumber_change'],
+      'storage_name_change' => $change_flag['storage_name_change'],
+      'comment_change' => $change_flag['comment_change'],
+      'class_change' => $change_flag['class_change'],
+      'cost_price_change' => $change_flag['cost_price_change'],
+      'cost_price_tax_change' => $change_flag['cost_price_tax_change'],
+      'selling_price_change' => $change_flag['selling_price_change'],
+      'selling_price_tax_change' => $change_flag['selling_price_tax_change'],
+      'revision_number_change' => $change_flag['revision_number_change'],
+      'purchase_date_change' => $change_flag['purchase_date_change'],
+      'new_used_change' => $change_flag['new_used_change'],
+
     ];
     try{
       DB::table('zaico_table')->insert($param_log);
@@ -2663,4 +2775,124 @@ function logCSV($zaico_log)
     exit;
 
     //return redirect()->withInput();
+}
+
+function change_flag($part_info_master, $request){
+
+  $part_number_change = '0';
+  $manufacturer_change= '0';
+  $status_change= '0';
+  $supplier_change= '0';
+  $partnumber_change= '0';
+  $storage_name_change= '0';
+  $comment_change= '0';
+  $class_change= '0';
+  $cost_price_change= '0';
+  $cost_price_tax_change= '0';
+  $selling_price_change= '0';
+  $selling_price_tax_change= '0';
+  $revision_number_change= '0';
+  $purchase_date_change= '0';
+  $new_used_change= '0';
+
+  $part_name = '';
+  $manufacturer = '';
+  $status = '';
+  $supplier = '';
+  $stock = '';
+  $storage = '';
+  $comment = '';
+  $class_name = '';
+  $cost_price = '';
+  $cost_price_tax = '';
+  $selling_price = '';
+  $selling_price_tax = '';
+  $revision_number = '';
+  $purchase_date = '';
+  $new_used = '';
+
+  if(!empty($request -> part_name)){$part_name = $request -> part_name;}
+  if(!empty($request -> manufacturer)){$manufacturer = $request -> manufacturer;}
+  if(!empty($request -> status)){$status = $request -> status;}
+  if(!empty($request -> supplier)){$supplier = $request -> supplier;}
+  if(!empty($request -> stock)){$stock = $request -> stock;}
+  if(!empty($request -> storage)){$storage = $request -> storage;}else if(!empty($request -> storage_name)){$storage = $request -> storage_name;}
+  if(!empty($request -> comment)){$comment = $request -> comment;}
+  if(!empty($request -> class_name)){$class_name = $request -> class_name;}
+  if(!empty($request -> cost_price)){$cost_price = $request -> cost_price;}
+  if(!empty($request -> cost_price_tax)){$cost_price_tax = $request -> cost_price_tax;}
+  if(!empty($request -> selling_price)){$selling_price = $request -> selling_price;}
+  if(!empty($request -> selling_price_tax)){$selling_price_tax = $request -> selling_price_tax;}
+  if(!empty($request -> revision_number)){$revision_number = $request -> revision_number;}
+  if(!empty($request -> purchase_date)){$purchase_date = $request -> purchase_date;}
+  if(!empty($request -> new_used)){$new_used = $request -> new_used;}
+
+  if($part_info_master -> part_name != $part_name){
+    $part_number_change = '1';
+  }
+  if($part_info_master -> manufacturer != $manufacturer){
+    $manufacturer_change = '1';
+  }
+  if($part_info_master -> status != $status){
+    $status_change = '1';
+  }
+  if($part_info_master -> supplier != $supplier){
+    $supplier_change = '1';
+  }
+  if($part_info_master -> stock != $stock){
+    $partnumber_change = '1';
+  }
+  if($part_info_master -> storage_name != $storage){
+    $storage_name_change = '1';
+  }
+  if($part_info_master -> comment != $comment){
+    $comment_change = '1';
+  }
+  if($part_info_master -> class != $class_name){
+    $class_change = '1';
+  }
+  if($part_info_master -> cost_price != $cost_price){
+    $cost_price_change = '1';
+  }
+  if($part_info_master -> cost_price_tax != $cost_price_tax){
+    $cost_price_tax_change = '1';
+  }
+  if($part_info_master -> selling_price != $selling_price){
+    $selling_price_change = '1';
+  }
+  if($part_info_master -> selling_price_tax != $selling_price_tax){
+    $selling_price_tax_change = '1';
+  }
+  if($part_info_master -> revision_number != $revision_number){
+    $revision_number_change = '1';
+  }
+  if($part_info_master -> purchase_date != $purchase_date){
+    $purchase_date_change = '1';
+  }
+  if($part_info_master -> new_used != $new_used){
+    $new_used_change = '1';
+  }
+
+  if(!empty($request -> rec_and_ship)){if($request -> partNumber >= 1){$partnumber_change = 1;}else{$partnumber_change = 0;}}
+
+
+  $change_flag = array(
+    'part_number_change' => $part_number_change,
+    'manufacturer_change' => $manufacturer_change,
+    'status_change' => $status_change,
+    'supplier_change' => $supplier_change,
+    'partnumber_change' => $partnumber_change,
+    'storage_name_change' => $storage_name_change,
+    'comment_change' => $comment_change,
+    'class_change' => $class_change,
+    'cost_price_change' => $cost_price_change,
+    'cost_price_tax_change' => $cost_price_tax_change,
+    'selling_price_change' => $selling_price_change,
+    'selling_price_tax_change' => $selling_price_tax_change,
+    'revision_number_change' => $revision_number_change,
+    'purchase_date_change' => $purchase_date_change,
+    'new_used_change' => $new_used_change,
+  );
+return $change_flag;
+
 }
