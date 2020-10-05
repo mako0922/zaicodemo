@@ -499,7 +499,7 @@ window.onload = changeDisabled;
 
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <button form="zaico_log_registration_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/update_logo.png" alt="update_logo"></a>
+        <button form="zaico_log_registration_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/update_logo.png" alt="update_logo">
         <h2 class="text-center">ログから登録</h2></button>
       </div>
       <div class="col mt-5 mb-5">

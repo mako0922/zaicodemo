@@ -404,7 +404,7 @@ window.onload = changeDisabled;
 
     <div class="row mt-5 mb-5">
       <div class="col mt-5 mb-5">
-        <button onSubmit="return double()" form="part_info_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input"></a>
+        <button onSubmit="return double()" form="part_info_form" type="submit"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/new_input.png" alt="new_input">
         <h2 class="text-center">登録</h2></button>
       </div>
       <div class="col mt-5 mb-5">

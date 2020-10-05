@@ -1,6 +1,10 @@
 @charset "utf-8";
 
 /* *****共通設定***** */
+button[type="submit"] {
+-webkit-appearance: none;
+border-radius: 0;
+}
 
 main{
     display: block;
