@@ -49,8 +49,8 @@
 </div>
 
 <div class="d-flex">
-  <a class="navbar-brand" href="zaico_home"><img src="img/home_back.png" width="50px" alt="home_back"></a>
-  <h5 class="my-auto">メイン画面へ戻る</h5>
+  <a class="navbar-brand" href="zaico_home"><img src="img/home_back.png" width="100px" alt="home_back">
+  <h5 class="my-auto navbar-brand">メイン画面へ戻る</h5></a>
 </div>
 
 <main>
