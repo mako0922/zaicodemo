@@ -160,7 +160,7 @@
     </div>
 
     @foreach ($part_info as $info)
-    <div class="row mt-1 mb-1 border-bottom">
+    <div class="row mt-1 mb-1">
       <div class="col-6 mt-1 mb-1">
         <img name="image_main_{{$info->id}}" class="p-2 rounded mx-auto d-block" width="100%" src="data:png;base64,{{$info->part_photo}}" alt="part_photo"><br><br>
         <div class="row">
@@ -180,12 +180,10 @@
         <h3 class="text-left">{{$info->class}}</h3><br>
         <h5 class="text-left">保管場所：</h5>
         <h3 class="text-left">{{$info->storage_name}}</h3><br>
-        <h5 class="text-left">コメント：</h5>
-        <h3 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);"><pre>{{$info->comment}}</pre></h3><br>
-      </div>
-      <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">ステータス：{{$info->status}}</h5><br>
         <h5 class="text-left">仕入れ先：{{$info->supplier}}</h5><br>
+      </div>
+      <div class="col-3 mt-1 mb-1 my-auto">
         <h5 class="text-left">コンディション：<br>{{$info->new_used}}</h5><br>
         <h5 class="text-left">仕入れ日：{{$info->purchase_date}}</h5><br>
         @if($users->authority == 10)
@@ -231,6 +229,10 @@
         </form>
         @endif
       </div>
+    </div>
+    <div class="pb-1 border-bottom">
+      <h5 class="text-left">コメント：</h5>
+      <h3 class="text-left text_pc" style="height: 10vh; overflow: scroll; transform: translateZ(0);"><pre>{{$info->comment}}</pre></h3><br>
     </div>
     @endforeach
   </div>

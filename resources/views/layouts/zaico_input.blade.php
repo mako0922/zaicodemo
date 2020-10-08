@@ -120,9 +120,11 @@
             @endforeach
           </select><br/>
           @endif
+          @if($users->authority == 10)
           新規登録<br><input type="text" name="status_name_new" id="input_click4">
           <input type="hidden" name="hp_type" value="zaico_input_arrival">
           <input type="submit" value="登録" id="click4" formaction="/status_input/register">
+          @endif
         </h2>
       </div>
     </div>
@@ -147,7 +149,7 @@
         <h2 class="text-center">コメント：</h2>
       </div>
       <div class="col-8">
-        <h2><textarea name="comment" placeholder="フリーコメントを記入ください" style="width:373px; height:500px;">@if(!empty(old('comment'))) {{old('comment')}} @elseif(!empty($info -> comment)){{$info -> comment}}@endif</textarea></h2>
+        <h2><textarea name="comment" placeholder="フリーコメントを記入ください" style="width:100%; height:500px;">@if(!empty(old('comment'))) {{old('comment')}} @elseif(!empty($info -> comment)){{$info -> comment}}@endif</textarea></h2>
       </div>
     </div>
     <div class="row mb-5">
