@@ -224,7 +224,7 @@
 
     <div class="row mb-5">
       <div class="col-4">
-        @if(!empty($info -> part_photo))
+        @if(!empty($info -> part_photo) or !empty(old('part_photo_origin')))
         <input type="hidden" name="part_photo_origin" @if(!empty(old('part_photo_origin')))value="{{old('part_photo_origin')}}" @else value="{{$info -> part_photo}}"@endif>
         @endif
         <label for="chooser">
