@@ -39,9 +39,11 @@ class ZaicoController extends Controller
   public function register(Request $request){
     $validate_rule = [
       'rec_and_ship' => 'required',
-      'partnumber' => 'min:0',
+      'partNumber' => 'min:0|required',
       'part_photo' => 'image',
+      'status' => 'required',
     ];
+
     $this->validate($request, $validate_rule);
     //$request->session()->regenerateToken();
     $resize_path = public_path('img\logimage.png');
@@ -811,6 +813,7 @@ class ZaicoController extends Controller
       'class_name' => 'required',
       'stock' => 'required',
       'storage' => 'required',
+      'status' => 'required',
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
@@ -962,6 +965,9 @@ class ZaicoController extends Controller
 
     if (Auth::check()){
       $user = Auth::user();
+      $class = DB::table('class_table')->get();
+      $manufacturer = DB::table('manufacturer_table')->get();
+      $storage_name = DB::table('storage_table')->get();
       $status_name = DB::table('status_table')->get();
       $supplier_name = DB::table('supplier_table')->get();
       $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
@@ -982,6 +988,9 @@ class ZaicoController extends Controller
       $revision_number_auto = 'ZC'.sprintf('%06d', $number_buf);
 
       $part_info += ['users' => $user];
+      $part_info += ['class_info' => $class];
+      $part_info += ['manufacturer_info' => $manufacturer];
+      $part_info += ['storage_info' => $storage_name];
       $part_info += ['status_info' => $status_name];
       $part_info += ['supplier_info' => $supplier_name];
       $part_info += ['revision_number_auto' => $revision_number_auto];
@@ -996,7 +1005,11 @@ class ZaicoController extends Controller
     $user = Auth::user();
     $validate_rule = [
       'part_name' => 'required',
+      'manufacturer' => 'required',
+      'class_name' => 'required',
       'stock' => 'required',
+      'storage' => 'required',
+      'status' => 'required',
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
@@ -1446,7 +1459,11 @@ class ZaicoController extends Controller
     $user = Auth::user();
     $validate_rule = [
       'part_name' => 'required',
+      'manufacturer' => 'required',
+      'class_name' => 'required',
       'stock' => 'required',
+      'storage' => 'required',
+      'status' => 'required',
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');
@@ -2067,7 +2084,20 @@ class ZaicoController extends Controller
     if (Auth::check()){
       $user = Auth::user();
       $part_info = $request->old();
-      $part_info += ['users' => $user];
+      $class = DB::table('class_table')->get();
+      $manufacturer = DB::table('manufacturer_table')->get();
+      $storage_name = DB::table('storage_table')->get();
+      $status_name = DB::table('status_table')->get();
+      $supplier_name = DB::table('supplier_table')->get();
+
+      $part_info += [
+        'users' => $user,
+        'class_info' => $class,
+        'manufacturer_info' => $manufacturer,
+        'storage_info' => $storage_name,
+        'status_info' => $status_name,
+        'supplier_info' => $supplier_name,
+      ];
 
       $revision_number_info = DB::table('part_info')->orderBy('revision_number', 'asc')->select('revision_number')->get();
 
@@ -2098,7 +2128,11 @@ class ZaicoController extends Controller
     $user = Auth::user();
     $validate_rule = [
       'part_name' => 'required',
+      'manufacturer' => 'required',
+      'class_name' => 'required',
       'stock' => 'required',
+      'storage' => 'required',
+      'status' => 'required',
     ];
     $this->validate($request, $validate_rule);
     $resize_path = public_path('img\new.png');

@@ -193,7 +193,7 @@ window.onload = changeDisabled;
           <select name="supplier">
             <option value=""></option>
             @foreach ($supplier_info as $supplier)
-            <option value="{{$supplier->supplier_name}}" @if(!empty(old('supplier')) and old('supplier') == $status->supplier_name ) selected @endif>{{$supplier->supplier_name}}</option>
+            <option value="{{$supplier->supplier_name}}" @if(!empty(old('supplier')) and old('supplier') == $supplier->supplier_name ) selected @endif>{{$supplier->supplier_name}}</option>
             @endforeach
           </select><br/>
           @endif

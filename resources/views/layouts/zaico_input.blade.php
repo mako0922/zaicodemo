@@ -72,7 +72,7 @@
     </div>
     <div class="row mb-5">
       <div class="col-4">
-        <h2 class="text-center">品番：</h2>
+        <h2 class="text-center">品名：</h2>
       </div>
       <div class="col-8">
         <h2>@if(!empty(old('partName'))) {{old('partName')}} @else {{$info->part_name}}@endif</h2>
