@@ -861,7 +861,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo1)){
       $image1 = Image::make(file_get_contents($request -> part_photo1));
-      $image1->resize(100, null, function ($constraint) {
+      $image1->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image1->save($resize_path);
@@ -872,7 +872,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo2)){
       $image2 = Image::make(file_get_contents($request -> part_photo2));
-      $image2->resize(100, null, function ($constraint) {
+      $image2->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image2->save($resize_path);
@@ -883,7 +883,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo3)){
       $image3 = Image::make(file_get_contents($request -> part_photo3));
-      $image3->resize(100, null, function ($constraint) {
+      $image3->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image3->save($resize_path);
@@ -1080,7 +1080,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo1)){
       $image1 = Image::make(file_get_contents($request -> part_photo1));
-      $image1->resize(100, null, function ($constraint) {
+      $image1->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image1->save($resize_path);
@@ -1095,7 +1095,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo2)){
       $image2 = Image::make(file_get_contents($request -> part_photo2));
-      $image2->resize(100, null, function ($constraint) {
+      $image2->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image2->save($resize_path);
@@ -1110,7 +1110,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo3)){
       $image3 = Image::make(file_get_contents($request -> part_photo3));
-      $image3->resize(100, null, function ($constraint) {
+      $image3->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image3->save($resize_path);
@@ -1530,7 +1530,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo1)){
       $image1 = Image::make(file_get_contents($request -> part_photo1));
-      $image1->resize(100, null, function ($constraint) {
+      $image1->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image1->save($resize_path);
@@ -1541,7 +1541,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo2)){
       $image2 = Image::make(file_get_contents($request -> part_photo2));
-      $image2->resize(100, null, function ($constraint) {
+      $image2->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image2->save($resize_path);
@@ -1552,7 +1552,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo3)){
       $image3 = Image::make(file_get_contents($request -> part_photo3));
-      $image3->resize(100, null, function ($constraint) {
+      $image3->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image3->save($resize_path);
@@ -2203,7 +2203,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo1)){
       $image1 = Image::make(file_get_contents($request -> part_photo1));
-      $image1->resize(100, null, function ($constraint) {
+      $image1->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image1->save($resize_path);
@@ -2218,7 +2218,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo2)){
       $image2 = Image::make(file_get_contents($request -> part_photo2));
-      $image2->resize(100, null, function ($constraint) {
+      $image2->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image2->save($resize_path);
@@ -2233,7 +2233,7 @@ class ZaicoController extends Controller
 
     if(!empty($request -> part_photo3)){
       $image3 = Image::make(file_get_contents($request -> part_photo3));
-      $image3->resize(100, null, function ($constraint) {
+      $image3->resize(200, null, function ($constraint) {
         $constraint->aspectRatio();
     });
       $image3->save($resize_path);
