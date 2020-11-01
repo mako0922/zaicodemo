@@ -13,7 +13,6 @@ class ContactSendmail extends Mailable
 
     private $email;
     private $customer_name;
-    private $initial_id;
     private $body;
 
     /**
@@ -25,7 +24,6 @@ class ContactSendmail extends Mailable
     {
       $this->email = $inputs['email'];
       $this->customer_name = $inputs['customer_name'];
-      $this->initial_id = $inputs['initial_id'];
       $this->body  = $inputs['body'];
     }
 
@@ -43,7 +41,6 @@ class ContactSendmail extends Mailable
           ->with([
               'email' => $this->email,
               'customer_name' => $this->customer_name,
-              'initial_id' => $this->initial_id,
               'body'  => $this->body,
           ]);
     }

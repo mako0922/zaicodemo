@@ -33,16 +33,6 @@
 
       <div class="container">
         <div class="row mb-5">
-          <h2 class="text-left">初期ID：{{ $inputs['initial_id'] }}</h2>
-            <input
-                name="initial_id"
-                value="{{ $inputs['initial_id'] }}"
-                type="hidden">
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row mb-5">
           <h2 class="text-left">その他ご質問など：{!! nl2br(e($inputs['body'])) !!}</h2>
             <input
                 name="body"

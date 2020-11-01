@@ -52,25 +52,6 @@
 		<div class="container">
 			<div class="row mb-5">
 				<div class="col-4">
-					<h2 class="text-left">初期ID：</h2>
-				</div>
-				<div class="col-8">
-					<h2>
-						<input
-								name="initial_id"
-								value="{{ old('initial_id') }}"
-								type="text">
-						@if ($errors->has('initial_id'))
-								<p class="error-message">{{ $errors->first('initial_id') }}</p>
-						@endif
-					</h2>
-				</div>
-			</div>
-		</div>
-
-		<div class="container">
-			<div class="row mb-5">
-				<div class="col-4">
 					<h2 class="text-left">その他ご質問など：</h2>
 				</div>
 				<div class="col-8">

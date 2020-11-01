@@ -9,9 +9,6 @@
 ■申請者様氏名<br>
 {!! $customer_name !!} 様<br>
 <br>
-■初期ID<br>
-{!! $initial_id !!}<br>
-<br>
 ■その他ご質問など<br>
 {!! nl2br($body) !!}<br>
 <br>
