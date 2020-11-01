@@ -320,6 +320,8 @@ class ZaicoController extends Controller
       $re_hp = "/storage_input";
     }else if($request -> table_item == "supplier_table"){
       $re_hp = "/supplier_input";
+    }else if($request -> table_item == "users"){
+      $re_hp = "/register";
     }
 
     $param = My_func::tableRead();

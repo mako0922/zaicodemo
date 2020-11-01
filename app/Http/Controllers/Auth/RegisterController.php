@@ -2,34 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -38,36 +19,44 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * ユーザ登録画面の表示
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    protected function validator(array $data)
+    public function getRegister()
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+      if (Auth::check()){
+        $user = Auth::user();
+        $staff_list = DB::table('users')->get();
+        return view('auth.register', ['staff_list' => $staff_list,'users' => $user]);
+      }else{
+        return view('auth/login');
+      }
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
+     * ユーザ登録機能
+     * @param array $data
+     * @return unknown
      */
-    protected function create(array $data)
+    public function postRegister(Request $data)
     {
-        return User::create([
+        if ($data['authority_name'] == "nomal"){
+          $authority = 0;
+        }else if($data['authority_name'] == "administrator"){
+          $authority = 10;
+        }
+        // ユーザ登録処理
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'authority' => $authority,
         ]);
+
+        // ホーム画面へリダイレクト
+        return redirect('/register');
     }
 }

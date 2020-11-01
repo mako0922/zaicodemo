@@ -51,6 +51,16 @@
         <a class="" href="supplier_input"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/supplier.png" alt="supplier"></a>
         <h2 class="text-center">仕入れ先登録/削除</h2>
       </div>
+    </div>
+    <div class="row mt-5 mb-5">
+      <div class="col mt-5 mb-5">
+        <a class="nav-link" href="{{ route('register') }}"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/user_new.png" alt="user_new"></a>
+        <h2 class="text-center">ユーザ登録/削除</h2>
+      </div>
+      <div class="col mt-5 mb-5">
+        <a class="nav-link" href="{{ route('user_update') }}"><img class="p-2 rounded mx-auto d-block border border-primary" src="img/users_setting.png" alt="users_setting"></a>
+        <h2 class="text-center">ユーザ情報変更</h2>
+      </div>
       @endif
     </div>
   </div>

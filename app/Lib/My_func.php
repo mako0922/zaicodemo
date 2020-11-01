@@ -536,7 +536,8 @@ class My_func
     header('Content-Length: '.filesize($fileName));
     header('Content-Disposition: attachment; filename='.$fileName);
     readfile($fileName);
+    unlink($fileName);
     exit;
-    
+
   }
 }

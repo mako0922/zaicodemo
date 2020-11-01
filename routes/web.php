@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//入力ページ
+Route::get('/contact', 'ContactController@index')->name('contact.index');
+
+//確認ページ
+Route::post('/contact_confirm', 'ContactController@confirm')->name('contact.confirm');
+
+//送信完了ページ
+Route::post('/contact_thanks', 'ContactController@send')->name('contact.send');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -154,6 +163,14 @@ Route::post('csv_download','ZaicoController@csv_download')
 Route::post('csv_log_download','ZaicoController@csv_log_download')
       ->middleware('auth');
 
-Auth::routes();
+Auth::routes([
+    'register' => false // ユーザ登録機能をオフに切替
+]);
+Route::group(['middleware' => 'auth'], function() {
+  Route::get('/register', 'Auth\RegisterController@getRegister')->name('register');
+  Route::post('/register', 'Auth\RegisterController@postRegister')->name('register');
+  Route::get('user_update', 'Admin\UserController@edit')->name('user_update');
+  Route::post('user_update', 'Admin\UserController@update');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
