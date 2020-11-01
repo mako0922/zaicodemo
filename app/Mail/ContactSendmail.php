@@ -12,7 +12,8 @@ class ContactSendmail extends Mailable
     use Queueable, SerializesModels;
 
     private $email;
-    private $title;
+    private $customer_name;
+    private $initial_id;
     private $body;
 
     /**
@@ -37,7 +38,7 @@ class ContactSendmail extends Mailable
     {
       return $this
           ->from('example@gmail.com')
-          ->subject('自動送信メール')
+          ->subject('在庫ドコ!申請受付完了メール')
           ->view('contact.mail')
           ->with([
               'email' => $this->email,
