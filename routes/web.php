@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
+
 //入力ページ
 Route::get('/contact', 'ContactController@index')->name('contact.index');
 
@@ -21,7 +21,7 @@ Route::post('/contact_confirm', 'ContactController@confirm')->name('contact.conf
 
 //送信完了ページ
 Route::post('/contact_thanks', 'ContactController@send')->name('contact.send');
-*/
+
 Route::get('/', function () {
     return view('welcome');
 });

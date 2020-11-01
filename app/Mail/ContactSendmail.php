@@ -35,7 +35,7 @@ class ContactSendmail extends Mailable
     public function build()
     {
       return $this
-          ->from('example@gmail.com')
+          ->from('info@stockdoco.com')
           ->subject('在庫ドコ!申請受付完了メール')
           ->view('contact.mail')
           ->with([
