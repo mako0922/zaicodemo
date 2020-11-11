@@ -207,7 +207,7 @@ class My_func
     $param_log = [
       'part_number' => $request -> part_name,
       'manufacturer' => $request -> manufacturer,
-      'datetime' => date('Y-m-d H:i', strtotime('+9hour')),
+      'datetime' => date('Y-m-d H:i'),
       'staff_name' => $user -> name,
       'utilization' => $utilization,
       'status' => $status,
