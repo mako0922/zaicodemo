@@ -27,13 +27,13 @@ class RegisterController extends Controller
      */
     public function getRegister()
     {
-      //if (Auth::check()){
+      if (Auth::check()){
         $user = Auth::user();
         $staff_list = DB::table('users')->get();
         return view('auth.register', ['staff_list' => $staff_list,'users' => $user]);
-      //}else{
-      //  return view('auth/login');
-      //}
+      }else{
+        return view('auth/login');
+      }
     }
 
     /**

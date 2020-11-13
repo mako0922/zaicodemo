@@ -96,6 +96,7 @@
               <div class="card">
                 <div class="card-header mb-2">登録済み一覧</div>
                 @foreach ($staff_list as $staff)
+                @if($staff -> id != 27)
                 <form action="/table_item_delete" method="post">
                   <div class="form-group row ">
                     @csrf
@@ -105,6 +106,7 @@
                   <input type="hidden" name="id" value="{{$staff -> id}}">
                   <input type="hidden" name="table_item" value="users">
                 </form>
+                @endif
                 @endforeach
               </div>
               @endif
