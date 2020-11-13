@@ -166,11 +166,11 @@ Route::post('csv_log_download','ZaicoController@csv_log_download')
 Auth::routes([
     'register' => false // ユーザ登録機能をオフに切替
 ]);
-Route::group(['middleware' => 'auth'], function() {
+//Route::group(['middleware' => 'auth'], function() {
   Route::get('/register', 'Auth\RegisterController@getRegister')->name('register');
   Route::post('/register', 'Auth\RegisterController@postRegister')->name('register');
   Route::get('user_update', 'Admin\UserController@edit')->name('user_update');
   Route::post('user_update', 'Admin\UserController@update');
-});
+//});
 
 Route::get('/home', 'HomeController@index')->name('home');
