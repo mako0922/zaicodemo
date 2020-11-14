@@ -22,9 +22,12 @@ Route::post('/contact_confirm', 'ContactController@confirm')->name('contact.conf
 //送信完了ページ
 Route::post('/contact_thanks', 'ContactController@send')->name('contact.send');
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'ZaicoController@zaico_home')
+      ->middleware('auth');
 
 Route::get('zaico_home','ZaicoController@zaico_home')
       ->middleware('auth');
